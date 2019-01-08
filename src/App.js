@@ -1,28 +1,63 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { connect } from 'react-redux';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { BrowserRouter as Router } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+import ModalContainer from './components/modal-container';
+import NonModalContainer from './components/non-modal-container';
+import { refreshAuthToken } from './actions/auth';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+library.add( faCheckCircle, faTimesCircle );
+
+class App extends React.Component {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loggedIn && this.props.loggedIn) {
+            // When we are logged in, refresh the auth token periodically
+            this.startPeriodicRefresh();
+        } else if (prevProps.loggedIn && !this.props.loggedIn) {
+            // Stop refreshing when we log out
+            this.stopPeriodicRefresh();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stopPeriodicRefresh();
+    }
+
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(
+            () => this.props.dispatch(refreshAuthToken()),
+            60 * 60 * 1000 // One hour
+        );
+    }
+
+    stopPeriodicRefresh() {
+        if (!this.refreshInterval) {
+            return;
+        }
+        clearInterval(this.refreshInterval);
+    }
+
+    render() {
+        return (
+            <div className="app">
+             
+                { this.props.modalDisabled ? <NonModalContainer />
+                                            : <ModalContainer /> 
+                }
+          
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    hasAuthToken: state.auth.authToken !== null,
+    loggedIn: state.auth.currentUser !== null,
+    modalDisabled: state.modal.modalType === null
+});
+
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default connect(mapStateToProps)(App);
