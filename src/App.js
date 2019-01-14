@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 import ModalContainer from './components/modal-container';
 import NonModalContainer from './components/non-modal-container';
 import { refreshAuthToken } from './actions/auth';
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faPrint } from '@fortawesome/free-solid-svg-icons';
 
-library.add( faCheckCircle, faTimesCircle );
+library.add( faCheckCircle, faTimesCircle, faPrint );
 
 class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -43,11 +41,9 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-             
                 { this.props.modalDisabled ? <NonModalContainer />
                                             : <ModalContainer /> 
                 }
-          
             </div>
         );
     }

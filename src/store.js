@@ -6,22 +6,26 @@ import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import authReducer from './reducers/auth';
 import checkInOrOutReducer from './reducers/check-in-out';
+import filterReducer from './reducers/filter';
 import modalReducer from './reducers/modal';
 import optionsReducer from './reducers/fetch-options';
 import protectedDataReducer from './reducers/protected-data';
 import queryReducer from './reducers/query-values';
 import searchReducer from './reducers/fetch-data';
+import welcomeReducer from './reducers/welcome';
 
 const store = createStore(
     combineReducers({
         auth: authReducer,
         check: checkInOrOutReducer,
+        filter: filterReducer,
         form: formReducer,
         modal: modalReducer,
         options: optionsReducer,
         protectedData: protectedDataReducer,
         query: queryReducer,
         search: searchReducer,
+        welcome: welcomeReducer,
     }), composeWithDevTools(
     applyMiddleware(thunk)),
 );

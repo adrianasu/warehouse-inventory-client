@@ -1,25 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { resetError }  from '../actions/fetch-data';
+import { checkInOrOutReset } from '../actions/check-in-out';
 import { hideModal }  from '../actions/modal';
-
 import Modal from './modal';
 import '../css/modal-item.css';
 
-function ErrorCheckModal (props){
-   
+class ErrorCheckModal extends React.Component{
+    onClose(){
+        this.props.checkInOrOutReset();
+        this.props.hideModal();
+    }
+
+    render(){
         return(
-            <Modal onClose={this.props.onClose.bind(this)}>
+            <Modal onClose={this.onClose.bind(this)}>
                 <div className="item">
-                    <p>{ this.props.hasErrored ? 
-                        this.props.hasErrored.message : null }</p>
+                    <p>{ this.props.hasErrored }</p>
                 </div>
             </Modal>
         )
-    
+    }
 
 }
 
+const mapDispatchToProps = {
+    hideModal: hideModal,
+    checkInOrOutReset: checkInOrOutReset,
+};
 
-export default ErrorCheckModal;
+const mapStateToProps = state => ({
+    data: state.search.data,
+    hasErrored: state.modal.modalProps,
+    modalType: state.modal.modalType,
+});
+
+export default connect( mapStateToProps, mapDispatchToProps ) (ErrorCheckModal);

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CheckModal from './check-modal';
 import ErrorModal from './error-modal';
+import ErrorCheckModal from './error-check-modal';
 import ItemModal from './item-modal';
 import LogInModal from './log-in-modal';
 import SignUpModal from './sign-up-modal';
@@ -9,6 +10,7 @@ import SignUpModal from './sign-up-modal';
 const MODAL_COMPONENTS = {
     CHECK_MODAL: CheckModal,
     ERROR_MODAL: ErrorModal,
+    ERROR_CHECK_MODAL: ErrorCheckModal,
     ITEM_MODAL: ItemModal,
     LOG_IN_MODAL: LogInModal,
     SIGN_UP_MODAL: SignUpModal,

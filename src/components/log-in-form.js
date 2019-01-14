@@ -3,12 +3,15 @@ import { Field, reduxForm, focus } from 'redux-form';
 
 import Input from './input';
 import { login } from '../actions/auth';
-import { required, nonEmpty } from './validators';
+import { required, nonEmpty, email, length, isTrimmed } from './validators';
 import { hideModal } from '../actions/modal';
+
+const passwordLength = length({ min: 7, max: 30 })
 
 export class LoginForm extends React.Component{
     onSubmit( values ){
-        return this.props.dispatch( login(values.username, values.password) );
+        return this.props.dispatch( 
+            login(values.email, values.password) );
     }
 
     render(){
@@ -27,14 +30,14 @@ export class LoginForm extends React.Component{
                 onSubmit={ this.props.handleSubmit( values =>
                     this.onSubmit( values )
                 )}>
-                { error }
-                <label htmlFor="username">username</label>
+               
+                <label htmlFor="email">email</label>
                 <Field
                     component={ Input }
                     type="text"
-                    name="username"
-                    id="username"
-                    validate={ [required, nonEmpty] }
+                    name="email"
+                    id="email"
+                    validate={ [required, nonEmpty, email] }
                 />
                 <label htmlFor="password">password</label>
                 <Field
@@ -42,11 +45,13 @@ export class LoginForm extends React.Component{
                     type="password"
                     name="password"
                     id="password"
-                    validate={ [required, nonEmpty] }
+                    validate={ [required, nonEmpty, passwordLength, isTrimmed] }
                 />
                 <button disabled={ this.props.pristine || this.props.submitting }>
                     Log in
                 </button>
+                 
+                 { error }
             </form>
       
     </div>
@@ -56,6 +61,8 @@ export class LoginForm extends React.Component{
 
 export default reduxForm({
     form: 'login',
-    onSubmitSuccess: (result, dispatch) => dispatch(hideModal()),
-    onSubmitFail: ( errors, dispatch ) => dispatch( focus('login', 'username') )
+    onSubmitSuccess: (result, dispatch) => 
+        dispatch(hideModal()),
+    onSubmitFail: ( errors, dispatch ) => 
+        dispatch( focus('login', 'email') )
 })( LoginForm );

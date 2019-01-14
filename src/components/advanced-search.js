@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus, reset } from 'redux-form';
 import { withRouter } from 'react-router-dom';
+import { Field, reduxForm, focus, reset } from 'redux-form';
 import { fetchData } from '../actions/fetch-data';
 import { fetchOptions } from '../actions/fetch-options';
 import { saveQueryValues } from '../actions/query-values';
@@ -15,7 +15,12 @@ class AdvancedSearch extends React.Component{
     onSubmit( values ){
         this.props.saveQueryValues( values );
         return this.props.fetchData(values, "advancedSearch")  
-        .then(this.props.history.push('/results'))    
+        .then(() => {
+            // Display results, if were found.
+            if( this.props.data && this.props.data.length > 0 ){
+                this.props.history.push('/results');
+            }
+        })    
     }
 
     componentDidMount() {
@@ -36,7 +41,7 @@ class AdvancedSearch extends React.Component{
                     <Field component={ Input } type="text" name="product" label="Product"/>
                     <Field component={ Input } type="text" name="model" label="Model"/>
                         
-                    { this.props.options.length === 0 ? <span></span> :     
+                    { this.props.options.length === 0 ? null :     
                         <React.Fragment>
                             <Field component={ Select } type="text" name="category" label="Category"/>
                             <Field component={ Select } type="text" name="manufacturer" label="Manufacturer"/>
@@ -73,7 +78,8 @@ class AdvancedSearch extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    options: state.options.options
+    options: state.options.options,
+    data: state.search.data,
 })
 
 const mapDispatchToProps = ({

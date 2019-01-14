@@ -1,17 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { hideModal }  from '../actions/modal';
 import LoginForm from './log-in-form';
 import Modal from './modal';
 
-
 export class LogInModal extends React.Component{
     onClose(){
         this.props.hideModal();
     }
-
 
     render(){
        

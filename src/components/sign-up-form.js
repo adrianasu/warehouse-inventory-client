@@ -10,13 +10,22 @@ const passwordLength = length({ min: 7, max: 72 });
 
 export class SignUpForm extends React.Component {
     onSubmit( values ){
-        const { username, password } = values;
+        const { email, password } = values;
         return this.props
             .dispatch( signupUser( values ))
-            .then(() => this.props.dispatch(login( username, password )));
+            .then(() => this.props.dispatch(login( email, password )));
     }
 
     render() {
+        let error;
+        if( this.props.error ){
+            error = (
+                <div className="form-error" aria-live="polite">
+                    { this.props.error }
+                </div>
+            );
+        }
+
         return (
             <form   // props.handleSubmit is a Redux Form callback function
                 onSubmit={this.props.handleSubmit(values =>
@@ -24,18 +33,13 @@ export class SignUpForm extends React.Component {
                 )}
                 className="signup-form">
 
-                <label htmlFor="firstName">First name</label>
+                <label htmlFor="employeeId">employeeId</label>
                 <Field 
                     component={Input} 
-                    name="firstName" 
-                    type="text" 
+                    name="employeeId" 
+                    type="number" 
                     validate={[required, nonEmpty]} />
-                <label htmlFor="lastName">Last name</label>
-                <Field 
-                    component={Input} 
-                    name="lastName" 
-                    type="text" 
-                    validate={[required, nonEmpty]} />
+             
                 <label htmlFor="email">email</label>
                 <Field
                     component={Input}
@@ -43,13 +47,7 @@ export class SignUpForm extends React.Component {
                     type="email"
                     validate={[required, nonEmpty, email]}
                 />
-                <label htmlFor="username">username</label>
-                <Field
-                    component={Input}
-                    name="username"
-                    type="text"
-                    validate={[required, nonEmpty, isTrimmed]}
-                />
+               
                 <label htmlFor="password">password</label>
                 <Field
                     component={Input}
@@ -62,6 +60,7 @@ export class SignUpForm extends React.Component {
                     type="submit">
                     Sign Up
                 </button>
+              { error }
             </form>
         );
     }
@@ -69,8 +68,11 @@ export class SignUpForm extends React.Component {
 
 export default reduxForm({
     form: 'signup',  // the info will be in state.form.signup
-    onSubmitSuccess: (results, dispatch) => 
-        dispatch( hideModal()),
-    onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('signup', Object.keys(errors)[0]))
+    onSubmitSuccess: (result, dispatch) => {
+        dispatch( hideModal()); 
+    },
+    onSubmitFail: (errors, dispatch) => {
+        //dispatch(reset('signup'));
+        dispatch(focus('signup', Object.keys(errors)[0]));
+    }
 })(SignUpForm);

@@ -4,8 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { fetchData } from '../actions/fetch-data';
 import Input from './input';
 import { connect } from 'react-redux';
+import { required, nonEmpty, noSpecialChars } from './validators';
 
-class SearchItem extends React.Component{
+class SearchForm extends React.Component{
 
     onSubmit( value ){
         let searchTerm = value.searchTerm;
@@ -14,6 +15,7 @@ class SearchItem extends React.Component{
             .then(this.props.history.push('/results'))
     }
 
+   
     render(){
         const label = 'What are you looking for?';
         return(
@@ -21,9 +23,16 @@ class SearchItem extends React.Component{
                 <form
                     className='search-item'
                     onSubmit={ this.props.handleSubmit( value => this.onSubmit( value ))}>
-                   
-                    <Field component={ Input } label={label} type="text" name="searchTerm" id="searchTerm" />
-                    <button type ="submit" >
+                    <label htmlFor="searchTerm">{ label }</label>
+                    <Field 
+                        component={ Input } 
+                        id="searchTerm"
+                        name="searchTerm"
+                        type="text"
+                        validate={[required, nonEmpty, noSpecialChars]} />
+                    <button 
+                        disabled={this.props.pristine || this.props.submitting}
+                        type ="submit" >
                         Search
                     </button>
                 </form>          
@@ -37,10 +46,10 @@ const mapDispatchToProps = ({
     fetchData: fetchData
 })
 
-SearchItem = withRouter(connect(null, mapDispatchToProps) (SearchItem));
+SearchForm = withRouter(connect(null, mapDispatchToProps) (SearchForm));
 
 export default reduxForm({
     form: 'search',
     onSubmitFail: ( errors, dispatch ) =>
         dispatch( focus( 'search', Object.keys(errors)[0]))
-})(SearchItem);
+})(SearchForm);

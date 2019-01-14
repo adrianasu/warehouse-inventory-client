@@ -27,25 +27,43 @@ export const resetError = () => ({
     type: RESET_ERROR,
 });
 
-export const fetchData = (searchTerm, searchType) => (dispatch) => {
+function generateUrlQuery(searchTerm, searchType){
     let route = [API_BASE_URL];
-    dispatch(fetchBegin());
-    // if we're searching by term add term to url
+    // If we're searching by term add term to url
     if (searchType === "searchTerm") {
-        route.push(`/item/search/${searchTerm}`);
-    // if we're doing an advanced search, put all
+        let term = searchTerm.replace(/\W/g, '');
+        route.push(`/item/search/${term}`);
+    // If we're doing an advanced search, put all
     // terms together in url
     } else if( searchType === "advancedSearch" ){
         route.push(`/item/advancedSearch?`);
         Object.keys(searchTerm).forEach( (term, key)  => {
-            key === 0 ?
-             route.push(`${term}=${searchTerm[term]}`) :
-             route.push(`&${term}=${searchTerm[term]}`)
+            // Don't include in our query the "Select one" term
+            if( searchTerm[term] !== "Select one" ){
+                let t = searchTerm[term].replace(/\W/g, '');
+                // Include "&" in url after the first query
+                key === 0 ? 
+                route.push(`${term}=${t}`):
+                route.push(`&${term}=${t}`)
+            }
         })
+    // Get all items
     } else if (searchType === "searchAll") {
         route.push(`/item`);
+    } else if( searchType === "myAccount"){
+        route.push(`/my-account/${searchTerm}`)
+    } else if (searchType === "onShelf") {
+        route.push(`/item/onShelf/${searchTerm}`)
     }
     route = route.join("");
+    return route;
+
+}
+
+export const fetchData = (searchTerm, searchType) => (dispatch) => {
+    dispatch(fetchBegin());
+    let route = generateUrlQuery( searchTerm, searchType );
+
     return fetch(route, {
             method: 'GET'
         })
@@ -57,4 +75,4 @@ export const fetchData = (searchTerm, searchType) => (dispatch) => {
         .catch(err => {
             dispatch(fetchDataError(err))
         });
-};
+}

@@ -1,43 +1,66 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+function formatDate(template, date) {
+    let specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
+    return new Date(date).toISOString().split(/[-:.TZ]/).reduce(function (template, item, i) {
+        return template.split(specs[i]).join(item);
+    }, template);
+}
 
 function CheckInOutTable( props ){
-    console.log(props);
-    let data = props.data;
-    
+    // If we're doing check-out get data from the last
+    // check-out transaction
+    let transaction = "Check-Out";
+    let checkData = props.data.data.checkedOut[0];
+    // If we're doing check-in, then get data from 
+    // last check-in transaction.
+    if( props.data.checkType === "checkIn" ){
+        checkData = props.data.data.checkedIn[0];
+        transaction = "Check-In";
+    }
+       
     return(
             <table>
                 <tbody>
-                {/* <tr>
-                    <td>Barcode</td>
-                    <td>{ props.checkedOut[0].barcode }</td>
-                </tr> */}
+                <tr>
+                    <th colSpan={2}>{ transaction }</th>
+                </tr>
+                <tr>
+                    <td>Item ID</td>
+                    <td>{ props.data.data.id }</td>
+                </tr>
                 <tr>
                     <td>Employee ID</td>
-                    < td > 
-                        {`${ data.checkedOut[0].employee.firstName } ${ data.checkedOut[0].employee.lastName }`}
+                    <td> 
+                        {`${ checkData.employee.firstName } ${ checkData.employee.lastName }`}
                     </td>
                 </tr>
                 <tr>
                     <td>Item</td>
-                    <td>{ data.product.name }</td>
+                    <td>{ props.data.data.product.name }</td>
                 </tr>
                 <tr>
                     <td>Warehouse</td>
-                    <td>{ data.location.warehouse }</td>
+                    <td>{ props.data.data.location.warehouse }</td>
                 </tr>
                 <tr>
                     <td>Date</td>
-                    <td>{ data.checkedOut[0].date }</td>
+                    <td> {
+                        formatDate('MM/DD/YYYY HH:mm:ss', checkData.date)
+                    } </td>
                 </tr>
-                <tr>
+              
+                { props.data.checkType === "checkOut" ? 
+                    <tr>
                     <td>Condition</td>
-                    <td>{ data.checkedOut[0].condition }</td>
-                </tr>
+                    <td>{ checkData.condition }</td>
+                     </tr>
+                     : null
+                 }
                 {/* <tr>
                     <td>Authorized by</td>
-                    <td>{ data.checkedOut[0].user }</td>
+                    <td>{ checkData.user }</td>
                 </tr> */}
                 </tbody>
             </table>

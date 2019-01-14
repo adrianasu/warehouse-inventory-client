@@ -4,14 +4,23 @@ import { connect } from 'react-redux';
 import { showModal } from '../actions/modal';
 
 class CheckInOrOutResults extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.displayError = this.displayError.bind(this);
+    }
+
     displayError(){
         let modalProps = this.props.hasErrored.message;
-        let modalType = 'ERROR_MODAL';
+        let modalType = 'ERROR_CHECK_MODAL';
         this.props.showModal( modalType, modalProps );
     }
 
     displayCheck(){
-        let modalProps = this.props.data;
+        let modalProps = { 
+            data: this.props.data,
+            checkType: this.props.checkType
+        };
         let modalType = 'CHECK_MODAL';
         this.props.showModal( modalType, modalProps );
     }
@@ -27,7 +36,6 @@ class CheckInOrOutResults extends React.Component{
     }
 
     render(){
- console.log(this.props.data)
         return(
             <div>
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>
@@ -43,7 +51,6 @@ class CheckInOrOutResults extends React.Component{
 }
 
 const mapStateToProps = state => {
-   console.log("DATA  ", state.check);
     return {
         data: state.check.data,
         hasErrored: state.check.error,

@@ -1,16 +1,75 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { showModal } from '../actions/modal';
+import FilterForm from './filter-form';
 import ResultsTable from './results-table';
 
-
 class SearchResults extends React.Component{
-    displayError(){
-        let modalProps = this.props.hasErrored.message;
-        let modalType = 'ERROR_MODAL';
-        this.props.showModal(modalType, modalProps);
+
+    constructor(props){
+        super(props);
+        //console.log("CONS",this.props.data)
+        this.state ={
+            searchTerm: '',
+            currentlyDisplayed: []
+        }
+        this.onChange = this.onChange.bind(this);
     }
+componentDidMount(){
+    this.setState({
+        currentlyDisplayed: this.props.data
+    })
+}
+  
+    onChange(value) {
+        console.log(value);
+        this.setState(value);
+        this.filterData();
+    }
+
+    filterData() {
+        let searchTerm = this.state.searchTerm;
+        // let re = new RegExp(searchTerm)
+        // console.log("TERM ", re)
+        console.log("DATA ", this.props.data)
+        let fields = ['product', 'category', 'manufacturer'];
+        if (this.props.data &&
+            this.props.data.length !== 0 &&
+            searchTerm !== '') {
+// return this.props.data
+                let currentlyDisplayed = [];
+                searchTerm.toLowerCase();
+            this.props.data.forEach(item =>
+                Object.keys(item).forEach(key => {
+                    if (fields.includes(key) && 
+                        item[key].name.toLowerCase().includes(searchTerm) ){
+                            currentlyDisplayed.push(item);
+                    } else if (key === 'location' &&
+                        item[key].warehouse.toLowerCase().includes(searchTerm)) {
+                            currentlyDisplayed.push(item);
+                        }
+                    }
+                )
+            )
+            console.log("CURR")
+            return this.setState({
+                currentlyDisplayed
+            });
+        }
+            
+        // } else if(this.props.data &&
+        //         this.props.data.length > 0 ) {
+        //     console.log("ALL")
+        //     return this.setState({
+        //         currentlyDisplayed: this.props.data
+        //     });
+
+        // }
+        
+        //return this.state.currentlyDisplayed;
+
+    }
+
 
     // Get either the number of items or the message 
     // sent by the server.
@@ -25,34 +84,23 @@ class SearchResults extends React.Component{
     }
 
     render(){
- 
+        let data = this.state.currentlyDisplayed
+         console.log(data);
         return(
             <div>
-                <p> { this.props.isLoading ? "Loading..." : ""} </p>
+                <FilterForm onChange={this.onChange}/>
                 <p> { this.message() } </p> 
-                { this.props.hasErrored ? this.displayError() : <span></span> }
-                
-                <ResultsTable />
-
+                <ResultsTable fil={this.state.currentlyDisplayed}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-   //console.log("DATA search-results ", state.search);
     return {
         data: state.search.data,
-        hasErrored: state.search.error,
-        isLoading: state.search.loading,
-        item: state.item,
-        query: state.query.values
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    showModal: (modalType, modalProps) =>
-        dispatch(showModal(modalType, modalProps)),
-});
 
-export default connect( mapStateToProps, mapDispatchToProps )( SearchResults );
+export default connect( mapStateToProps )( SearchResults );

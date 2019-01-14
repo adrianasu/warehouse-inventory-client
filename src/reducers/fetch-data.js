@@ -14,6 +14,7 @@ const initialState = {
 export default function searchReducer( state = initialState, action ){
     if( action.type === FETCH_BEGIN ){
         return Object.assign({}, state, {
+            data: [],
             error: null,
             loading: true,
         });

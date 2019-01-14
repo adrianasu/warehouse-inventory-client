@@ -1,22 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { login } from '../actions/auth';
+import { welcome } from '../actions/welcome';
 
-import { Redirect } from 'react-router-dom';
-//import SearchItem from './search-item';
-
-function LandingPage(props){
-
-    function handleClick(e){
-        let user = e.target.value;
-        let password = `${user}123`;
-        return props.dispatch(login(user, password))
-        .then(() => {
-            console.log("hey", props.history);
-            return <Redirect to="/search"/>;
-        })
+class LandingPage extends React.Component{
+    // Set welcome state to hide header-bar
+    componentDidMount(){
+        this.props.welcome(true)
     }
-   
+
+    doNotLogIn(){
+        this.props.history.push("/search")
+         // Change state to display header-bar
+        return this.props.welcome(false)
+    }
+
+    doLogIn( email, password){
+         return this.props.login(email, password)
+             .then(() => {
+                 this.props.history.push("/my-account")
+                 // Change state to display header-bar
+                 return this.props.welcome(false)
+             })
+    }
+    // User will be automatically signed in 
+    // when clicking on an access level option,
+    // except when "basic" level is selected
+    handleClick(e){
+        let email = e.target.value;
+        let password = `${email}123`;
+        email === "null" ? this.doNotLogIn()
+                        : this.doLogIn( email, password);       
+    }
+
+    render(){
     return (
         <div className="home">
             <h2>Welcome!</h2>
@@ -29,12 +47,18 @@ function LandingPage(props){
                 MORE...
             </p>
             <p>Try our app</p>
-            <button onClick={handleClick} value="basic">Basic</button>
-            <button onClick={handleClick} value="overview">Overview</button>
-            <button onClick={handleClick} value="public">Public</button>
-            <button onClick={handleClick} value="admin">Admin</button>            
+            <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
+            <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
+            <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>
+            <button onClick={this.handleClick.bind(this)} value="admin@m.com">Admin</button>            
         </div>
     )
+    }
 }
 
-export default connect()(LandingPage);
+const mapDispatchToProps = ({
+    login: login,
+    welcome: welcome,
+})
+
+export default connect(null, mapDispatchToProps)(LandingPage);

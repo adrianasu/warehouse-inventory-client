@@ -11,11 +11,11 @@ export class SignUpModal extends React.Component{
     }
     
     render(){
-  
+      
         return (
             <Modal onClose={this.onClose.bind(this)}>
-                <div className="log-in">
-                    <h2>Sign Up</h2>
+                <div className="sign-up">
+                    <h1>Sign Up</h1>
                     <SignupForm />
                 </div>
             </Modal>
@@ -25,11 +25,10 @@ export class SignUpModal extends React.Component{
 
 const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null
-});
-
+})
 const mapDispatchToProps = {
     hideModal: () => hideModal()
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpModal);
+export default connect( mapStateToProps, mapDispatchToProps )(SignUpModal);
 

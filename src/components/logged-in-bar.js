@@ -1,28 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter }  from 'react-router-dom';
 
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
+import { welcome } from  '../actions/welcome';
 
-import ItemsManagement from './items-management';
+import PublicAdminLinks from './public-admin-links';
+import OverviewLinks from './overview-links';
 
 class LoggedInBar extends React.Component{
 
         logOut() {
-            this.props.dispatch(clearAuth());
+            this.props.history.push('/welcome');
+            this.props.welcome(true)
+            this.props.clearAuth();
             clearAuthToken();
         }
-
-    render() {
-         return(
+        
+        render() {
+            const publicAccessLevel = 10;
+            let barLinks;
+            if( this.props.hasAccessLevel &&
+                this.props.hasAccessLevel >= publicAccessLevel ){
+                    barLinks = <PublicAdminLinks /> 
+            } else{
+                barLinks = <OverviewLinks />
+            }
+            return(
             <React.Fragment>
-                <Link to='/my-account'/>
+                {barLinks}
                 <button onClick={ () => this.logOut() }> Log Out </button>
-                { this.props.hasAccessLevel ? <ItemsManagement /> : <span></span>}
             </React.Fragment>
          )
     }
 }
 
-export default connect()(LoggedInBar);
+
+const mapStateToProps = state => ({
+    hasAccessLevel: state.auth.currentUser.accessLevel
+})
+
+const mapDispatchToProps = ({
+    welcome,
+    clearAuth,
+})
+
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )( LoggedInBar ));

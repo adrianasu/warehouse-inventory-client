@@ -1,43 +1,38 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Redirect, withRouter, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import LoggedInBar from './logged-in-bar';
 import LoggedOutBar from './logged-out-bar';
 import { fetchData } from '../actions/fetch-data';
 
-
 class HeaderBar extends React.Component { 
-    constructor(props){
-        super(props);
-        this.showAll = this.showAll.bind(this);
-    }
-
-    showAll(){
-        return this.props.fetchData(null, 'searchAll')
-        .then(this.props.history.push('/results'))
-    }
+    
     render() { 
         return (
             <div className="header-bar">
                 <h1>Warehouse App</h1>
-                <button onClick={ this.showAll }>All Items</button>
-                <Link to='/search'>Basic Search</Link>
-                <Link to='/advancedSearch'>Advanced Search</Link>
+                <nav>
+                    <React.Fragment>
+                        <NavLink to='/search'>Basic Search</NavLink>
+                        <NavLink to='/advancedSearch'>Advanced Search</NavLink>
+                        
+                    </React.Fragment>                
                 { this.props.loggedIn ? <LoggedInBar /> 
                                 : <LoggedOutBar /> }
+                </nav>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    isWelcome: state.welcome.isWelcome
 });
 
 const mapDispatchToProps =  ({
     fetchData: fetchData
 });
 
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderBar));
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderBar);

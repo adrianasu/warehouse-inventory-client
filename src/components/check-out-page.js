@@ -6,7 +6,7 @@ function CheckOutPage(){
     return(
         <div>
             <CheckOutForm />
-            <CheckInOrOutResults />
+            <CheckInOrOutResults checkType="checkOut"/>
         </div>
     );
 }

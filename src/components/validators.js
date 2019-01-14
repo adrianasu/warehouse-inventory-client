@@ -11,6 +11,9 @@ export const length = length => value => {
         return `Must be at most ${length.max} characters long`;
     }
 };
+export const noSpecialChars = value =>
+  /\W/.test(value) ? `Can't contain special characters.`: undefined;
+
 // Uses a regular expression (regex) to check whether it looks enough like an
 // email address.  Broken down:
 // ^ Matches the start the text
