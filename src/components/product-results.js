@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+
 import FilterForm from './filter-form';
 import ResultsTable from './results-table';
 
@@ -21,7 +21,11 @@ componentDidMount(){
     })
 }
   
-    
+    onChange(value) {
+        console.log(value);
+        this.setState(value);
+        this.filterData();
+    }
 
     filterData() {
         let searchTerm = this.state.searchTerm;
@@ -79,21 +83,14 @@ componentDidMount(){
         return "";
     }
 
-    onChange(value) {
-        console.log(value);
-        this.setState(value);
-        this.filterData();
-    }
-
     render(){
         let data = this.state.currentlyDisplayed
          console.log(data);
         return(
             <div>
-                <h1>{ this.props.match.params.option.replace("-", " ") } </h1>
                 <FilterForm onChange={this.onChange}/>
                 <p> { this.message() } </p> 
-                <ResultsTable currData={this.state.currentlyDisplayed}/>
+                <ResultsTable fil={this.state.currentlyDisplayed}/>
             </div>
         )
     }
@@ -106,4 +103,4 @@ const mapStateToProps = state => {
 }
 
 
-export default withRouter(connect( mapStateToProps )( SearchResults ));
+export default connect( mapStateToProps )( SearchResults );

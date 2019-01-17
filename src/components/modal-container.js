@@ -5,6 +5,7 @@ import ErrorModal from './error-modal';
 import ErrorCheckModal from './error-check-modal';
 import ItemModal from './item-modal';
 import LogInModal from './log-in-modal';
+import LowStockModal from './low-stock-modal';
 import SignUpModal from './sign-up-modal';
 
 const MODAL_COMPONENTS = {
@@ -13,6 +14,7 @@ const MODAL_COMPONENTS = {
     ERROR_CHECK_MODAL: ErrorCheckModal,
     ITEM_MODAL: ItemModal,
     LOG_IN_MODAL: LogInModal,
+    LOW_STOCK_MODAL: LowStockModal,
     SIGN_UP_MODAL: SignUpModal,
 }
 

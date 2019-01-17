@@ -16,6 +16,13 @@ class CheckInOrOutResults extends React.Component{
         this.props.showModal( modalType, modalProps );
     }
 
+    componentDidUpdate(prevProps){
+        if (this.props.hasErrored &&
+            !prevProps.hasErrored) {
+            this.displayError()
+        }
+    }
+
     displayCheck(){
         let modalProps = { 
             data: this.props.data,
@@ -41,9 +48,11 @@ class CheckInOrOutResults extends React.Component{
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>
                 <p> { this.message() } </p> 
                 
-                { this.props.hasErrored ? this.displayError() : <span></span> }
+                {/* { this.props.hasErrored ? this.displayError() : null } */}
                 
-                { this.props.data ? this.displayCheck() : <span></span>}
+                {/* { this.props.data ? this.displayCheck() : null } */}
+                { this.props.data ? this.displayCheck() : null }
+
 
             </div>
         )

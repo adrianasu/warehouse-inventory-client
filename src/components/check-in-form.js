@@ -9,7 +9,7 @@ import Input from './input';
 class CheckInForm extends React.Component{
  
     onSubmit( values ){
-        return this.props.doCheckInOrOut( values, 'checkIn' )        
+        return this.props.doCheckInOrOut( values, 'check-in' )        
     }
 
     render(){

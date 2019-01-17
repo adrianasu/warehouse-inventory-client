@@ -12,7 +12,11 @@ class SearchForm extends React.Component{
         let searchTerm = value.searchTerm;
         let searchType = "searchTerm";
         return this.props.fetchData( searchTerm, searchType )
-            .then(this.props.history.push('/results'))
+            .then(()=>{
+                if( this.props.data.length > 0){
+                    this.props.history.push(`/results/${searchTerm}`)
+                }
+            })
     }
 
    
@@ -46,7 +50,11 @@ const mapDispatchToProps = ({
     fetchData: fetchData
 })
 
-SearchForm = withRouter(connect(null, mapDispatchToProps) (SearchForm));
+const mapStateToProps = state => ({
+    data: state.search.data,
+})
+
+SearchForm = withRouter(connect(mapStateToProps, mapDispatchToProps) (SearchForm));
 
 export default reduxForm({
     form: 'search',

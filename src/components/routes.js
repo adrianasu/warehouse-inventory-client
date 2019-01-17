@@ -3,14 +3,17 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import AccountPage from './account-page';
+import AccountResults from './account-results';
 import AdvancedSearchPage from './advanced-search-page';
 import CheckInPage from './check-in-page';
 import CheckOutPage from './check-out-page';
 import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
-import List from './search-results';
-import MyAccountPage from './my-account';
+import ManagePage from './manage-page';
+import List from './list';
+import ReportsPage from './reports-page';
 import SearchPage from './search-page';
 import SearchResults from './search-results';
 
@@ -23,21 +26,20 @@ class Routes extends React.Component{
                 { this.props.isWelcome ? null :
                 <Route path="/" component={ HeaderBar } />
             }
-                <Route path="/advancedSearch" component={ AdvancedSearchPage } />
+                <Route path="/advanced-search" component={ AdvancedSearchPage } />
                 <Route exact path="/dashboard" component={ Dashboard } />
-                {/* <Route exact path="/item" component={ List } /> */}
-                <Route path="/my-account" component={ MyAccountPage } />
                 <Route exact path="/search" component={ SearchPage } />
                 <Route exact path="/welcome" component={ LandingPage } />
                 <Route path="/check-in" component={ CheckInPage } />
                 <Route path="/check-out" component={ CheckOutPage } />
-                <Route exact path="/results" component={ SearchResults } />
-                {/* <Route path="/reports" component={ ReportsPage } />
-                <Route path="/accounts" component={ AccountsPage } />
-                <Route path="/manage" component={ ManagePage } /> */}
-
+                <Route path="/results/:option" component={ SearchResults } />
+                <Route path="/reports" component={ ReportsPage } />
+                <Route path="/account" component={ AccountPage } />
+                <Route path="/account/:employeeId" component={ AccountResults } />
+                <Route path="/my-account" component={ AccountResults } />
+                <Route path="/manage" component={ ManagePage } /> 
+                <Route path="/list" component={ List } /> 
             </div>
-
         )
     }
 }

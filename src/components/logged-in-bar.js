@@ -31,6 +31,9 @@ class LoggedInBar extends React.Component{
             <React.Fragment>
                 {barLinks}
                 <button onClick={ () => this.logOut() }> Log Out </button>
+                <div>
+                    <p>User: FirstName LastName <span>Level#</span>@LoggedInBar</p>
+                </div>
             </React.Fragment>
          )
     }

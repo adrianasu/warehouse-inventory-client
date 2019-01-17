@@ -15,7 +15,7 @@ class HeaderBar extends React.Component {
                 <nav>
                     <React.Fragment>
                         <NavLink to='/search'>Basic Search</NavLink>
-                        <NavLink to='/advancedSearch'>Advanced Search</NavLink>
+                        <NavLink to='/advanced-search'>Advanced Search</NavLink>
                         
                     </React.Fragment>                
                 { this.props.loggedIn ? <LoggedInBar /> 

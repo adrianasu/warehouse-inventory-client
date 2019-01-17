@@ -18,7 +18,7 @@ class AdvancedSearch extends React.Component{
         .then(() => {
             // Display results, if were found.
             if( this.props.data && this.props.data.length > 0 ){
-                this.props.history.push('/results');
+                this.props.history.push('/results/advancedSearch');
             }
         })    
     }

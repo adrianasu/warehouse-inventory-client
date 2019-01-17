@@ -37,7 +37,7 @@ export class List extends React.Component{
         return(
             <table>
                 <tbody>
-                { this.props.items.map((item) => (
+                { this.props.data.map((item) => (
                     <tr key={ item.id } data-id={item.id} onClick={ this.openItemModal }>
                         <td>{ item.name }</td>
                         <td>{ this.itemDescription( item )}</td>
@@ -57,7 +57,7 @@ export class List extends React.Component{
 const mapStateToProps = state => {
     console.log("List items: ", state.search.data);
     return {
-        items: state.search.data,
+        data: state.search.data,
         hasErrored: state.search.error,
         isLoading: state.search.loading
     }

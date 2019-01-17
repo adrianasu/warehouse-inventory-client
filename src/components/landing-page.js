@@ -19,7 +19,7 @@ class LandingPage extends React.Component{
     doLogIn( email, password){
          return this.props.login(email, password)
              .then(() => {
-                 this.props.history.push("/my-account")
+                 this.props.history.push("/search")
                  // Change state to display header-bar
                  return this.props.welcome(false)
              })

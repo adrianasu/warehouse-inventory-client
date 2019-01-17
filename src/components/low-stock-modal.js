@@ -1,35 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hideModal }  from '../actions/modal';
-import ItemTable from './item-table';
+import LowStockTable from './low-stock-table';
 import Modal from './modal';
 import '../css/modal-item.css';
 
-class ItemModal extends React.Component{
+class LowStockModal extends React.Component{
     onClose(){
         this.props.hideModal();
     }
 
-    getItem(){
-        let itemId = this.props.itemId;
-        let myItem = {};
-       
-        this.props.data.forEach( item  => {
-            if( item.id === itemId ){
-                myItem = item;
+    getProduct(){
+        let productId = this.props.productId;
+        let myProduct = {};
+
+        this.props.data.forEach( product  => {
+            if( product.product._id === productId ){
+                myProduct = product;
             }
         });
-        return myItem;
+        return myProduct;
     }
 
     render(){
      
-        let item = this.getItem();
+        let product = this.getProduct();
         return(
             <Modal onClose={this.onClose.bind(this)}>
                 <div className="item">
-        
-                    <ItemTable item={ item } />
+                    <LowStockTable data={ product } />
                     <button>Edit</button>
                 </div>
             </Modal>
@@ -44,7 +43,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
     data: state.search.data,
-    itemId: state.modal.modalProps,
+    productId: state.modal.modalProps,
 });
 
-export default connect( mapStateToProps, mapDispatchToProps ) (ItemModal);
+export default connect( mapStateToProps, mapDispatchToProps ) (LowStockModal);

@@ -11,7 +11,7 @@ class CheckOutForm extends React.Component{
  
     onSubmit( values ){
         return this.props
-            .doCheckInOrOut( values, 'checkOut' )         
+            .doCheckInOrOut( values, 'check-out' )         
     }
 
 

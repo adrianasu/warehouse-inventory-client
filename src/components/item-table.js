@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function DetailsTable( props ){
+function ItemTable( props ){
     console.log(props);
     return(
+        <div>
+            <h1>{ props.item.product.name }</h1>
             <table>
                 <tbody>
                 <tr>
@@ -53,8 +55,9 @@ function DetailsTable( props ){
                 </tr>
                 </tbody>
             </table>
+        </div>
     )
 
 }
 
-export default connect() (DetailsTable);
+export default connect() (ItemTable);

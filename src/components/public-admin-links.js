@@ -8,7 +8,7 @@ function PublicAdminLinks(){
             <NavLink to='/check-in'>Check In</NavLink>
             <NavLink to='/check-out'>Check Out</NavLink>
             <NavLink to='/reports'>Reports</NavLink>
-            <NavLink to='/accounts'>Accounts</NavLink>
+            <NavLink to='/account'>Accounts</NavLink>
             <NavLink to='/manage'>Manage</NavLink>
         </React.Fragment>
     )

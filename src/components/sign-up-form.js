@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field, focus } from 'redux-form';
 import Input from './input';
-import { required, nonEmpty, email, length, isTrimmed } from './validators';
+import { required, nonEmpty, email, length, isTrimmed, isEqual } from './validators';
 import { signupUser } from '../actions/users';
 import { login } from '../actions/auth';
 import { hideModal } from '../actions/modal';
@@ -48,12 +48,19 @@ export class SignUpForm extends React.Component {
                     validate={[required, nonEmpty, email]}
                 />
                
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <Field
                     component={Input}
                     name="password"
                     type="password"
                     validate={[required, nonEmpty, passwordLength, isTrimmed]}
+                />
+                <label htmlFor="confirmPassword">Confirm password</label>
+                <Field
+                    component={Input}
+                    name="confirmPassword"
+                    type="password"
+                    validate={[required, nonEmpty, isEqual]}
                 />
                 <button
                     disabled={this.props.pristine || this.props.submitting}

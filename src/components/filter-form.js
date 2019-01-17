@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 import Input from './input';
 import { setFilter } from '../actions/filter';
