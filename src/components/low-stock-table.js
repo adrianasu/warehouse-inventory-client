@@ -1,16 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-function formatDate(template, date = Date.now()) {
-    let specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
-    return new Date(date).toISOString().split(/[-:.TZ]/).reduce(function (template, item, i) {
-        return template.split(specs[i]).join(item);
-    }, template);
-}
+import { formatDate } from '../utils/utils';
 
 function LowStockTable( props ){
-    console.log(props);
+
     let product = props.data.product;
     return(
         <div>
@@ -47,7 +41,7 @@ function LowStockTable( props ){
                 </tr>
                 <tr>
                     <td>Date</td>
-                    <td>{ formatDate('MM/DD/YYYY HH:mm:ss') }</td>
+                    <td>{ formatDate() }</td>
                 </tr>
                 
                 </tbody>

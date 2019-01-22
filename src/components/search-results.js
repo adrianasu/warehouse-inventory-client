@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import ResultsTable from './results-table';
 
@@ -15,11 +16,24 @@ class SearchResults extends React.Component{
         }
         this.onChange = this.onChange.bind(this);
     }
-componentDidMount(){
-    this.setState({
-        currentlyDisplayed: this.props.data
-    })
-}
+    componentDidMount(){
+        if( this.props.wasDeleted || this.props.wasUpdated ){
+            let query = this.props.query;
+            // console.log(query)
+            return this.props.fetchData(
+                query
+            )
+            .then(() =>
+                this.setState({
+                    currentlyDisplayed: this.props.data
+                })
+            )
+        } else {
+            return this.setState({
+                currentlyDisplayed: this.props.data
+            })
+        }
+    }
   
     
 
@@ -102,8 +116,15 @@ componentDidMount(){
 const mapStateToProps = state => {
     return {
         data: state.search.data,
+        query: state.query.values,
+        wasDeleted: state.search.data.deleted,
+        wasUpdated: state.search.data.updated,
     }
 }
 
+const mapDispatchToProps = ({
+    fetchData: fetchData
+})
 
-export default withRouter(connect( mapStateToProps )( SearchResults ));
+
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )( SearchResults ));

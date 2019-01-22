@@ -8,19 +8,19 @@ export class Modal extends React.Component{
         }
     }
 
-    componentDidMount() {
-        if (this.props.onClose) {
-            window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
-        }
-    }
+    // componentDidMount() {
+    //     if (this.props.onClose) {
+    //         window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
+    //     }
+    // }
 
-    componentWillUnmount() {
-        if (this.props.onClose) {
-            window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
-        }
-    }
+    // componentWillUnmount() {
+    //     if (this.props.onClose) {
+    //         window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
+    //     }
+    // }
 
-    onOverlayClick() {
+    handleClick() {
         this.props.onClose();
     }
 
@@ -36,11 +36,15 @@ export class Modal extends React.Component{
                     >
                 <div 
                     className="modal-content-div" 
-                    onClick={this.onOverlayClick.bind(this)}
+                    // onClick={this.onOverlayClick.bind(this)}
                     >
                 <div 
                     className="modal-dialog-div" 
                     onClick={this.onDialogClick}>
+                    <button  
+                        onClick={this.handleClick.bind(this)}>
+                        X
+                    </button>
                     {this.props.children}
                 </div>
                 </div>

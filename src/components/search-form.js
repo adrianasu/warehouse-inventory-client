@@ -2,21 +2,27 @@ import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import { fetchData } from '../actions/fetch-data';
+import { saveQueryValues } from '../actions/query-values';
 import Input from './input';
 import { connect } from 'react-redux';
-import { required, nonEmpty, noSpecialChars } from './validators';
+import { required, nonEmpty, noSpecialChars } from '../utils/validators';
 
 class SearchForm extends React.Component{
 
     onSubmit( value ){
-        let searchTerm = value.searchTerm;
-        let searchType = "searchTerm";
-        return this.props.fetchData( searchTerm, searchType )
-            .then(()=>{
-                if( this.props.data.length > 0){
-                    this.props.history.push(`/results/${searchTerm}`)
-                }
-            })
+        let query = {
+            method: 'GET',
+            searchTerm: value.searchTerm,
+            searchType: 'searchTerm'
+        }
+    
+        return this.props.fetchData( query )
+        .then(()=>{
+            if( this.props.data.length > 0){
+                this.props.saveQueryValues(query);
+                this.props.history.push(`/results/${value.searchTerm}`)
+            }
+        })
     }
 
    
@@ -47,7 +53,8 @@ class SearchForm extends React.Component{
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData
+    fetchData: fetchData,
+    saveQueryValues: saveQueryValues
 })
 
 const mapStateToProps = state => ({

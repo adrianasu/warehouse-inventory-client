@@ -3,7 +3,7 @@ import { Field, reduxForm, focus } from 'redux-form';
 
 import Input from './input';
 import { login } from '../actions/auth';
-import { required, nonEmpty, email, length, isTrimmed } from './validators';
+import { required, nonEmpty, email, length, isTrimmed } from '../utils/validators';
 import { hideModal } from '../actions/modal';
 
 const passwordLength = length({ min: 7, max: 30 })

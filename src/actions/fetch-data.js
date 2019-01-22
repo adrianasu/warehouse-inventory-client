@@ -27,8 +27,16 @@ export const resetError = () => ({
     type: RESET_ERROR,
 });
 
-function generateUrlQuery(searchTerm, searchType){
+function generateUrlQuery( data ){
+    let { itemId, dataType, searchType, searchTerm, method } = data;
     let route = [API_BASE_URL];
+    
+    if( method === 'POST' ){
+        return `${ route }/${ dataType }`;
+        // If method is PUT or DELETE add id endpoint.
+    } else if( method !== 'GET'){
+        return `${ route }/${ dataType }/${ itemId }`;
+    }
  
     // If we're searching by term add term to url
     if (searchType === "searchTerm") {
@@ -67,12 +75,14 @@ function generateUrlQuery(searchTerm, searchType){
 
 }
 
-export const fetchData = (searchTerm, searchType) => (dispatch) => {
+export const fetchData = (data) => (dispatch) => {
     dispatch(fetchBegin());
-    let route = generateUrlQuery( searchTerm, searchType );
-
+console.log(data)
+    let { method, values } = data;
+    let route = generateUrlQuery( data );
     return fetch(route, {
-            method: 'GET'
+            method
+            //////send values when post or put
         })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
@@ -83,3 +93,4 @@ export const fetchData = (searchTerm, searchType) => (dispatch) => {
             dispatch(fetchDataError(err))
         });
 }
+

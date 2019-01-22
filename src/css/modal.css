@@ -32,6 +32,7 @@
 }
 
 .modal-dialog-div {
+    background-color: white;
     position: relative;
     outline: 0;
     width: auto;

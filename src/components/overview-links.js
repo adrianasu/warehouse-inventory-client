@@ -15,17 +15,25 @@ class OverviewLinks extends React.Component{
 
 
     showAll() {
-        return this.props.fetchData('item', 'searchAll')
-            .then(() =>{
-                if( this.props.data.length > 0){
-                    this.props.history.push('/results/all-items')
-                }
-            })
+        return this.props.fetchData({
+            method: 'GET',
+            searchTerm: 'item', 
+            searchType: 'searchAll'
+        })
+        .then(() =>{
+            if( this.props.data.length > 0){
+                this.props.history.push('/results/all-items')
+            }
+        })
     }
 
     goToMyAccount(){
         let employeeId = this.props.employee.employeeId;
-        return this.props.fetchData(employeeId, "myAccount")
+        return this.props.fetchData({
+            method: 'GET',
+            searchTerm: employeeId, 
+            searchType: 'myAccount'
+            })
             .then(() => {
                 // Display results.
                 if (this.props.data && this.props.data.employee) {
@@ -35,12 +43,15 @@ class OverviewLinks extends React.Component{
     }
 
     showAvailableItems(){
-         return this.props.fetchData('true', 'on-shelf')
-             .then(() => {
-                 if( this.props.data.length > 0){
-                     this.props.history.push('/results/available-items');
-                 }
-                })
+         return this.props.fetchData({
+             method: 'GET',
+             searchType: 'on-shelf'
+        })
+        .then(() => {
+            if( this.props.data.length > 0){
+                this.props.history.push('/results/available-items');
+            }
+        })
     }
 
     render(){

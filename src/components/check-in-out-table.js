@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { formatDate } from '../utils/utils.js'
 
-function formatDate(template, date) {
-    let specs = 'YYYY:MM:DD:HH:mm:ss'.split(':');
-    return new Date(date).toISOString().split(/[-:.TZ]/).reduce(function (template, item, i) {
-        return template.split(specs[i]).join(item);
-    }, template);
-}
 
 function CheckInOutTable( props ){
     // If we're doing check-out get data from the last
@@ -47,7 +42,7 @@ function CheckInOutTable( props ){
                 <tr>
                     <td>Date</td>
                     <td> {
-                        formatDate('MM/DD/YYYY HH:mm:ss', checkData.date)
+                        formatDate(checkData.date)
                     } </td>
                 </tr>
               

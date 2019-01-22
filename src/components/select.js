@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchOptions } from '../actions/fetch-options';
 
 export class Select extends React.Component{
     
@@ -8,16 +9,21 @@ export class Select extends React.Component{
         let searchableFields = this.props.searchableFields;
         let field = this.props.input.name;
       
-        if( searchableFields && field !== "warehouse" ){
-            options = searchableFields[field].map(
-                option =>
-                   <option key={ option.id } value={ option.id }>{ option.name }</option> 
-            )   
-        } else if( searchableFields && field === "warehouse") {
+        if( searchableFields !== null && 
+            (field === "warehouse" || field === "units" )) {
             options  = searchableFields[field].map(
                 ( option, key ) => <option key={ key }>{ option }</option> 
             )   
-        }
+        } else if (searchableFields !== null && field === "accessLevel") {
+            options  = Object.keys(searchableFields[field]).map(
+                ( option, key ) => <option key={ key }>{ option }</option> 
+            )   
+        } else if( searchableFields !== null ){
+            options = searchableFields[field].map(
+                option =>
+                   <option key={ option.id } value={ option.id }>{ option.name }</option> 
+            )
+        }   
         options.unshift(<option key={ "null" }>Select one</option>);
 
        
@@ -39,6 +45,10 @@ export class Select extends React.Component{
 
 const mapStateToProps = state => ({
     searchableFields: state.options.options
+});
+
+const mapDispatchToProps = ({
+    fetchOptions: fetchOptions
 })
 
-export default connect( mapStateToProps )( Select );
+export default connect( mapStateToProps, mapDispatchToProps )( Select );

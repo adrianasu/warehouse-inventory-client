@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field, focus } from 'redux-form';
 import Input from './input';
-import { required, nonEmpty, email, length, isTrimmed, isEqual } from './validators';
+import { required, nonEmpty, email, length, isTrimmed, isEqual } from '../utils/validators';
 import { signupUser } from '../actions/users';
 import { login } from '../actions/auth';
 import { hideModal } from '../actions/modal';

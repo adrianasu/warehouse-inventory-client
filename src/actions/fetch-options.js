@@ -5,6 +5,10 @@ import {
     normalizeResponseErrors
 } from './utils';
 
+export const FETCH_OPTIONS_BEGIN = 'FETCH_OPTIONS_BEGIN';
+export const fetchOptionsBegin = () => ({
+    type: FETCH_OPTIONS_BEGIN
+});
 
 export const FETCH_OPTIONS_SUCCESS = 'FETCH_OPTIONS_SUCCESS';
 export const fetchOptionsSuccess = options => ({
@@ -19,6 +23,7 @@ export const fetchOptionsError = error => ({
 });
 
 export const fetchOptions = () => (dispatch) => {
+    dispatch(fetchOptionsBegin());
     return fetch(`${ API_BASE_URL }/searchableFields`, {
             method: 'GET'
         })

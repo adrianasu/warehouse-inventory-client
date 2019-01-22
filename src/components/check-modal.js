@@ -28,7 +28,7 @@ class  CheckModal extends React.Component{
                     />
                     <h1>{ this.props.data.product.name }</h1>
                     <CheckInOutTable ref={el => (this.componentRef = el )} data={ this.props } />
-                    <button onClick={this.onClose.bind(this)}>Close</button>
+             
                 </div>
             </Modal>
         )
@@ -43,7 +43,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
     data: state.modal.modalProps.data,
-    checkType: state.modal.modalProps.checkType
+    checkType: state.modal.modalProps.checkType,
+    user: state.auth.currentUser,
 });
 
 export default connect( mapStateToProps, mapDispatchToProps ) ( CheckModal );

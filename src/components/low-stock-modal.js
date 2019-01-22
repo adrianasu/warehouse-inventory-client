@@ -11,7 +11,7 @@ class LowStockModal extends React.Component{
     }
 
     getProduct(){
-        let productId = this.props.productId;
+        let productId = this.props.modalProps.productId;
         let myProduct = {};
 
         this.props.data.forEach( product  => {
@@ -29,7 +29,6 @@ class LowStockModal extends React.Component{
             <Modal onClose={this.onClose.bind(this)}>
                 <div className="item">
                     <LowStockTable data={ product } />
-                    <button>Edit</button>
                 </div>
             </Modal>
         )
@@ -43,7 +42,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
     data: state.search.data,
-    productId: state.modal.modalProps,
+    modalProps: state.modal.modalProps,
 });
 
 export default connect( mapStateToProps, mapDispatchToProps ) (LowStockModal);

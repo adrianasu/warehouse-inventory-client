@@ -1,6 +1,7 @@
 import React from 'react';
-import {fetchData} from '../actions/fetch-data';
+import { fetchData } from '../actions/fetch-data';
 import { connect } from 'react-redux';
+import { showModal } from '../actions/modal';
 
 class ManagePage extends React.Component{
     constructor(){
@@ -8,12 +9,31 @@ class ManagePage extends React.Component{
         this.onClick = this.onClick.bind(this);
     }
 
+ displayError() {
+     let modalProps = this.props.error.message;
+     let modalType = 'ERROR_MODAL';
+     this.props.showModal(modalType, modalProps);
+ }
+
+ componentDidUpdate(prevProps) {
+     if (this.props.hasErrored &&
+         !prevProps.hasErrored) {
+         this.displayError()
+     }
+ }
+
     onClick(e){
         let selectedOption = e.target.name;
-        return this.props.fetchData( selectedOption, "searchAll")
-        .then( () => 
-            this.props.history.push(`/list/${selectedOption}`)
-        )
+        return this.props.fetchData({
+            method: 'GET',
+            searchType: 'searchAll',
+            searchTerm: selectedOption,
+        })
+        .then( () => {
+            if( this.props.data && this.props.data.length > 0 ){
+                this.props.history.push(`/list/${selectedOption}`)
+            }
+        })
     }
 
     makeItSingular(noun){
@@ -21,7 +41,7 @@ class ManagePage extends React.Component{
     }
 
     generateButtons(){
-        const options = ['items','products', 'categories', 'manufacturers','employees', 'users'];
+        const options = ['items','products', 'categories', 'manufacturers', 'departments', 'employees', 'users'];
     
         return options.map( (option, key) => 
             <li key={key}>
@@ -50,7 +70,14 @@ class ManagePage extends React.Component{
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData
+    fetchData: fetchData,
+    showModal: showModal
 })
 
-export default connect(null, mapDispatchToProps) ( ManagePage );
+const mapStateToProps = state => ({
+    data: state.search.data,
+    hasErrored: state.search.error !== null,
+    error: state.search.error,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) ( ManagePage );

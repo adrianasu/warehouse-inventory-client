@@ -28,12 +28,25 @@ class AccountForm extends React.Component{
         e.preventDefault();
         let employeeId = this.state.value;
         this.props.history.push(`/account`)
-        return this.props.fetchData(employeeId, "myAccount")
+        return this.props.fetchData({
+                    method: 'GET',
+                    searchTerm: employeeId,
+                    searchType: "myAccount",
+        })
+            
+            
         .then(() => {
             // Display results, if found.
             if (this.props.data && this.props.data.employee) {
                 this.props.history.push(`/account/${employeeId}`)
             }
+        })
+    }
+
+    resetForm(){
+        this.props.history.push(`/account`);
+        this.setState({
+            value: ''
         })
     }
 
@@ -54,7 +67,21 @@ class AccountForm extends React.Component{
                     id="employeeId"
                     value={ this.state.value}
                     onChange={this.handleChange.bind(this)}></input>
-                <button>Search</button>
+                <button 
+                    type="submit"
+                    disabled = {
+                            this.props.pristine || this.props.submitting
+                        }>
+                    Search
+                </button>
+                <button 
+                    type="button" 
+                    disabled = {
+                        this.props.pristine || this.props.submitting
+                    }
+                    onClick={ this.resetForm.bind(this) }>
+                    Reset
+                </button>
             </form>
         )
     }

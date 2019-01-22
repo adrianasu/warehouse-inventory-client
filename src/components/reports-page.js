@@ -9,13 +9,29 @@ class ReportsPage extends React.Component{
         this.onClick = this.onClick.bind(this);
     }
 
+     displayError() {
+         let modalProps = this.props.error.message;
+         let modalType = 'ERROR_CHECK_MODAL';
+         this.props.showModal(modalType, modalProps);
+     }
+     componentDidUpdate(prevProps) {
+         // show modal when fetch returns an error
+         if (this.props.hasErrored &&
+             !prevProps.hasErrored) {
+             this.displayError()
+         }
+     }
+
     onClick(e){
         let selectedOption = e.target.name;
         let searchType = selectedOption.replace(" ", "-");
-        return this.props.fetchData( null, searchType)
+        return this.props.fetchData({
+            method: 'GET',
+            searchType
+        })
         .then( () => {
-            if( this.props.data ){
-                this.props.history.push(`/results/${searchType}`)
+            if( this.props.data && this.props.data.length >0 ){
+                this.props.history.push(`/list/${searchType}`)
             }
         })
     }
@@ -23,22 +39,18 @@ class ReportsPage extends React.Component{
     generateButtons(){
         const options = ['checked out','on shelf', 'low stock', 'useful life'];
         return options.map( (option, key) => 
-            <li key={key}><button className='reports' name={option} onClick={this.onClick} key={option}>{option}</button></li> 
+            <li key={key}>
+                <button 
+                    className='reports' 
+                    name={option} 
+                    onClick={this.onClick} 
+                    key={option}>{option}
+                </button>
+            </li> 
         )
     }
 
-    displayError() {
-        let modalProps = this.props.error.message;
-        let modalType = 'ERROR_CHECK_MODAL';
-        this.props.showModal(modalType, modalProps);
-    }
-    componentDidUpdate(prevProps) {
-        // show modal when fetch returns an error
-        if (this.props.hasErrored &&
-            !prevProps.hasErrored) {
-            this.displayError()
-        }
-    }
+   
 
     render(){
         let buttons = this.generateButtons();

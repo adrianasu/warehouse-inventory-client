@@ -5,6 +5,8 @@ import { withRouter }  from 'react-router-dom';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import { welcome } from  '../actions/welcome';
+import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
+
 
 import PublicAdminLinks from './public-admin-links';
 import OverviewLinks from './overview-links';
@@ -19,10 +21,10 @@ class LoggedInBar extends React.Component{
         }
         
         render() {
-            const publicAccessLevel = 10;
+        
             let barLinks;
             if( this.props.hasAccessLevel &&
-                this.props.hasAccessLevel >= publicAccessLevel ){
+                this.props.hasAccessLevel >= PUBLIC_ACCESS_LEVEL ){
                     barLinks = <PublicAdminLinks /> 
             } else{
                 barLinks = <OverviewLinks />

@@ -12,6 +12,7 @@ import optionsReducer from './reducers/fetch-options';
 import protectedDataReducer from './reducers/protected-data';
 import queryReducer from './reducers/query-values';
 import searchReducer from './reducers/fetch-data';
+import showFormReducer from './reducers/show-form';
 import welcomeReducer from './reducers/welcome';
 
 const store = createStore(
@@ -25,6 +26,7 @@ const store = createStore(
         protectedData: protectedDataReducer,
         query: queryReducer,
         search: searchReducer,
+        showForm: showFormReducer,
         welcome: welcomeReducer,
     }), composeWithDevTools(
     applyMiddleware(thunk)),

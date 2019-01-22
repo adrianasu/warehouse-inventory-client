@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
+import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
-import ResultsTable from './results-table';
+import ListTable from './list-table';
 
-class SearchResults extends React.Component{
+class ListPage extends React.Component{
 
     constructor(props){
         super(props);
@@ -15,21 +17,37 @@ class SearchResults extends React.Component{
         }
         this.onChange = this.onChange.bind(this);
     }
-componentDidMount(){
-    this.setState({
-        currentlyDisplayed: this.props.data
-    })
-}
-  
-    onChange(value) {
-        console.log(value);
-        this.setState(value);
-        this.filterData();
+    
+    componentDidMount(){
+        // When an item has been deleted or updated
+        // the user will be sent to the list, so
+        // we need to fetch our data again.
+        if( this.props.wasDeleted 
+            || this.props.wasUpdated
+            || this.props.hasErrored ){
+            let dataType = this.props.formProps.dataType;
+            return this.props.fetchData( {
+                method: 'GET',
+                searchTerm: dataType, 
+                searchType: 'searchAll' 
+            })
+            .then(() => 
+                this.setState({
+                    currentlyDisplayed: this.props.data
+                })
+            )
+        } else {
+            this.setState({
+                currentlyDisplayed: this.props.data
+            })
+        }
     }
+    
 
     filterData() {
         let searchTerm = this.state.searchTerm;
-    
+        // let re = new RegExp(searchTerm)
+        // console.log("TERM ", re)
         console.log("DATA ", this.props.data)
         let fields = ['product', 'category', 'manufacturer'];
         if (this.props.data &&
@@ -69,6 +87,11 @@ componentDidMount(){
 
     }
 
+    onChange(value) {
+        console.log(value);
+        this.setState(value);
+        this.filterData();
+    }
 
     // Get either the number of items or the message 
     // sent by the server.
@@ -82,14 +105,18 @@ componentDidMount(){
         return "";
     }
 
+
     render(){
         let data = this.state.currentlyDisplayed
-         console.log(data);
+        let reportType = this.props.match.params.type;
         return(
             <div>
+                <h1>{ reportType.replace("-", " ") } </h1>
                 <FilterForm onChange={this.onChange}/>
                 <p> { this.message() } </p> 
-                <ResultsTable fil={this.state.currentlyDisplayed}/>
+                <ListTable 
+                    currData={ data } 
+                    reportType={ reportType }/>
             </div>
         )
     }
@@ -98,8 +125,16 @@ componentDidMount(){
 const mapStateToProps = state => {
     return {
         data: state.search.data,
+        hasErrored: state.search.error !== null,
+        formProps: state.showForm.formProps,
+        wasDeleted: state.search.data.deleted,
+        wasUpdated: state.search.data.updated,
+
     }
 }
 
+const mapDispatchToProps = ({
+    fetchData: fetchData
+})
 
-export default connect( mapStateToProps )( SearchResults );
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )( ListPage ));

@@ -1,19 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { formatDate } from '../utils/utils';
 
 class Account extends React.Component{
-
-    getDate(d = new Date()) {
-        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let mm = months[d.getMonth()];
-        let dd = d.getDate();
-        let yyyy = d.getFullYear();
-        let hh = d.getHours();
-        let min = d.getMinutes() < 10 ? '0'+ d.getMinutes() : d.getMinutes();
-        let sec = d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds();
-
-        return `${mm} ${dd} ${yyyy}, ${hh}:${min}:${sec}`
-    }
 
     generateItemsList(items){
         return items.map( item => (
@@ -24,8 +13,8 @@ class Account extends React.Component{
                             <li key='prod'>Product: { item.product.name }</li>
                             <li key='man'>Manufacturer: { item.product.manufacturer.name }</li>
                             <li key='mod'>Model: { item.product.model }</li>
-                            <li key='date'>Checked-Out Date: { this.getDate(new Date(item.checkedOut[0].date)) }</li>
                             <li key='sn'>Serial Number: { item.serialNumber }</li>
+                            <li key='date'>Checked-Out Date: { formatDate(item.checkedOut[0].date) }</li>
                         </ul>
                     </li>
                 </React.Fragment>
@@ -55,7 +44,7 @@ class Account extends React.Component{
             <div>
                 <h1>{ name }</h1>
                     <p>Employee ID: { employee.employeeId }</p>
-                    <p>{ this.getDate() }</p>
+                    <p>{ formatDate(Date.now()) }</p>
                         { items }
             </div>
         )

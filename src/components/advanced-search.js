@@ -13,8 +13,13 @@ import Select from './select';
 class AdvancedSearch extends React.Component{
  
     onSubmit( values ){
-        this.props.saveQueryValues( values );
-        return this.props.fetchData(values, "advancedSearch")  
+        let query = {
+            method: 'GET',
+            searchTerm: values,
+            searchType: "advancedSearch"
+        };
+        this.props.saveQueryValues( query );
+        return this.props.fetchData(query)  
         .then(() => {
             // Display results, if were found.
             if( this.props.data && this.props.data.length > 0 ){
@@ -24,7 +29,7 @@ class AdvancedSearch extends React.Component{
     }
 
     componentDidMount() {
-        if (this.props.options.length === 0) {
+        if (!this.props.options) {
             return this.props.fetchOptions()      
         }
     }
@@ -41,7 +46,7 @@ class AdvancedSearch extends React.Component{
                     <Field component={ Input } type="text" name="product" label="Product"/>
                     <Field component={ Input } type="text" name="model" label="Model"/>
                         
-                    { this.props.options.length === 0 ? null :     
+                    { !this.props.options ? null :     
                         <React.Fragment>
                             <Field component={ Select } type="text" name="category" label="Category"/>
                             <Field component={ Select } type="text" name="manufacturer" label="Manufacturer"/>

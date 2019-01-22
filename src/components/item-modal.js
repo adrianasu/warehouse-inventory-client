@@ -1,36 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hideModal }  from '../actions/modal';
-import ItemTable from './item-table';
+import { hideForm }  from '../actions/show-form';
+import ConfirmDelete from './confirm-delete';
+import EditForm from './edit-form';
+import ModalContent from './modal-content';
 import Modal from './modal';
 import '../css/modal-item.css';
 
 class ItemModal extends React.Component{
     onClose(){
         this.props.hideModal();
+        this.props.hideForm()
     }
 
-    getItem(){
-        let itemId = this.props.itemId;
-        let myItem = {};
-       
-        this.props.data.forEach( item  => {
-            if( item.id === itemId ){
-                myItem = item;
-            }
-        });
-        return myItem;
-    }
-
+    // This modal could display the item's description,
+    // or the item's edit or delete form.
     render(){
-     
-        let item = this.getItem();
         return(
             <Modal onClose={this.onClose.bind(this)}>
                 <div className="item">
-        
-                    <ItemTable item={ item } />
-                    <button>Edit</button>
+                    { this.props.form === 'EDIT' ?
+                        <EditForm />
+                        : this.props.form === 'DELETE' ?
+                            <ConfirmDelete /> 
+                            :<ModalContent />
+                    }
                 </div>
             </Modal>
         )
@@ -38,13 +33,13 @@ class ItemModal extends React.Component{
 
 }
 
-const mapDispatchToProps = {
-    hideModal: () => hideModal()
-};
-
 const mapStateToProps = state => ({
-    data: state.search.data,
-    itemId: state.modal.modalProps,
+    form: state.showForm.formType
+})
+
+const mapDispatchToProps = ({
+    hideModal: hideModal,
+    hideForm: hideForm
 });
 
 export default connect( mapStateToProps, mapDispatchToProps ) (ItemModal);

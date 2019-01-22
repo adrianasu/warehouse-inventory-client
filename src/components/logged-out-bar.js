@@ -28,7 +28,11 @@ class LoggedOutBar extends React.Component{
     }
     
     showAll() {
-        return this.props.fetchData('item', 'searchAll')
+        return this.props.fetchData({
+                method: 'GET',
+                searchType: 'searchAll',
+                searchTerm: 'item'
+        })
         .then(() => {
             if (this.props.data.length > 0) {
                 this.props.history.push('/results/all-items')
@@ -37,7 +41,10 @@ class LoggedOutBar extends React.Component{
     }
     
     showAvailableItems() {
-        return this.props.fetchData('true', 'on-shelf')
+        return this.props.fetchData({
+            method: 'GET',
+            searchType: 'on-shelf'
+        })
         .then(() => {
             if( this.props.data.length > 0){
                 this.props.history.push('/results/available-items')

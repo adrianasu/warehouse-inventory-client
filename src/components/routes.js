@@ -12,7 +12,8 @@ import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import ManagePage from './manage-page';
-import List from './list';
+// import List from './list';
+import ListPage from './list-page';
 import ReportsPage from './reports-page';
 import SearchPage from './search-page';
 import SearchResults from './search-results';
@@ -33,12 +34,13 @@ class Routes extends React.Component{
                 <Route path="/check-in" component={ CheckInPage } />
                 <Route path="/check-out" component={ CheckOutPage } />
                 <Route path="/results/:option" component={ SearchResults } />
-                <Route path="/reports" component={ ReportsPage } />
+                <Route exact path="/reports" component={ ReportsPage } />
+                <Route exact path="/list/:type" component={ ListPage } />
                 <Route path="/account" component={ AccountPage } />
                 <Route path="/account/:employeeId" component={ AccountResults } />
                 <Route path="/my-account" component={ AccountResults } />
                 <Route path="/manage" component={ ManagePage } /> 
-                <Route path="/list" component={ List } /> 
+        
             </div>
         )
     }
