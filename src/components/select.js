@@ -10,18 +10,25 @@ export class Select extends React.Component{
         let field = this.props.input.name;
       
         if( searchableFields !== null && 
-            (field === "warehouse" || field === "units" )) {
+            field === "warehouse" ) {
             options  = searchableFields[field].map(
                 ( option, key ) => <option key={ key }>{ option }</option> 
             )   
-        } else if (searchableFields !== null && field === "accessLevel") {
-            options  = Object.keys(searchableFields[field]).map(
+        } else if( searchableFields !== null && 
+            field === "minimumRequiredUnits" ) {
+            options  = searchableFields['units'].map(
                 ( option, key ) => <option key={ key }>{ option }</option> 
             )   
+        }else if (searchableFields !== null && 
+            (field === "accessLevel" || field === "condition")) {
+            options  = Object.keys(searchableFields[field]).map(
+                ( option, key ) => <option key={ key } >{ searchableFields[field][option] }</option> 
+            )   
+            // Optionss for category, manufacturer and product
         } else if( searchableFields !== null ){
             options = searchableFields[field].map(
                 option =>
-                   <option key={ option.id } value={ option.id }>{ option.name }</option> 
+                   <option key={ option.id } data-id={ option.id }>{ option.name }</option> 
             )
         }   
         options.unshift(<option key={ "null" }>Select one</option>);
@@ -29,7 +36,7 @@ export class Select extends React.Component{
        
          return(
              <div className="form-select">
-                <label>{ field }
+                <label>{ this.props.label }
                     <select
                         id={ this.props.input.name }
                         { ...this.props.input

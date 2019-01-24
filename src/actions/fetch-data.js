@@ -4,6 +4,7 @@ import {
 import {
     normalizeResponseErrors
 } from './utils';
+import { loadAuthToken } from '../local-storage';
 
 export const FETCH_BEGIN = 'FETCH_BEGIN';
 export const fetchBegin = () => ({
@@ -80,9 +81,15 @@ export const fetchData = (data) => (dispatch) => {
 console.log(data)
     let { method, values } = data;
     let route = generateUrlQuery( data );
+    let jwToken = loadAuthToken();
+    
     return fetch(route, {
-            method
-            //////send values when post or put
+            method,
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ jwToken }`
+                },
+            body: JSON.stringify(values)
         })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())

@@ -34,10 +34,10 @@ class ListTable extends React.Component{
             } else if (title === 'product' ) {
                 row.push(<td  key = {title}>{ `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer}` }</td>);
             } else if( title === 'location' ){
-                row.push(<td  key = {title}>{ item.location.warehouse }</td>);
+                row.push(<td  key = {title}>{ item.warehouse }</td>);
             } else if( title === 'minimumRequired' ){
                row.push( <td key ={title} > {
-                                `${item[title]} ${item.product[title].units}`
+                                `${item[title]} ${item[title].units}`
                         } </td>);
             } else if( title === 'consummable' ){
                row.push( <td key ={title} > {
@@ -56,10 +56,7 @@ class ListTable extends React.Component{
                 row.push( <td key={title} > {
                             item[title] === true ? 'no' : 'yes'
                         } </td>)
-            } else if( title === 'category' && !titles.includes('consummable') ){
-                row.push( <td key={title} > { item[title].name } </td>)
-            } else if( title === 'employeeId' && titles.includes('email')){
-                row.push( <td key={title} > { item.employee[title] } </td>)
+            
             }else {
                 row.push( <td key={title} > { item[title] } </td>)
             }
@@ -75,7 +72,7 @@ class ListTable extends React.Component{
         // its details in a modal.
         let body = [];
         data.forEach( (item, key) => {
-            let id = item.id || item._id;
+            let id = item.id;
             let handleOnClick = this.openModal.bind(this);
             if (reportType === 'low-stock') {
                 id = item.product._id;

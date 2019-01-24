@@ -15,7 +15,6 @@ class SearchForm extends React.Component{
             searchTerm: value.searchTerm,
             searchType: 'searchTerm'
         }
-    
         return this.props.fetchData( query )
         .then(()=>{
             if( this.props.data.length > 0){
@@ -53,8 +52,8 @@ class SearchForm extends React.Component{
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData,
-    saveQueryValues: saveQueryValues
+    fetchData,
+    saveQueryValues
 })
 
 const mapStateToProps = state => ({

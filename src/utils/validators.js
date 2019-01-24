@@ -15,6 +15,12 @@ export const length = length => value => {
 export const noSpecialChars = value =>
   /\W/.test(value) ? `Can't contain special characters.`: undefined;
 
+export const isText = value => (typeof value !== "string") ? "letters" : undefined;
+
+export const isNumber = value => (typeof value !== "number") ? 'Must be a number' : undefined;
+
+export const checkType = (value, type) => type === 'text' ? isText(value) : isNumber(value)
+
 // Uses a regular expression (regex) to check whether it looks enough like an
 // email address.  Broken down:
 // ^ Matches the start the text
@@ -24,3 +30,4 @@ export const noSpecialChars = value =>
 // $ Matches the end of the text
 export const email = value =>
     /^\S+@\S+$/.test(value) ? undefined : 'Must be a valid email address';
+

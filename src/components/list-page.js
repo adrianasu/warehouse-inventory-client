@@ -19,18 +19,17 @@ class ListPage extends React.Component{
     }
     
     componentDidMount(){
-        // When an item has been deleted or updated
-        // the user will be sent to the list, so
-        // we need to fetch our data again.
+        // When an item has been deleted, updated
+        // or created, the user will be sent back to the 
+        // list, so we need to fetch our updated data.
         if( this.props.wasDeleted 
             || this.props.wasUpdated
-            || this.props.hasErrored ){
-            let dataType = this.props.formProps.dataType;
-            return this.props.fetchData( {
-                method: 'GET',
-                searchTerm: dataType, 
-                searchType: 'searchAll' 
-            })
+            || this.props.hasErrored
+            || this.props.wasCreated ){
+
+            // Use last search query values
+            let query = this.props.query;
+            return this.props.fetchData(query)
             .then(() => 
                 this.setState({
                     currentlyDisplayed: this.props.data
@@ -105,13 +104,24 @@ class ListPage extends React.Component{
         return "";
     }
 
+    handleClick(){
+        // send to create form
+        let dataType = this.props.match.params.type;
+        this.props.history.push(`/create/${dataType}`);
+    }
+
 
     render(){
+        let doNotCreate = ['checked-out', 'on-shelf', 'useful-life', 'low-stock', 'user'];
         let data = this.state.currentlyDisplayed
         let reportType = this.props.match.params.type;
         return(
             <div>
                 <h1>{ reportType.replace("-", " ") } </h1>
+                { 
+                    doNotCreate.includes(reportType) ? null
+                        : <button onClick={ this.handleClick.bind(this) }>+New</button>
+                }
                 <FilterForm onChange={this.onChange}/>
                 <p> { this.message() } </p> 
                 <ListTable 
@@ -125,8 +135,10 @@ class ListPage extends React.Component{
 const mapStateToProps = state => {
     return {
         data: state.search.data,
-        hasErrored: state.search.error !== null,
         formProps: state.showForm.formProps,
+        hasErrored: state.search.error !== null,
+        query: state.query.values,
+        wasCreated: state.search.data.created,
         wasDeleted: state.search.data.deleted,
         wasUpdated: state.search.data.updated,
 
@@ -134,7 +146,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData
+    fetchData
 })
 
-export default withRouter(connect( mapStateToProps, mapDispatchToProps )( ListPage ));
+export default connect( mapStateToProps, mapDispatchToProps )( ListPage );

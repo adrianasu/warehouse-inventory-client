@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { showModal } from '../actions/modal';
 import { addSpace } from '../utils/utils.js';
-import { getKeys, PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
+import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 
 
 export class ResultsTable extends React.Component{
@@ -24,71 +24,40 @@ export class ResultsTable extends React.Component{
     
     itemDescription(item, idx){
         let list = [];
-        let descriptionFields = ['product', 'model', 'manufacturer', 'category'];
-        let noItems = ['id', 'isCheckedOut', 'location', 'minimumRequired', 'inStock', 'difference', 'usefulLife'];
+        const location = ['bin', 'shelf', 'aisle'];
+        const noDescription =  ['id', 'checkedIn', 'checkedOut', 'registeredDate', 'registeredCondition', '']
     
         Object.keys(item).forEach(( field ) => {
-            if( descriptionFields.includes(field) &&
-                !noItems.includes(field)){ 
-            
-                    list.push(
-                        <li key={field}>{ field }: { item[field] } </li>)
-             
-            
-            } else if( field === "location"){
-                    // if access level is public or admin then show
-                    //exact location of the item inside the warehouse
-                    if (this.props.user &&
-                        this.props.user.accessLevel >= PUBLIC_ACCESS_LEVEL) {
-                  
-                                list.push(
-                                    <React.Fragment key="location">
-                                        <li key="warehouse"> { `Warehouse: ${item[field].warehouse}` } </li>
-                                        <li key="aisle"> {
-                                            `Aisle: ${item[field].aisle}, Shelf: ${item[field].shelf}, Bin: ${item[field].bin}`
-                                        } </li>
-                                    </React.Fragment>
-                            )
-                    } else {
-                        // if access level is basic or overview only show
-                        // the warehouse where the item is located
-                  
-                            list.push(<li key="warehouse"> { `Warehouse: ${item[field].warehouse}` } </li>)
-                       
-                    }
-                } else if( field === "isCheckedOut" ) {
-               
-                        list.push(<li key={ field }> { item[field] ?  
-                                <React.Fragment><FontAwesomeIcon icon="times-circle" /> {item.checkedOut[0].condition}</React.Fragment>
-                                : <React.Fragment><FontAwesomeIcon icon="check-circle" />Available</React.Fragment>
-                            } </li>)
-                        
-                }else if( field === 'minimumRequired' ){
-               
-                  
-                            list.push( <li key ={field} > {
-                                        `${addSpace(field)}: ${item[field]} ${item.product[field].units}`
-                                    } </li>)
-                             
+            // If access level is public or admin then show
+            // exact location of the item inside the warehouse,
+            // otherwise show only the warehouse where is located.
+           if( location.includes(field)
+                && (this.props.user &&
+                this.props.user.accessLevel < PUBLIC_ACCESS_LEVEL) ){
+                return;
+            } else if( field === "isCheckedOut" ) {
+                list.push(<li key={ field }> { item[field] ?  
+                        <React.Fragment><FontAwesomeIcon icon="times-circle" /> {item.checkedOut[0].condition}</React.Fragment>
+                        : <React.Fragment><FontAwesomeIcon icon="check-circle" />Available</React.Fragment>
+                    } </li>)
                 } else if( field === 'inStock' ){
-               
-                 
                             list.push( <li key = {field} > {
                                         `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
                                     } </li>)
                             
-                }  else if( field === 'difference' ){
+                // }  else if( field === 'difference' ){
                
                
-                            list.push(<li key={field}> { `${addSpace(field)}: ${item[field]}` } </li>)
+                //             list.push(<li key={field}> { `${addSpace(field)}: ${item[field]}` } </li>)
                             
                 } else if (field === 'usefulLife') {
-
-                  
                         list.push( <li key={field} > {
                             `${addSpace(field)}: ${item[field]} ${item[field] !=="NA" ? 'days' : ""}`
                         } </li>)
                     
+                } else if ( !noDescription.includes(field) ){
+                    list.push(
+                        <li key={field}>{ addSpace(field) }: { item[field] } </li>)
                 }
         })
    

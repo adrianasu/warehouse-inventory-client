@@ -23,11 +23,11 @@ const list ={
     },
     item: {
         keys: ['product', 'serialNumber', 'isCheckedOut'],
-        details: ['product', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'location', 'isCheckedOut'],
+        details: ['product', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'warehouse', 'ailse', 'shelf', 'bin', 'isCheckedOut'],
     },
     product: {
         keys: ['name', 'category', 'consummable'],
-        details: ['name', 'model', 'manufacturer', 'category', 'consummable', 'minimumRequired'],
+        details: ['name', 'model', 'manufacturer', 'category', 'consummable', 'minimumRequiredQuantity', 'minimumRequiredUnits'],
     },
     category: {
         keys: ['name'],

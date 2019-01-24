@@ -8,7 +8,7 @@ class DeleteButton extends React.Component{
         e.stopPropagation();
         let dataType = this.props.modalProps.dataType;
         let itemId = this.props.modalProps.itemId;
-        // show confirm delete form 
+        // show confirm-delete form 
         this.props.showForm('DELETE', {
             dataType,
             itemId

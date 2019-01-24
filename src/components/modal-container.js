@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CheckModal from './check-modal';
+import ConfirmModal from './confirm-modal';
 import ErrorModal from './error-modal';
 import ErrorCheckModal from './error-check-modal';
 import ItemModal from './item-modal';
@@ -10,6 +11,7 @@ import SignUpModal from './sign-up-modal';
 
 const MODAL_COMPONENTS = {
     CHECK_MODAL: CheckModal,
+    CONFIRM_MODAL: ConfirmModal,
     ERROR_MODAL: ErrorModal,
     ERROR_CHECK_MODAL: ErrorCheckModal,
     ITEM_MODAL: ItemModal,

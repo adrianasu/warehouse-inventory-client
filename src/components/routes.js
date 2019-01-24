@@ -8,11 +8,11 @@ import AccountResults from './account-results';
 import AdvancedSearchPage from './advanced-search-page';
 import CheckInPage from './check-in-page';
 import CheckOutPage from './check-out-page';
+import CreatePage from './create-page';
 import Dashboard from './dashboard';
 import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import ManagePage from './manage-page';
-// import List from './list';
 import ListPage from './list-page';
 import ReportsPage from './reports-page';
 import SearchPage from './search-page';
@@ -40,6 +40,7 @@ class Routes extends React.Component{
                 <Route path="/account/:employeeId" component={ AccountResults } />
                 <Route path="/my-account" component={ AccountResults } />
                 <Route path="/manage" component={ ManagePage } /> 
+                <Route path="/create/:type" component={ CreatePage } />
         
             </div>
         )

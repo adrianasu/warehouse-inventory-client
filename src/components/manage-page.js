@@ -1,6 +1,8 @@
 import React from 'react';
-import { fetchData } from '../actions/fetch-data';
 import { connect } from 'react-redux';
+
+import { fetchData } from '../actions/fetch-data';
+import { saveQueryValues } from '../actions/query-values';
 import { showModal } from '../actions/modal';
 
 class ManagePage extends React.Component{
@@ -24,13 +26,15 @@ class ManagePage extends React.Component{
 
     onClick(e){
         let selectedOption = e.target.name;
-        return this.props.fetchData({
+        let query = {
             method: 'GET',
             searchType: 'searchAll',
             searchTerm: selectedOption,
-        })
+        };
+        return this.props.fetchData(query)
         .then( () => {
             if( this.props.data && this.props.data.length > 0 ){
+                this.props.saveQueryValues(query);
                 this.props.history.push(`/list/${selectedOption}`)
             }
         })
@@ -70,8 +74,9 @@ class ManagePage extends React.Component{
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData,
-    showModal: showModal
+    fetchData,
+    saveQueryValues,
+    showModal,
 })
 
 const mapStateToProps = state => ({

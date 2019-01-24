@@ -7,6 +7,7 @@ import { setAuthToken, refreshAuthToken } from './actions/auth';
 import authReducer from './reducers/auth';
 import checkInOrOutReducer from './reducers/check-in-out';
 import filterReducer from './reducers/filter';
+import loadReducer from './reducers/load';
 import modalReducer from './reducers/modal';
 import optionsReducer from './reducers/fetch-options';
 import protectedDataReducer from './reducers/protected-data';
@@ -21,6 +22,7 @@ const store = createStore(
         check: checkInOrOutReducer,
         filter: filterReducer,
         form: formReducer,
+        load: loadReducer,
         modal: modalReducer,
         options: optionsReducer,
         protectedData: protectedDataReducer,

@@ -19,10 +19,7 @@ class SearchResults extends React.Component{
     componentDidMount(){
         if( this.props.wasDeleted || this.props.wasUpdated ){
             let query = this.props.query;
-            // console.log(query)
-            return this.props.fetchData(
-                query
-            )
+            return this.props.fetchData( query )
             .then(() =>
                 this.setState({
                     currentlyDisplayed: this.props.data

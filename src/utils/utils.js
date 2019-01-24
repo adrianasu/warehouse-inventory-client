@@ -37,3 +37,31 @@ export const formatDate = (date = Date.now(), template = 'MM/DD/YYYY HH:mm:ss') 
         return template.split(specs[i]).join(item);
     }, template);
 }
+
+export const getItem = ({ data, id }) => {
+    let myItem = {};
+    data.forEach(item => {
+        if (item.id === id) {
+            myItem = item;
+        }
+    });
+    return myItem;
+}
+
+export const getId = ({ data, value, key }) => {
+    console.log(data, value, key)
+    let myId;
+    data.forEach(item => {
+        if (item[key] === value) {
+            myId = item.id;
+        }
+    });
+    return myId;
+}
+
+export const getRelatedData = dataType => {
+    return dataType === 'item' ?
+        ['products'] : dataType === 'product' ?
+            ['manufacturers', 'categories'] : dataType === 'employee' ?
+                ['departments'] : null;
+}

@@ -1,5 +1,5 @@
-const selectComponent = ['product', 'warehouse', 'condition', 'units', 'manufacturer', 'category', 'accessLevel', 'department'];
-const inputComponent = ['barcode', 'serialNumber', 'aisle', 'shelf', 'bin', 'name', 'model', 'quantity', 'email', 'employeeId', 'password', 'firstName', 'lastName'];
+const selectComponent = ['product', 'warehouse', 'condition', 'minimumRequiredUnits', 'manufacturer', 'category', 'accessLevel', 'department'];
+const inputComponent = ['barcode', 'serialNumber', 'aisle', 'shelf', 'bin', 'name', 'model', 'minimumRequiredQuantity', 'email', 'employeeId', 'password', 'firstName', 'lastName'];
 const checkComponent = ['consummable'];
 
 const isNumber = ['barcode', 'serialNumber', 'shelf', 'bin', 'quantity'];
@@ -7,83 +7,32 @@ const isEmail = ['email'];
 
 const collections = {
     item: {
-        edit: {
-            primType: null,
-            objType: {
-                location: ['warehouse', 'aisle', 'shelf', 'bin']
-            }
-        },
-        create: {
-            primType: ['product', 'barcode', 'serialNumber'],
-            objType: {
-                location: ['warehouse', 'aisle', 'shelf', 'bin'],
-                registered: ['condition']
-            }
-        },
+        edit: ['warehouse', 'aisle', 'shelf', 'bin'],
+        create: ['product', 'barcode', 'serialNumber', 'warehouse', 'aisle', 'shelf', 'bin', 'condition'],
     },
     product: {
-        edit: {
-            primType: ['name', 'model', 'consummable'],
-            objType: {
-                minimumRequired: ['quantity', 'units']
-            }
-        }, 
-        create: {
-            primType: ['name', 'model', 'manufacturer', 'category', 'consummable'],
-            objType: {
-                minimumRequired: ['quantity', 'units']
-            }
-        }, 
+        edit: ['name', 'model', 'minimumRequiredQuantity', 'minimumRequiredUnits', 'consummable'],
+        create: ['name', 'model', 'manufacturer', 'category', 'consummable', 'minimumRequiredQuantity', 'minimumRequiredUnits'],
     },
     category: {
-        edit: {
-            primType: ['name'],
-            objType: null
-        },
-        create: {
-            primType: ['name'],
-            objType: null
-        },
+        edit: ['name'],
+        create: ['name']
     },
     manufacturer: {
-         edit: {
-            primType: ['name'],
-            objType: null
-        },
-        create: {
-            primType: ['name'],
-            objType: null
-        },
+         edit: ['name'],
+        create: ['name']
     },
     department: {
-         edit: {
-            primType: ['name'],
-            objType: null
-        },
-        create: {
-            primType: ['name'],
-            objType: null
-        },
+         edit: ['name'],
+        create: ['name'],
     },
     user: {
-        edit: {
-            primType: ['email', 'accessLevel'],
-            objType: null
-        },
-        create: {
-            primType: ['employeeId', 'email', 'password'],
-            objType: null
-        }
+        edit: ['email', 'accessLevel'],
+        create: ['employeeId', 'email', 'password']
     },
     employee: {
-         edit: {
-            primType: ['firstName', 'lastName', 'department'],
-            objType: null
-        },
-        create: {
-            primType: ['firstName', 'lastName', 'employeeId', 'department'],
-            objType: null
-        }
+         edit: ['firstName', 'lastName', 'department'],
+        create: ['firstName', 'lastName', 'employeeId', 'department'],
     }
 };
 

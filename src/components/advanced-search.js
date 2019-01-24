@@ -18,11 +18,11 @@ class AdvancedSearch extends React.Component{
             searchTerm: values,
             searchType: "advancedSearch"
         };
-        this.props.saveQueryValues( query );
         return this.props.fetchData(query)  
         .then(() => {
             // Display results, if were found.
             if( this.props.data && this.props.data.length > 0 ){
+                this.props.saveQueryValues( query );
                 this.props.history.push('/results/advancedSearch');
             }
         })    
@@ -88,9 +88,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
-    fetchOptions: fetchOptions,
-    fetchData: fetchData,
-    saveQueryValues: saveQueryValues,
+    fetchOptions,
+    fetchData,
+    saveQueryValues,
 })
 
 AdvancedSearch = withRouter(connect(

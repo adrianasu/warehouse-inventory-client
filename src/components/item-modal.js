@@ -11,7 +11,7 @@ import '../css/modal-item.css';
 class ItemModal extends React.Component{
     onClose(){
         this.props.hideModal();
-        this.props.hideForm()
+        this.props.hideForm();
     }
 
     // This modal could display the item's description,
@@ -21,7 +21,8 @@ class ItemModal extends React.Component{
             <Modal onClose={this.onClose.bind(this)}>
                 <div className="item">
                     { this.props.form === 'EDIT' ?
-                        <EditForm />
+                        // Send initial values to pre-fill the form
+                        <EditForm initialValues={ this.props.initialValues }/>
                         : this.props.form === 'DELETE' ?
                             <ConfirmDelete /> 
                             :<ModalContent />
@@ -34,12 +35,14 @@ class ItemModal extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    form: state.showForm.formType
+    form: state.showForm.formType,
+    // Data is loaded when Edit button is clicked
+    initialValues: state.load.data
 })
 
 const mapDispatchToProps = ({
-    hideModal: hideModal,
-    hideForm: hideForm
+    hideModal,
+    hideForm
 });
 
 export default connect( mapStateToProps, mapDispatchToProps ) (ItemModal);
