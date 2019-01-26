@@ -1,43 +1,41 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { formatDate } from '../utils/utils.js'
+import { formatDate, addSpace } from '../utils/utils.js'
 
 
-function CheckInOutTable( props ){
+export default function CheckInOutTable( props ){
+    let item = props.data.data;
     // If we're doing check-out get data from the last
     // check-out transaction
-    let transaction = "Check-Out";
     let checkData = props.data.data.checkedOut[0];
     // If we're doing check-in, then get data from 
     // last check-in transaction.
     if( props.data.checkType === "checkIn" ){
         checkData = props.data.data.checkedIn[0];
-        transaction = "Check-In";
     }
        
     return(
             <table>
                 <tbody>
                 <tr>
-                    <th colSpan={2}>{ transaction }</th>
+                    <th colSpan={2}>{ addSpace(props.data.checkType) }</th>
                 </tr>
                 <tr>
-                    <td>Item ID</td>
-                    <td>{ props.data.data.id }</td>
+                    <td>Item Barcode</td>
+                    <td>{ item.barcode }</td>
                 </tr>
                 <tr>
-                    <td>Employee ID</td>
+                    <td>Employee</td>
                     <td> 
                         {`${ checkData.employee.firstName } ${ checkData.employee.lastName }`}
                     </td>
                 </tr>
                 <tr>
                     <td>Item</td>
-                    <td>{ props.data.data.product.name }</td>
+                    <td>{ item.product }</td>
                 </tr>
                 <tr>
                     <td>Warehouse</td>
-                    <td>{ props.data.data.location.warehouse }</td>
+                    <td>{ item.warehouse }</td>
                 </tr>
                 <tr>
                     <td>Date</td>
@@ -53,14 +51,12 @@ function CheckInOutTable( props ){
                      </tr>
                      : null
                  }
-                {/* <tr>
+                <tr>
                     <td>Authorized by</td>
-                    <td>{ checkData.user }</td>
-                </tr> */}
+                    <td>{ checkData.authorizedBy.firstName } { checkData.authorizedBy.lastName }</td>
+                </tr>
                 </tbody>
             </table>
     )
 
 }
-
-export default connect() (CheckInOutTable);

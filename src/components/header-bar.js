@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import LoggedInBar from './logged-in-bar';
 import LoggedOutBar from './logged-out-bar';

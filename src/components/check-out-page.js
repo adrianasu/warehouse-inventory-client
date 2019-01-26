@@ -2,7 +2,7 @@ import React from 'react';
 import CheckOutForm from './check-out-form';
 import CheckInOrOutResults from './check-in-out-results';
 
-function CheckOutPage(){
+export default function CheckOutPage(){
     return(
         <div>
             <CheckOutForm />
@@ -10,5 +10,3 @@ function CheckOutPage(){
         </div>
     );
 }
-
-export default CheckOutPage;

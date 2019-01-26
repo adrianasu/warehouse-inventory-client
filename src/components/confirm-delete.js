@@ -5,11 +5,10 @@ import { fetchData } from '../actions/fetch-data';
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
 import { getRelatedData } from '../utils/utils'
-import listPage from './list-page';
 
-class ConfirmDelete extends React.Component{
+export class ConfirmDelete extends React.Component{
 
-    showResultMessage(itemId, dataType) {
+    showResultMessage( dataType) {
         // If item was updated, show confirmation message
         if (this.props.wasDeleted) {
             this.props.showModal('CONFIRM_MODAL', {
@@ -33,7 +32,7 @@ class ConfirmDelete extends React.Component{
    .then(() => {
            this.props.hideModal();
            this.props.hideForm();
-           this.showResultMessage(itemId, dataType);
+           this.showResultMessage(dataType);
        })
                
     }

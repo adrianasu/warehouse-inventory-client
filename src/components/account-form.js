@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 
-class AccountForm extends React.Component{
+export class AccountForm extends React.Component{
      constructor(props) {
         super(props);
         this.state = { 
@@ -60,7 +59,7 @@ class AccountForm extends React.Component{
 
     render(){
         return(
-            <form onSubmit={ this.handleSubmit.bind(this)}>
+            <form className="account-form" onSubmit={ this.handleSubmit.bind(this)}>
                 <label htmlFor="employeeId">Employee ID</label>
                 <input name="employeeId" 
                     type="number" 
@@ -68,6 +67,7 @@ class AccountForm extends React.Component{
                     value={ this.state.value}
                     onChange={this.handleChange.bind(this)}></input>
                 <button 
+                    className="search-button"
                     type="submit"
                     disabled = {
                             this.props.pristine || this.props.submitting
@@ -97,4 +97,4 @@ const mapDispatchToProps = ({
     showModal: showModal,
 });
 
-export default withRouter(connect( mapStateToProps, mapDispatchToProps )( AccountForm ));
+export default connect( mapStateToProps, mapDispatchToProps )( AccountForm );

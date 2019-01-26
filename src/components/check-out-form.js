@@ -7,7 +7,7 @@ import { doCheckInOrOut } from '../actions/check-in-out';
 import Input from './input';
 import RadioInput from './radio-input';
 
-class CheckOutForm extends React.Component{
+export class CheckOutForm extends React.Component{
  
     onSubmit( values ){
         return this.props
@@ -26,8 +26,14 @@ class CheckOutForm extends React.Component{
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
-                    <Field component={ Input } type="text" name="itemId" label="Item ID"/>
-                    <Field component={ Input } type="text" name="employeeId" label="Employee ID"/>
+                    <Field component={ Input } 
+                        type="text" 
+                        name="itemId" 
+                        label="Item ID"/>
+                    <Field component={ Input } 
+                        type="text" 
+                        name="employeeId" 
+                        label="Employee ID"/>
                     <Field component={ RadioInput } 
                         name="condition" 
                         label="Condition"

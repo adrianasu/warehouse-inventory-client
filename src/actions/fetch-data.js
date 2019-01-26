@@ -78,7 +78,6 @@ function generateUrlQuery( data ){
 
 export const fetchData = (data) => (dispatch) => {
     dispatch(fetchBegin());
-console.log(data)
     let { method, values } = data;
     let route = generateUrlQuery( data );
     let jwToken = loadAuthToken();

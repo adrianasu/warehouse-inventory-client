@@ -9,8 +9,7 @@ import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
 
-
-class AdvancedSearch extends React.Component{
+export class AdvancedSearch extends React.Component{
  
     onSubmit( values ){
         let query = {

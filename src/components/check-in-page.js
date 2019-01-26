@@ -2,7 +2,7 @@ import React from 'react';
 import CheckInForm from './check-in-form';
 import CheckInOrOutResults from './check-in-out-results';
 
-function CheckInPage(){
+export default function CheckInPage(){
     return(
         <div>
             <CheckInForm />
@@ -10,5 +10,3 @@ function CheckInPage(){
         </div>
     );
 }
-
-export default CheckInPage;

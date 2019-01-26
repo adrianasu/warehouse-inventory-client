@@ -1,7 +1,6 @@
 import React from 'react';
 import AccountForm from './account-form';
 
-
 function AccountPage(){
     return(
         <div>
@@ -11,4 +10,4 @@ function AccountPage(){
     )
 }
 
-export default AccountPage;
+export default (AccountPage);

@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = ({
-    showForm: showForm
+    showForm
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DeleteButton );

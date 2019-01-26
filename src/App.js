@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { faCheckCircle, faTimesCircle, faPrint } from '@fortawesome/free-solid-svg-icons';
 
 import ModalContainer from './components/modal-container';
-import NonModalContainer from './components/non-modal-container';
 import { refreshAuthToken } from './actions/auth';
-import { faCheckCircle, faTimesCircle, faPrint } from '@fortawesome/free-solid-svg-icons';
+import Routes from './components/routes';
 
 library.add( faCheckCircle, faTimesCircle, faPrint );
 
@@ -40,11 +41,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
-                { this.props.modalDisabled ? <NonModalContainer />
-                                            : <ModalContainer /> 
-                }
-            </div>
+            // When modals are shown, hide other components
+            <Router>
+                <div className="app">
+                    { this.props.modalDisabled ? 
+                        <Routes />
+                        : <ModalContainer /> 
+                                        }
+                </div>
+            </Router>
         );
     }
 }

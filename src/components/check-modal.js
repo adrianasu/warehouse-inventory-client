@@ -9,7 +9,7 @@ import { hideModal }  from '../actions/modal';
 import Modal from './modal';
 import '../css/modal-item.css';
 
-class  CheckModal extends React.Component{
+export class  CheckModal extends React.Component{
     
     onClose(){
         this.props.checkInOrOutReset();
@@ -20,15 +20,16 @@ class  CheckModal extends React.Component{
  
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                    <div className="item">
-                <ReactToPrint
-                    trigger={() => <button><FontAwesomeIcon icon="print" /></button>}
-                    content={() => this.componentRef }
-                    closeAfterPrint={true}
+                <div className="item">
+                    <ReactToPrint
+                        trigger={() => <button><FontAwesomeIcon icon="print" /></button>}
+                        content={() => this.componentRef }
+                        closeAfterPrint={true}
                     />
-                    <h1>{ this.props.data.product.name }</h1>
-                    <CheckInOutTable ref={el => (this.componentRef = el )} data={ this.props } />
-             
+                    <h1>{ this.props.data.product }</h1>
+                    <CheckInOutTable 
+                        ref={el => (this.componentRef = el )} 
+                        data={ this.props } />
                 </div>
             </Modal>
         )
@@ -36,10 +37,10 @@ class  CheckModal extends React.Component{
 
 }
 
-const mapDispatchToProps = {
-    hideModal: () => hideModal(),
-    checkInOrOutReset: () => checkInOrOutReset(),
-};
+const mapDispatchToProps = ({
+    checkInOrOutReset,
+    hideModal,
+});
 
 const mapStateToProps = state => ({
     data: state.modal.modalProps.data,
