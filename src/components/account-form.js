@@ -60,29 +60,31 @@ class AccountForm extends React.Component{
 
     render(){
         return(
-            <form onSubmit={ this.handleSubmit.bind(this)}>
-                <label htmlFor="employeeId">Employee ID</label>
-                <input name="employeeId" 
-                    type="number" 
-                    id="employeeId"
-                    value={ this.state.value}
-                    onChange={this.handleChange.bind(this)}></input>
-                <button 
-                    type="submit"
-                    disabled = {
+            <div className="account-form form">
+                <form onSubmit={ this.handleSubmit.bind(this)}>
+                    <label htmlFor="employeeId">Employee ID</label>
+                    <input name="employeeId" 
+                        type="number" 
+                        id="employeeId"
+                        value={ this.state.value}
+                        onChange={this.handleChange.bind(this)}></input>
+                    <button 
+                        type="submit"
+                        disabled = {
+                                this.props.pristine || this.props.submitting
+                            }>
+                        Search
+                    </button>
+                    <button 
+                        type="button" 
+                        disabled = {
                             this.props.pristine || this.props.submitting
-                        }>
-                    Search
-                </button>
-                <button 
-                    type="button" 
-                    disabled = {
-                        this.props.pristine || this.props.submitting
-                    }
-                    onClick={ this.resetForm.bind(this) }>
-                    Reset
-                </button>
-            </form>
+                        }
+                        onClick={ this.resetForm.bind(this) }>
+                        Reset
+                    </button>
+                </form>
+            </div>
         )
     }
 }

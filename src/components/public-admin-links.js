@@ -1,17 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter }  from 'react-router-dom';
+import { withRouter }  from 'react-router-dom';
+import { closeSideDrawer } from '../actions/side-drawer';
+import { underlineOption } from '../actions/underline-option';
 
-function PublicAdminLinks(){
-    return(
-        <React.Fragment>
-            <NavLink to='/check-in'>Check In</NavLink>
-            <NavLink to='/check-out'>Check Out</NavLink>
-            <NavLink to='/reports'>Reports</NavLink>
-            <NavLink to='/account'>Accounts</NavLink>
-            <NavLink to='/manage'>Manage</NavLink>
-        </React.Fragment>
-    )
+export class PublicAdminLinks extends React.Component{
+    closeOrUnderline(option) {
+        // If click comes from side drawer, close it.
+        if (this.props.fromSideDrawer) {
+            this.props.closeSideDrawer();
+            // If click comes from header-bar, underline
+            // selected option.
+        } else {
+            this.props.underlineOption(option);
+        }
+    }
+
+    handleClick(e) {
+        this.closeOrUnderline(e.target.value);        
+        this.props.history.push(`/${e.target.value}`)
+    }
+    render(){
+        let options = ['check-in', 'check-out', 'reports', 'account', 'manage'];
+        let buttons = options.map(option =>
+            <li key={option}>
+                <button 
+                    value={option} 
+                    className={this.props.activeOption === option ? "show-active" : null}
+                    onClick={this.handleClick.bind(this) }>
+                    { option }
+                </button>
+            </li>
+        );
+        return(
+            <React.Fragment>
+                { buttons }
+            </React.Fragment>
+        )
+    }
 }
 
-export default withRouter(connect()(PublicAdminLinks));
+const mapStateToProps = state => ({
+    activeOption: state.underline.activeOption
+});
+
+const mapDispatchToProps = ({
+    closeSideDrawer,
+    underlineOption    
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PublicAdminLinks));

@@ -4,7 +4,8 @@ import CheckInOrOutResults from './check-in-out-results';
 
 function CheckInPage(){
     return(
-        <div>
+        <div className="check-in">
+            <h1>Check-In</h1>
             <CheckInForm />
             <CheckInOrOutResults checkType="checkIn" />
         </div>

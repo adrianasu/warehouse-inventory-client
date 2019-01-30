@@ -1,0 +1,10 @@
+.advanced-search-form{
+    padding: 3% 10%;
+}
+
+.advanced-search-form input,
+.advanced-search-form select{
+    margin: .4em;
+    font-size: .9em;
+    padding: .4em .2em;
+}

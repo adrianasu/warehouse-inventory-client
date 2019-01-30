@@ -19,7 +19,7 @@ class ItemModal extends React.Component{
     render(){
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                <div className="item">
+                <div className="modal-item">
                     { this.props.form === 'EDIT' ?
                         // Send initial values to pre-fill the form
                         <EditForm initialValues={ this.props.initialValues }/>

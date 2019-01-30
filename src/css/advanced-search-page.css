@@ -1,0 +1,28 @@
+.advanced-search{
+    width: 90%;
+    margin: auto;
+    min-width: 150px;
+}
+
+.advanced-search h1 {
+    font-size: 1.3em;
+    padding-left: .7em;
+    padding-right: 1em;
+}
+
+.advanced-search p{
+    padding-left: .7em;
+}
+
+.orange{
+    color: orange;
+}
+
+.advanced-search .tooltip .tooltiptext {
+   left: 30px;
+   bottom: -80px;
+}
+
+.space{
+    margin-left: .5em;
+}

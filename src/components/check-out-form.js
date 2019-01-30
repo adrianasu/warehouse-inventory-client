@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 
 import { doCheckInOrOut } from '../actions/check-in-out';
-
+import { required, nonEmpty } from '../utils/validators';
 import Input from './input';
 import RadioInput from './radio-input';
 
@@ -18,16 +18,28 @@ class CheckOutForm extends React.Component{
     render(){
 
         return(
-            <div>
-                <h1>Check Out</h1>
+          
+            <div className="check-in-form form">
                 <p> Enter the item ID and employee ID of the person receiving the item.</p>
+                
                 <form
-                    className='check-out-form'
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
-                    <Field component={ Input } type="text" name="itemId" label="Item ID"/>
-                    <Field component={ Input } type="text" name="employeeId" label="Employee ID"/>
+                    <Field 
+                        component={ Input } 
+                        type="text" 
+                        name="itemId" 
+                        label="Item ID"
+                        validate={[required, nonEmpty]}/>
+                        />
+                    <Field 
+                        component={ Input } 
+                        type="text" 
+                        name="employeeId" 
+                        label="Employee ID"
+                        validate={[required, nonEmpty]}/>
+                        />
                     <Field component={ RadioInput } 
                         name="condition" 
                         label="Condition"
@@ -40,11 +52,14 @@ class CheckOutForm extends React.Component{
                         }
                       />
                   
-                    <button type ="submit" >
+                    <button 
+                        disabled={this.props.pristine || this.props.submitting}                    
+                        type ="submit" >
                         Check Out
                     </button>
-                </form>          
-            </div>
+                </form> 
+                </div>         
+        
 
         );
     }

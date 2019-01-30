@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
-import ResultsTable from './results-table';
+import Results from './results';
+import '../css/search-results.css';
 
 class SearchResults extends React.Component{
 
@@ -31,6 +32,9 @@ class SearchResults extends React.Component{
             })
         }
     }
+
+ 
+
   
     
 
@@ -100,11 +104,13 @@ class SearchResults extends React.Component{
         let data = this.state.currentlyDisplayed
          console.log(data);
         return(
-            <div>
-                <h1>{ this.props.match.params.option.replace("-", " ") } </h1>
+            <div className="search-results">
                 <FilterForm onChange={this.onChange}/>
-                <p> { this.message() } </p> 
-                <ResultsTable currData={this.state.currentlyDisplayed}/>
+                <div className="background">
+                    <h1>Results: { this.props.match.params.option.replace("-", " ") } </h1>
+                    <p> { this.message() } </p> 
+                <Results/>
+                </div>
             </div>
         )
     }

@@ -13,7 +13,9 @@ import optionsReducer from './reducers/fetch-options';
 import protectedDataReducer from './reducers/protected-data';
 import queryReducer from './reducers/query-values';
 import searchReducer from './reducers/fetch-data';
+import sideDrawerReducer from './reducers/side-drawer';
 import showFormReducer from './reducers/show-form';
+import underlineReducer from './reducers/underline-option';
 import welcomeReducer from './reducers/welcome';
 
 const store = createStore(
@@ -28,7 +30,9 @@ const store = createStore(
         protectedData: protectedDataReducer,
         query: queryReducer,
         search: searchReducer,
+        sideDrawer: sideDrawerReducer,
         showForm: showFormReducer,
+        underline: underlineReducer,
         welcome: welcomeReducer,
     }), composeWithDevTools(
     applyMiddleware(thunk)),

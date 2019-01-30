@@ -1,0 +1,70 @@
+/* background-color: #8fbbaf; */
+/* button:
+  background-color: #ffcd60; */
+/* box-shadow: 0px 1px 2px 1px #5c8d89; */
+  /* hover:
+   background-color: #fdb44b; */
+
+main{
+    /* to allow space for the nav-bar */
+    height: 100%;
+   
+}
+
+
+
+button {
+    border: none;
+    border-radius: 3px;
+}
+
+input, select {
+    border: none;
+    border-bottom: 1px lightgray solid;
+    border-radius: 3px;
+}
+
+h1,
+li,
+button {
+    text-transform: capitalize;
+}
+
+ul{
+     list-style: none;
+     padding-inline-start: 0;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiptext {
+    font-size: .8em;
+    font-family: 'Istok Web', sans-serif;
+    font-weight: normal;
+    line-height: normal;
+    position: absolute;
+    text-transform: initial;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #fff0bc;
+    color: black;
+    text-align: center;
+    padding: .5em;
+    border: 1px solid #fcf9f4;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:focus .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+

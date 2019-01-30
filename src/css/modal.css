@@ -19,7 +19,7 @@
     z-index: 10000;
     overflow: auto;
     text-align: center;
-    padding: 4px;
+    /* padding: 4px; */
     cursor: pointer;
 }
 
@@ -29,17 +29,22 @@
     height: 100%;
     margin-left: -.05em;
     content: '';
+
 }
 
 .modal-dialog-div {
     background-color: white;
     position: relative;
     outline: 0;
-    width: auto;
+    max-width: 90%;
     display: inline-block;
     vertical-align: middle;
     box-sizing: border-box;
-    max-width: auto;
     cursor: default;
     border-radius: 4px;
+
+}
+
+.modal-dialog-div p{
+    padding: 0 1em 1em;
 }

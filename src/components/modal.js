@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import '../css/modal.css';
 
 export class Modal extends React.Component{
@@ -7,18 +9,6 @@ export class Modal extends React.Component{
             this.props.onClose();
         }
     }
-
-    // componentDidMount() {
-    //     if (this.props.onClose) {
-    //         window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
-    //     }
-    // }
-
-    // componentWillUnmount() {
-    //     if (this.props.onClose) {
-    //         window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
-    //     }
-    // }
 
     handleClick() {
         this.props.onClose();
@@ -36,14 +26,14 @@ export class Modal extends React.Component{
                     >
                 <div 
                     className="modal-content-div" 
-                    // onClick={this.onOverlayClick.bind(this)}
                     >
                 <div 
                     className="modal-dialog-div" 
                     onClick={this.onDialogClick}>
                     <button  
-                        onClick={this.handleClick.bind(this)}>
-                        X
+                        onClick={this.handleClick.bind(this)}
+                        className="close-button">
+                       <FontAwesomeIcon icon="times"/>
                     </button>
                     {this.props.children}
                 </div>

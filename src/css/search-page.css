@@ -1,0 +1,11 @@
+.search-page {
+    min-width: 150px;
+    width: 90%;
+    margin: 6em auto;
+}
+
+.search-page h1 {
+    font-size: 1.3em;
+    padding-left: .7em;
+    padding-right: 1em;
+}

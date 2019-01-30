@@ -1,0 +1,25 @@
+.check-in{
+    width: 90%;
+    margin: 5em auto;
+}
+
+.check-in-form{
+    padding: 1em;
+    margin: 1em auto;
+    /* text-align: center; */
+}
+
+.check-in-form label{
+    margin-left: 2.5em;
+}
+
+.check-in-form input{
+    display: block;
+    margin: .5em auto;
+}
+
+.check-in-form button{
+    width: 70%;
+    display: block;
+    margin: 1.5em auto 1em;
+}

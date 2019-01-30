@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { showModal } from '../actions/modal';
 import { addSpace } from '../utils/utils.js';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
+import '../css/results-table.css';
 
 
-export class ResultsTable extends React.Component{
+export class Results extends React.Component{
 
     // show details of the item in a modal
      openModal(e) {
@@ -37,8 +38,8 @@ export class ResultsTable extends React.Component{
                 return;
             } else if( field === "isCheckedOut" ) {
                 list.push(<li key={ field }> { item[field] ?  
-                        <React.Fragment><FontAwesomeIcon icon="times-circle" /> {item.checkedOut[0].condition}</React.Fragment>
-                        : <React.Fragment><FontAwesomeIcon icon="check-circle" />Available</React.Fragment>
+                        <React.Fragment><FontAwesomeIcon icon="times-circle" className="red"/> {item.checkedOut[0].condition}</React.Fragment>
+                        : <React.Fragment><FontAwesomeIcon icon="check-circle" className="green"/>Available</React.Fragment>
                     } </li>)
                 } else if( field === 'inStock' ){
                             list.push( <li key = {field} > {
@@ -66,7 +67,7 @@ export class ResultsTable extends React.Component{
         )
     }
 
-    makeRow(item, idx){
+    generateDescription(item, idx){
         // If "data" is an object of items, get each item's id. If
         // "data" is an object with products then get the product's id.
         // This id will help us to identify the element clicked and show 
@@ -79,27 +80,26 @@ export class ResultsTable extends React.Component{
         }
 
         return(
-            <tr key={ idx } 
+            <div key={ idx } 
                 data-id={id} 
-                onClick = {
-                    handleOnClick
-                } >
-                <td>
+                onClick={handleOnClick}
+                className="item" >
+             
                     { this.itemDescription( item, idx )}
-                </td>
-            </tr>
+             
+            </div>
         )
     }
 
-    makeTable(items, numberOfItems){
+    generateResults(items, numberOfItems){
         // let items = this.props.data;
         // if "items" is an object (only one item was found)
         if(items.id && numberOfItems === undefined){
-            return this.makeRow( items );
+            return this.generateDescription( items );
         // if "items" is an array of items
         } else if( numberOfItems > 0){
             return (items.map((item, idx) => (
-                this.makeRow(item, idx)
+                this.generateDescription(item, idx)
             )))
         }
         return;
@@ -132,24 +132,24 @@ export class ResultsTable extends React.Component{
 
     render(){
         // let results = this.filteredResults();
-        // let results = this.props.data;
-        let results = this.props.currData;
+        let results = this.props.data;
+        //let results = this.props.currData;
         console.log("FILTERED ", results)
         return(
-            <table>
-                <tbody>
-                    {  results.length !== 0 ? 
-                            this.makeTable(results, results.length)
-                            : <tr></tr> }
-                </tbody>
-            </table>     
+            <div className="results-container">
+              
+            {  results.length !== 0 ? 
+                    this.generateResults(results, results.length)
+                    : null }
+             
+            </div>     
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        // data: state.search.data,
+        data: state.search.data,
         // searchTerm: state.filter.searchTerm,
         user: state.auth.currentUser,
     }
@@ -160,4 +160,4 @@ const mapDispatchToProps = dispatch => ({
         dispatch(showModal(modalType, modalProps)),
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( ResultsTable );
+export default connect( mapStateToProps, mapDispatchToProps )( Results );

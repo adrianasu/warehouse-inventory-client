@@ -1,0 +1,9 @@
+.search-results h1{
+    margin-top: 1em;
+    font-size: 1.3em;
+}
+
+.search-results h1,
+.search-results p {
+    margin-left: .5em;
+}

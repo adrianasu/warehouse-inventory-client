@@ -1,0 +1,18 @@
+.log-in-form{
+    background: white;
+    min-width: 280px;
+}
+
+.log-in-form label{
+    font-size: 1.1em;
+    text-transform: capitalize;
+}
+
+.log-in-form button{
+    width: 70%;
+}
+
+.log-in-form .form-error{
+    color: orange;
+}
+

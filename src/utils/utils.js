@@ -65,3 +65,4 @@ export const getRelatedData = dataType => {
             ['manufacturers', 'categories'] : dataType === 'employee' ?
                 ['departments'] : null;
 }
+

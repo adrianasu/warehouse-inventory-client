@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import Input from './input';
 import { setFilter } from '../actions/filter';
 

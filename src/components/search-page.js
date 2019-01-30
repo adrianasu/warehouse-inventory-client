@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SearchForm from './search-form';
 import { showModal } from '../actions/modal';
+import '../css/search-page.css';
 
 class SearchPage extends React.Component {
    
@@ -21,7 +22,8 @@ class SearchPage extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className="search-page">
+                <h1>Search Items</h1>
                 <SearchForm /> 
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>
             </div>

@@ -4,30 +4,35 @@ import { withRouter } from 'react-router-dom';
 
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
+import { underlineOption } from '../actions/underline-option';
 import { welcome } from '../actions/welcome';
 
 class LoggedOutBar extends React.Component{
 
-    constructor() {
-        super();
-        this.goHome = this.goHome.bind(this);
-        this.logIn = this.logIn.bind(this);
-        this.showAll = this.showAll.bind(this);
-        this.showAvailableItems = this.showAvailableItems.bind(this);
-        this.signUp = this.signUp.bind(this);
-    }
-
+     closeOrUnderline(option) {
+         // If click comes from side drawer, close it.
+         if (this.props.fromSideDrawer) {
+             this.props.closeSideDrawer();
+             // If click comes from header-bar, underline
+             // selected option.
+         } else {
+             this.props.underlineOption(option);
+         }
+     }
     
-    goHome(){
+    goHome() {
+        this.closeOrUnderline("welcome");
         this.props.history.push('/welcome');
         this.props.welcome(true);
     }
     
     logIn() {
+        this.closeOrUnderline(null);
         this.props.showModal('LOG_IN_MODAL');
     }
     
     showAll() {
+        this.closeOrUnderline("all-items");
         return this.props.fetchData({
                 method: 'GET',
                 searchType: 'searchAll',
@@ -41,6 +46,7 @@ class LoggedOutBar extends React.Component{
     }
     
     showAvailableItems() {
+        this.closeOrUnderline("available-items");
         return this.props.fetchData({
             method: 'GET',
             searchType: 'on-shelf'
@@ -53,29 +59,49 @@ class LoggedOutBar extends React.Component{
     }
     
     signUp() {
+        this.closeOrUnderline(null);
         this.props.showModal('SIGN_UP_MODAL');
     }
 
     render() {
          return(
             <React.Fragment>
-                <button onClick={ this.showAll }>All Items</button>
-                <button onClick={ this.showAvailableItems }>Available Items</button>
-                <button onClick={() => this.goHome()}>Home</button>
-                <button onClick={() => this.logIn()}>Log In</button>
-                <button onClick={() => this.signUp()}>Sign Up</button>
+                <li><button 
+                    className={this.props.activeOption === "all-items" ? "show-active" : null}
+                    onClick={ this.showAll.bind(this) }
+                    >All Items
+                </button></li>
+                <li><button 
+                    className={this.props.activeOption === "available-items" ? "show-active" : null}
+                    onClick={ this.showAvailableItems.bind(this) }
+                    >Available Items
+                </button></li>
+                <li><button 
+                    onClick={ this.goHome.bind(this) }
+                    >Home
+                </button></li>
+                <li><button 
+                    onClick={ this.logIn.bind(this) }
+                    >Log In
+                </button></li>
+                <li><button 
+                    onClick={ this.signUp.bind(this) }
+                    >Sign Up
+                </button></li>
             </React.Fragment>
          )
     }
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData,
-    showModal: showModal,
-    welcome: welcome,
+    fetchData,
+    showModal,
+    underlineOption,
+    welcome,
 })
 
 const mapStateToProps = state => ({
+    activeOption: state.underline.activeOption,
     data: state.search.data,
 })
 

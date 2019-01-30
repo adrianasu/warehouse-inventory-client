@@ -8,6 +8,7 @@ import { saveQueryValues } from '../actions/query-values';
 import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
+import '../css/advanced-search.css';
 
 
 class AdvancedSearch extends React.Component{
@@ -37,7 +38,7 @@ class AdvancedSearch extends React.Component{
     render(){
 
         return(
-            <div>
+            <div className="form advanced-search-form">
                 <form
                     className='search-item'
                     onSubmit={ this.props.handleSubmit(values => 
@@ -73,7 +74,7 @@ class AdvancedSearch extends React.Component{
 
 
                     <button type ="submit" >
-                        Search
+                        Search Items
                     </button>
                 </form>          
             </div>

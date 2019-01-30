@@ -5,7 +5,6 @@ import { fetchData } from '../actions/fetch-data';
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
 import { getRelatedData } from '../utils/utils'
-import listPage from './list-page';
 
 class ConfirmDelete extends React.Component{
 

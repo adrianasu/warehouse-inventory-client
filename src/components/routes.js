@@ -10,23 +10,20 @@ import CheckInPage from './check-in-page';
 import CheckOutPage from './check-out-page';
 import CreatePage from './create-page';
 import Dashboard from './dashboard';
-import HeaderBar from './header-bar';
 import LandingPage from './landing-page';
 import ManagePage from './manage-page';
 import ListPage from './list-page';
 import ReportsPage from './reports-page';
 import SearchPage from './search-page';
 import SearchResults from './search-results';
+import '../css/routes.css';
 
 
 class Routes extends React.Component{
     render(){
             
-            return(
-                <div> 
-                { this.props.isWelcome ? null :
-                <Route path="/" component={ HeaderBar } />
-            }
+        return(
+            <div className="routes">
                 <Route path="/advanced-search" component={ AdvancedSearchPage } />
                 <Route exact path="/dashboard" component={ Dashboard } />
                 <Route exact path="/search" component={ SearchPage } />
@@ -41,15 +38,10 @@ class Routes extends React.Component{
                 <Route path="/my-account" component={ AccountResults } />
                 <Route path="/manage" component={ ManagePage } /> 
                 <Route path="/create/:type" component={ CreatePage } />
-        
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    isWelcome: state.welcome.isWelcome,
-});
-
-export default withRouter(connect(mapStateToProps)(Routes));
+export default withRouter(connect()(Routes));
 

@@ -1,0 +1,20 @@
+.sign-up-form{
+    background: white;
+    min-width: 280px;
+}
+
+.sign-up label{
+    font-size: 1.1em;
+    text-transform: capitalize;
+}
+
+.sign-up-form button{
+    width: 70%;
+}
+
+.sign-up-form .form-error {
+    color: orange;
+}
+
+
+

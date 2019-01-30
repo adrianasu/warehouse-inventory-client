@@ -5,6 +5,7 @@ import { required, nonEmpty, email, length, isTrimmed, isEqual } from '../utils/
 import { signupUser } from '../actions/users';
 import { login } from '../actions/auth';
 import { hideModal } from '../actions/modal';
+import '../css/sign-up.css';
 
 const passwordLength = length({ min: 7, max: 72 });
 
@@ -27,13 +28,13 @@ export class SignUpForm extends React.Component {
         }
 
         return (
+            <div className="sign-up-form form">
             <form   // props.handleSubmit is a Redux Form callback function
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
-                )}
-                className="signup-form">
+                )}>
 
-                <label htmlFor="employeeId">employeeId</label>
+                <label htmlFor="employeeId">Employee Id</label>
                 <Field 
                     component={Input} 
                     name="employeeId" 
@@ -64,11 +65,13 @@ export class SignUpForm extends React.Component {
                 />
                 <button
                     disabled={this.props.pristine || this.props.submitting}
-                    type="submit">
+                    type="submit"
+                    className="sign-up-button">
                     Sign Up
                 </button>
               { error }
             </form>
+            </div>
         );
     }
 }

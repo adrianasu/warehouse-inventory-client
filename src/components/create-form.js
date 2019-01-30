@@ -13,7 +13,7 @@ import RadioInput from './radio-input';
 import Select from './select';
 import { getCreateFields, isInput, isSelect, isCheck, whatType } from '../utils/form-content';
 import { getId, addSpace } from '../utils/utils';
-import { required, checkType, isText, isNumber } from '../utils/validators';
+import { required } from '../utils/validators';
 
 class CreateForm extends React.Component{
 

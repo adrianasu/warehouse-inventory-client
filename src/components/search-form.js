@@ -1,11 +1,14 @@
 import React from 'react';
-import { Field, reduxForm, focus } from 'redux-form';
-import { withRouter } from 'react-router-dom';
-import { fetchData } from '../actions/fetch-data';
-import { saveQueryValues } from '../actions/query-values';
-import Input from './input';
 import { connect } from 'react-redux';
+import { Field, reduxForm, focus } from 'redux-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withRouter } from 'react-router-dom';
+
+import { fetchData } from '../actions/fetch-data';
+import Input from './input';
 import { required, nonEmpty, noSpecialChars } from '../utils/validators';
+import { saveQueryValues } from '../actions/query-values';
+import '../css/search-form.css';
 
 class SearchForm extends React.Component{
 
@@ -26,13 +29,16 @@ class SearchForm extends React.Component{
 
    
     render(){
-        const label = 'What are you looking for?';
+        const label = 'Enter a barcode, serial number or keyword.';
         return(
-            <div>
+            <div className='form search-form'>
                 <form
                     className='search-item'
                     onSubmit={ this.props.handleSubmit( value => this.onSubmit( value ))}>
-                    <label htmlFor="searchTerm">{ label }</label>
+                    <label htmlFor="searchTerm" className="tooltip">{ label }
+                        <span className="tooltiptext">Keyword: a word or few letters contained in the name of a product, model, warehouse, category or manufacturer.</span>
+                        <FontAwesomeIcon icon="question-circle" className="space orange tooltip"/>
+                    </label>
                     <Field 
                         component={ Input } 
                         id="searchTerm"
@@ -42,7 +48,7 @@ class SearchForm extends React.Component{
                     <button 
                         disabled={this.props.pristine || this.props.submitting}
                         type ="submit" >
-                        Search
+                        Search Items
                     </button>
                 </form>          
             </div>

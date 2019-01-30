@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { hideModal }  from '../actions/modal';
 import LoginForm from './log-in-form';
 import Modal from './modal';
+import '../css/log-in.css';
 
 export class LogInModal extends React.Component{
     onClose(){
@@ -14,10 +15,8 @@ export class LogInModal extends React.Component{
        
         return(
             <Modal onClose={this.onClose.bind(this)}> 
-                <div className="log-in">
                     <h1>Log In</h1>
                     <LoginForm />
-                </div>
             </Modal>
         )
     }

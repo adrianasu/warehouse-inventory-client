@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Routes from  './routes';
+import InRouter from  './in-router';
 
-function NonModalContainer(){
-    return(
-        <div> 
-            <Router>
-                <Routes />
-            </Router>
-        </div>
-    )
+class NonModalContainer extends React.Component{
+    render(){
+        return(
+                <Router>
+                    <InRouter history={this.props.history} />
+                </Router>
+        )
+    }
 }
 
 export default NonModalContainer;

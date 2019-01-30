@@ -23,8 +23,8 @@ class ModalContent extends React.Component{
                 return;
             } else if( field === "isCheckedOut" ) {
                 list.push(<li key={ field }> { item[field] ?  
-                        <React.Fragment><FontAwesomeIcon icon="times-circle" /> {item.checkedOut[0].condition}</React.Fragment>
-                        : <React.Fragment><FontAwesomeIcon icon="check-circle" />Available</React.Fragment>
+                        <React.Fragment><FontAwesomeIcon icon="times-circle" className="red"/> {item.checkedOut[0].condition}</React.Fragment>
+                        : <React.Fragment><FontAwesomeIcon icon="check-circle" className="green" />Available</React.Fragment>
                     } </li>)  
                 } else if( field === 'inStock' ){
                     list.push( <li key = {field} > {
