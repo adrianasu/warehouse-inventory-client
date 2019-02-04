@@ -4,9 +4,8 @@ header {
     top: 0;
     z-index: 100;
     width: 100%;
-    height: 60px; /*equal to main margin-top */
+    height: 60px; 
     background-color: #834c69;
-    /* background-image: linear-gradient(to bottom right, #5c4d4d, #144c52) */
 }
 
 .nav-container {
@@ -34,10 +33,16 @@ header {
 .user-info p{
     margin-block-start: 0;
     margin-block-end: 0;
+    padding-right: 1em;
 }
 
 .user-info span {
     padding-left: 10%
+}
+
+.user-info .tooltiptext{
+    font-size: 1.2em;
+    left: -20px;
 }
 
 .site-nav ul{
@@ -58,7 +63,7 @@ header {
     padding: auto 1.3em;
     text-decoration: none;
     max-height: 100%;
-    font-size: 1.1em;
+    font-size: 1.2em;
     transition: border-bottom .6s ease;
     cursor: pointer;
 }

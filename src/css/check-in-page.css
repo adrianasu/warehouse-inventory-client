@@ -1,0 +1,8 @@
+.check-in {
+    width: 90%;
+    margin: 5em auto;
+}
+
+.check-in .tooltip .tooltiptext {
+    font-size: .7em;
+}

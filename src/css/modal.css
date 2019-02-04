@@ -19,8 +19,6 @@
     z-index: 10000;
     overflow: auto;
     text-align: center;
-    /* padding: 4px; */
-    cursor: pointer;
 }
 
 .modal-content-div:after {
@@ -29,20 +27,17 @@
     height: 100%;
     margin-left: -.05em;
     content: '';
-
 }
 
 .modal-dialog-div {
     background-color: white;
     position: relative;
     outline: 0;
-    max-width: 90%;
+    width: 90%;
     display: inline-block;
     vertical-align: middle;
-    box-sizing: border-box;
     cursor: default;
     border-radius: 4px;
-
 }
 
 .modal-dialog-div p{

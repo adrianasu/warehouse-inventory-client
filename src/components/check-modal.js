@@ -7,7 +7,6 @@ import { checkInOrOutReset } from '../actions/check-in-out';
 import CheckInOutTable from './check-in-out-table';
 import { hideModal }  from '../actions/modal';
 import Modal from './modal';
-import '../css/modal-item.css';
 
 class  CheckModal extends React.Component{
     
@@ -20,16 +19,15 @@ class  CheckModal extends React.Component{
  
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                    <div className="item">
                 <ReactToPrint
                     trigger={() => <button><FontAwesomeIcon icon="print" /></button>}
                     content={() => this.componentRef }
                     closeAfterPrint={true}
                     />
                     <h1>{ this.props.data.product.name }</h1>
-                    <CheckInOutTable ref={el => (this.componentRef = el )} data={ this.props } />
-             
-                </div>
+                    <CheckInOutTable 
+                        ref={el => (this.componentRef = el )} 
+                        data={ this.props } />
             </Modal>
         )
     }
@@ -37,8 +35,8 @@ class  CheckModal extends React.Component{
 }
 
 const mapDispatchToProps = {
-    hideModal: () => hideModal(),
-    checkInOrOutReset: () => checkInOrOutReset(),
+    hideModal,
+    checkInOrOutReset,
 };
 
 const mapStateToProps = state => ({

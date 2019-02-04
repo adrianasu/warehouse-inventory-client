@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
-
-import { required, nonEmpty } from '../utils/validators';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { doCheckInOrOut } from '../actions/check-in-out';
-import '../css/check-in-form.css';
 import Input from './input';
+import { required, nonEmpty } from '../utils/validators';
+import '../css/check-in-form.css';
 
 class CheckInForm extends React.Component{
  
@@ -15,10 +15,12 @@ class CheckInForm extends React.Component{
     }
 
     render(){
+           let info = <div className="tooltip">Employee ID<FontAwesomeIcon icon="question-circle" className="space orange"/>
+                    <span className="tooltiptext">Employee ID of the person returning the item</span>
+                </div>;
 
         return(
             <div className="check-in-form form">
-                <p> Enter the item ID and employee ID of the person returning the item.</p>
                 <form
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
@@ -26,14 +28,14 @@ class CheckInForm extends React.Component{
                     <Field 
                         component={ Input } 
                         type="number" 
-                        name="itemId" 
-                        label="Item ID"
+                        name="barcode" 
+                        label="Barcode"
                         validate={[required, nonEmpty]}/>
                     <Field 
                         component={ Input } 
                         type="number" 
                         name="employeeId" 
-                        label="Employee ID"
+                        label={ info }
                         validate={[required, nonEmpty]}/>
                   
                     <button 

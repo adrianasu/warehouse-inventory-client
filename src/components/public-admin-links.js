@@ -21,7 +21,7 @@ export class PublicAdminLinks extends React.Component{
         this.props.history.push(`/${e.target.value}`)
     }
     render(){
-        let options = ['check-in', 'check-out', 'reports', 'account', 'manage'];
+        let options = ['check-in', 'check-out', 'account', 'reports', 'manage'];
         let buttons = options.map(option =>
             <li key={option}>
                 <button 

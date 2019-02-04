@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
+import '../css/reports-page.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ReportsPage extends React.Component{
     constructor(){
@@ -37,11 +39,23 @@ class ReportsPage extends React.Component{
     }
 
     generateButtons(){
-        const options = ['checked out','on shelf', 'low stock', 'useful life'];
-        return options.map( (option, key) => 
-            <li key={key}>
+        const options = {
+            'checked out': {icon: 'ban', color: 'blue'},
+            'on shelf': { icon:'inventory', color: 'blue'},
+            'low stock': {icon: ['far', 'tachometer-slowest'], color: 'blue'}, // PRO icon
+            'useful life': {icon: ['far', 'heartbeat'], color: 'blue'}
+        };
+
+    
+
+        return Object.keys(options).map( (option, key) => 
+            
+            <li key={key}
+                className={ `background-${options[option].color}` }>
+                <FontAwesomeIcon 
+                    icon={ options[option].icon }
+                    className="report-icon" />
                 <button 
-                    className='reports' 
                     name={option} 
                     onClick={this.onClick} 
                     key={option}>{option}
@@ -50,13 +64,11 @@ class ReportsPage extends React.Component{
         )
     }
 
-   
-
     render(){
         let buttons = this.generateButtons();
         return(
-            <div>
-                <h1>Reports</h1>
+            <div className="reports-page">
+                <h1>Items' Reports</h1>
                 <ul>
                     { buttons }
                 </ul>

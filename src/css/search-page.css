@@ -5,7 +5,14 @@
 }
 
 .search-page h1 {
-    font-size: 1.3em;
+    font-size: 1.7em;
     padding-left: .7em;
     padding-right: 1em;
+}
+
+.search-page .tooltip .tooltiptext {
+    left: 0px;
+    bottom: -110px;
+    font-size: .6em;
+    width: 100%;
 }

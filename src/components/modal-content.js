@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addSpace, formatDate, getItem } from '../utils/utils';
+import { addSpace, formatDate, getItem, accessLevelToString } from '../utils/utils';
 import { PUBLIC_ACCESS_LEVEL, ADMIN_ACCESS_LEVEL } from '../utils/list-content';
 import DeleteButton from './delete-button';
 import EditButton from './edit-button';
-
+import '../css/edit-delete-button.css';
 
 class ModalContent extends React.Component{
 
@@ -22,35 +22,32 @@ class ModalContent extends React.Component{
                 this.props.user.accessLevel < PUBLIC_ACCESS_LEVEL) )|| field === "id" ){
                 return;
             } else if( field === "isCheckedOut" ) {
-                list.push(<li key={ field }> { item[field] ?  
+                list.push(<li key={ field } className="big"> { item[field] ?  
                         <React.Fragment><FontAwesomeIcon icon="times-circle" className="red"/> {item.checkedOut[0].condition}</React.Fragment>
                         : <React.Fragment><FontAwesomeIcon icon="check-circle" className="green" />Available</React.Fragment>
                     } </li>)  
-                } else if( field === 'inStock' ){
-                    list.push( <li key = {field} > {
-                                `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
-                            } </li>)
-                            
-                // }  else if( field === 'difference' ){
-               
-               
-                //             list.push(<li key={field}> { `${addSpace(field)}: ${item[field]}` } </li>)
-                            
-                } else if (field === 'usefulLife') {
-                    list.push( <li key={field} > {
-                        `${addSpace(field)}: ${item[field]} ${item[field] !=="NA" ? 'days' : ""}`
-                    } </li>)
-                    
-                }  else if( field === 'checkedIn' || field === 'checkedOut' ){
-                    // Show date of last time it was checkedIn or checkedOut
-                    list.push(<li key={field}>Last time {addSpace(field)}: { item[field].length > 0 ? formatDate(item[field][0].date) : 'never'}</li>)
-                }  else if( field === 'registeredDate' ){
-                    list.push(<li key={field}>{addSpace(field)}: { formatDate(item[field]) }</li>)
-                } else if( field === 'consummable' ){
-                    list.push( <li key ={field} > {field}: { item[field] ? 'yes':'no' } </li>);
-            }  else {
-                    list.push(<li key={field}>{ addSpace(field) }: { item[field] } </li>)
-                }
+            } else if( field === 'inStock' ){
+                list.push( <li key = {field} > {
+                            `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
+                        } </li>)                            
+            } else if (field === 'usefulLife') {
+                list.push( <li key={field} > {
+                    `${addSpace(field)}: ${item[field]} ${item[field] !=="NA" ? 'days' : ""}`
+                } </li>)
+            }  else if( field === 'checkedIn' || field === 'checkedOut' ){
+                // Show date of last time it was checkedIn or checkedOut
+                list.push(<li key={field}>Last time {addSpace(field)}: { item[field].length > 0 ? formatDate(item[field][0].date) : 'never'}</li>)
+            }  else if( field === 'registeredDate' ){
+                list.push(<li key={field}>{addSpace(field)}: { formatDate(item[field]) }</li>)
+            } else if( field === 'accessLevel' ){
+                list.push(<li key={field}>{addSpace(field)}: { accessLevelToString(item[field]) }</li>)
+            } else if( field === 'consummable' ){
+                list.push( <li key ={field} > {field}: { item[field] ? 'yes':'no' } </li>);
+            }  else if( field === 'product' ){
+                list.push(<li key={field}>{ item[field] } </li>)
+            } else {
+                list.push(<li key={field}>{ addSpace(field) }: { item[field] } </li>)
+            }
         })
    
         return(

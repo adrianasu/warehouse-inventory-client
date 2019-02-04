@@ -8,3 +8,9 @@
     font-size: .9em;
     padding: .4em .2em;
 }
+
+.advanced-search-form .radio-fields{
+    display: flex;
+    margin: 2%;
+    justify-content: space-around;
+}

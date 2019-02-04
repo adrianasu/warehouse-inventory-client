@@ -1,0 +1,21 @@
+.sign-form{
+    /* override background-color from 'form' class */
+    background-color: white !important;
+    min-width: 280px;
+}
+
+.sign-form label{
+    font-size: 1.1em;
+    text-transform: capitalize;
+}
+
+.sign-form button{
+    width: 70%;
+    background-color: #acdbdf;
+    color: #5c4d4d;
+}
+
+
+
+
+

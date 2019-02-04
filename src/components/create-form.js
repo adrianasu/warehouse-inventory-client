@@ -11,12 +11,13 @@ import { load } from '../actions/load';
 import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
-import { getCreateFields, isInput, isSelect, isCheck, whatType } from '../utils/form-content';
-import { getId, addSpace } from '../utils/utils';
-import { required } from '../utils/validators';
+import { getCreateFields, isInput, isSelect, isCheck, whatType, validateThis } from '../utils/form-content';
+import { getId, addSpace, capitalize } from '../utils/utils';
+import { requiredSelect } from '../utils/validators';
+
+import '../css/create-form.css';
 
 class CreateForm extends React.Component{
-
 
     showResultMessage( dataType ){
         // If item was created, show confirmation message
@@ -24,54 +25,51 @@ class CreateForm extends React.Component{
             this.props.showModal('CONFIRM_MODAL', {
                 message: `${ dataType } was created.`
             })
-        // If an error occurred, let the user know
+        // If an error occurred, let user know
         } else if (this.props.hasErrored) {
             let modalProps = this.props.error.message;
             this.props.showModal('ERROR_MODAL', modalProps);
         }
-        this.props.history.push(`/list/${dataType}`)
+        // Go back to list.
+        this.props.history.push(`/list/${dataType}`);
     }
 
-    getIdsAndValues(dataType, val){
-        let objId = ['product', 'manufacturer', 'category', 'department'];
+    getIdsAndValues(val){
+        let fromSelect = ['product', 'manufacturer', 'category', 'department'];
         let values = {};
+        // Check keys and find the ones coming from a Select
+        // input and get their ids.
         Object.keys(val).forEach( key => {
-            // Capitalize category, department, manufacturer and product names.
-            key === 'name' ? val[key].charAt(0).toUppperCase() :
-                values[key] = objId.includes(key) ? 
+            // Capitalize category, department, manufacturer and 
+            // product coming from an Input.
+            values[key] = key === 'name' ? 
+                capitalize(val[key])
+                : fromSelect.includes(key) ? 
                     getId({
                         data: this.props.options[key],
                         value: val[key],
                         key: 'name'
                     })
                     : val[key];
-        })
+        });
         return values;
     }
 
     getFetchValues(dataType, val){
         let requiresId = ['item', 'product', 'employee'];
         if( requiresId.includes( dataType ) ){
-            return this.getIdsAndValues(dataType, val);
+            return this.getIdsAndValues(val);
         } 
         return val;
     }
 
-    onSubmit( formValues ){
+    onSubmit( values ){
         let dataType = this.props.dataType;
-
-        let values = this.getFetchValues(dataType, formValues)
-        console.log(values)
-        let itemId = values.id;
-        values.id = itemId;
-        if( dataType === 'employee' ){
-            itemId = values.employeeId;
-            values.employeeId = itemId;
-        } 
+        values = this.getFetchValues(dataType, values)
+        
         return this.props.fetchData({
              method: 'POST', 
              dataType,
-             itemId,
              values
         })
         .then( () => {
@@ -85,27 +83,27 @@ class CreateForm extends React.Component{
         if (this.props.options === null) {
             return this.props.fetchOptions()
         }
-  
      }
- 
 
     generateFields( field ){
         let valType = whatType(field);
-       
+        let validateField = validateThis(field)
         return isInput(field) ?
                 <Field component={ Input } 
                     type={ valType} 
                     name={field} 
                     key={ field } 
                     label={addSpace(field)}
-                    validate={ [required] }
+                    validate={ validateField }
                     />
                 : isSelect(field) ?
                     <Field component={ Select } 
                         type={ valType } 
                         name={field} 
                         key={ field } 
-                        label={addSpace(field)}/>
+                        label={addSpace(field)}
+                        validate={ [requiredSelect] }
+                        />
                     : isCheck(field) ?
                         <Field 
                             component={ RadioInput } 
@@ -137,23 +135,28 @@ class CreateForm extends React.Component{
     render(){
 
         return(
-            <div>
+            <div className="create-form">
                 <form
-                    className='create-item'
+                    className="form"
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
                     { this.props.isLoading ? <p>...Loading</p>
                         : this.displayFields() }
-
+                  
                     <button 
+                        className="create-button"
                         type ="submit" 
                         disabled = {
                             this.props.pristine || this.props.submitting
                         } >
                         Create
                     </button>
-                    <button onClick={ this.handleCancel.bind(this)}>Cancel</button>
+                    <button 
+                        className="cancel-button"
+                        onClick={ this.handleCancel.bind(this)}>
+                        Cancel
+                    </button>
                 </form>          
             </div>
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { doCheckInOrOut } from '../actions/check-in-out';
 import { required, nonEmpty } from '../utils/validators';
 import Input from './input';
 import RadioInput from './radio-input';
+import '../css/check-out-form.css';
 
 class CheckOutForm extends React.Component{
  
@@ -16,11 +18,13 @@ class CheckOutForm extends React.Component{
 
 
     render(){
-
+        let info = <div className="tooltip">Employee ID<FontAwesomeIcon icon="question-circle" className="space orange"/>
+                    <span className="tooltiptext">Employee ID of the person receiving the item</span>
+                </div>;
+         
         return(
-          
-            <div className="check-in-form form">
-                <p> Enter the item ID and employee ID of the person receiving the item.</p>
+            
+            <div className="check-out-form form">
                 
                 <form
                     onSubmit={ this.props.handleSubmit(values => 
@@ -28,17 +32,18 @@ class CheckOutForm extends React.Component{
                     
                     <Field 
                         component={ Input } 
-                        type="text" 
-                        name="itemId" 
-                        label="Item ID"
-                        validate={[required, nonEmpty]}/>
+                        type="number" 
+                        name="barcode" 
+                        label="Barcode"
+                        validate={[required, nonEmpty]}
                         />
+               
                     <Field 
                         component={ Input } 
-                        type="text" 
+                        type="number" 
                         name="employeeId" 
-                        label="Employee ID"
-                        validate={[required, nonEmpty]}/>
+                        validate={[required, nonEmpty]}
+                        label={info}
                         />
                     <Field component={ RadioInput } 
                         name="condition" 

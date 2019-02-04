@@ -5,6 +5,7 @@ import Input from './input';
 import { login } from '../actions/auth';
 import { required, nonEmpty, email, length, isTrimmed } from '../utils/validators';
 import { hideModal } from '../actions/modal';
+import '../css/sign-form.css';
 
 const passwordLength = length({ min: 7, max: 30 })
 
@@ -24,7 +25,7 @@ export class LoginForm extends React.Component{
             );
         }
         return (
-            <div className="form log-in-form">
+            <div className="form sign-form">
             <form
                 onSubmit={ this.props.handleSubmit( values =>
                     this.onSubmit( values )

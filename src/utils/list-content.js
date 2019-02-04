@@ -14,19 +14,19 @@ const list ={
         details: ['product', 'location', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'checkedOut'], 
     },
     'low-stock': {
-        keys: ['product', 'inStock', 'minimumRequired', 'difference'],
-        details: ['product', 'inStock', 'minimumRequired', 'difference'], // what item is instock
+        keys: ['product', 'shortfall'],
+        details: ['product', 'inStock', 'minimumRequired', 'shortfall'], // what item is instock
     },
     'useful-life': {
-        keys: ['product', 'usefulLife', 'location'],
+        keys: ['product', 'usefulLife'],
         details: ['product', 'usefulLife', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'location'],
     },
     item: {
-        keys: ['product', 'serialNumber', 'isCheckedOut'],
+        keys: ['product', 'isCheckedOut'],
         details: ['product', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'warehouse', 'ailse', 'shelf', 'bin', 'isCheckedOut'],
     },
     product: {
-        keys: ['name', 'category', 'consummable'],
+        keys: ['name', 'consummable'],
         details: ['name', 'model', 'manufacturer', 'category', 'consummable', 'minimumRequiredQuantity', 'minimumRequiredUnits'],
     },
     category: {
@@ -42,11 +42,11 @@ const list ={
         details: ['name'],
     },
     user: {
-        keys: ['email', 'employeeId', 'accessLevel'],
+        keys: ['employeeId', 'accessLevel'],
         details: ['email', 'employeeId', 'accessLevel'],
     },
     employee: {
-        keys: ['firstName', 'lastName', 'employeeId', 'department' ],
+        keys: ['firstName', 'lastName', 'employeeId'],
         details: ['firstName', 'lastName', 'employeeId', 'department'],
     }
 }

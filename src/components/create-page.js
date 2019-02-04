@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { showModal } from '../actions/modal';
 
 import CreateForm from './create-form';
-
+import '../css/create-page.css';
 
 class CreatePage extends React.Component{
 componentDidMount() {
@@ -27,8 +27,8 @@ componentDidMount() {
     render(){
         let dataType = this.props.match.params.type;
         return(
-            <div>
-                <h1>Create New { dataType } </h1>
+            <div className="create-page">
+                <h1>New { dataType } </h1>
                 <CreateForm dataType={ dataType } />
             </div>
         )

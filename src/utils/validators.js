@@ -1,4 +1,5 @@
 export const required = value => (value ? undefined : 'Required');
+export const requiredSelect = value => value === "Select one" ? 'Required' : undefined;
 export const nonEmpty = value =>
     value.trim() !== '' ? undefined : 'Cannot be empty';
 export const isTrimmed = value =>
@@ -15,9 +16,11 @@ export const length = length => value => {
 export const noSpecialChars = value =>
   /\W/.test(value) ? `Can't contain special characters.`: undefined;
 
-export const isText = value => (typeof value !== "string") ? "letters" : undefined;
+export const isText = value => Number(value) ? "Must be letters" : undefined;
 
-export const isNumber = value => (typeof value !== "number") ? 'Must be a number' : undefined;
+export const isNumber = value => isNaN(Number(value)) ? 'Must be a number' : undefined;
+
+export const isPositive = value => value < 0 ? 'Must be a positive number' : undefined;
 
 export const checkType = (value, type) => type === 'text' ? isText(value) : isNumber(value)
 

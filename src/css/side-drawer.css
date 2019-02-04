@@ -1,4 +1,4 @@
-.side-drawer{
+.side-drawer {
     height: 100%;
     background-color: #834c69;
     box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
@@ -12,11 +12,11 @@
     transition: transform 0.3s ease-out;
 }
 
-.side-drawer.open{
+.side-drawer.open {
     transform: translateX(0);
 }
 
-.side-drawer ul{
+.side-drawer ul {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -27,22 +27,25 @@
     margin-top: 1.5em;
 }
 
-.side-drawer button{
+.side-drawer button {
+    margin-left: 2em;
     text-align: left;
     color: #fcf9f4;
     background-color: #834c69;
     font-size: 1em;
-    width: 100%;
+    width: 50%;
+    transition: font-size .3s ease;
 }
 
-.side-drawer button:focus,
+.side-drawer button:focus, 
 .side-drawer button:hover {
-    background-color: #fcf9f4;
-    color: black;
+    font-size: 1.1em;
+    color: gray;
+    outline: none;
 }
 
-@media (min-width: 750px){
-    .side-drawer{
+@media (min-width: 750px) {
+    .side-drawer {
         display: none;
     }
 }

@@ -74,15 +74,6 @@ export class List extends React.Component{
         return aString;
     }
 
-    // removeDotsAndFormat( aString ){
-    //     // If string has a dot, get onlycharacters after the dot
-    //     //let newString = aString.slice(aString.indexOf(".")+1);
-    //     let idxArray = this.findUpperCase(aString);
-    //     return idxArray.length > 0 ? this.addSpace(idxArray, aString) : aString;
-    // }
-
-   
-
     generateRow(name, item){
         let list = [];
         let options = {

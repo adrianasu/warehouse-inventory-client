@@ -25,7 +25,7 @@ class AdvancedSearchPage extends React.Component{
             <div className="advanced-search">
                 <h1 className="tooltip">Advanced Search  
                     <span className="tooltiptext">Enter or select one or more values to narrow your item's search. </span>
-                    <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                    <FontAwesomeIcon icon="question-circle" className="space orange"/>
                 </h1>
                 <AdvancedSearch />
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>

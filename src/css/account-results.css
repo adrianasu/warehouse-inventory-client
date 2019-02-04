@@ -1,0 +1,40 @@
+.account-results{
+    margin: 1em .1em;
+    border: 1px solid #acdbdf;
+    border-radius: 3px;
+    padding: .5em;
+}
+
+.account-results h2{
+    background-color: #acdbdf;
+    text-align: center;
+    clear: right;
+}
+
+.account-results p {
+    text-align: right;
+}
+
+.account-results button{
+    margin-bottom: .5em;
+    float: right;
+    cursor: pointer;
+    font-size: 1.3em;
+    padding: .2em .5em;
+    border-radius: 3px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    color: #857671;
+}
+
+.account-results button:focus,
+.account-results button:hover {
+    color: lightgray;
+    background-color: #857671;
+    outline: none;
+}
+
+.account-results .tooltiptext{
+    left: -10px;
+    bottom: -30px;
+}

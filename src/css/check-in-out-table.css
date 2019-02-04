@@ -1,0 +1,13 @@
+.check-in-out {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 2em; 
+}
+
+.check-in-out tr>td:first-child{
+    width: 20%;
+}
+
+.check-in-out tbody>tr:nth-child(odd) {
+    background-color: #e8fcf6;
+}

@@ -1,0 +1,40 @@
+.check-out{
+    width: 90%;
+    margin: auto;
+}
+
+.check-out-form{
+    padding: .8em;
+    margin: .5em auto;
+}
+
+.check-out-form label{
+    margin-left: 1.5em;
+    font-size: 1.3em;
+    padding-top: .2em;
+}
+
+.check-out-form input{
+    display: block;
+    width: 80%;
+    margin: .5em auto;
+    font-size: 1.3em;
+    padding: .2em;
+}
+
+.check-out-form button{
+    width: 60%;
+    display: block;
+    margin: 1.5em auto 1em;
+}
+
+.check-out-form input[type=radio]{
+    width: 40px;
+    display: inline-block;
+    margin: 0;
+}
+
+.check-out-form .tooltip .tooltiptext {
+    left: 20px;
+    bottom: -50px;
+}

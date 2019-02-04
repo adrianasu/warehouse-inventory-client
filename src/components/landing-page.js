@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { login } from '../actions/auth';
 import { welcome } from '../actions/welcome';
@@ -45,6 +46,9 @@ class LandingPage extends React.Component{
                 tools, equipment and consumables to
                 employees.
                 MORE...
+
+                Youll find lightbulbs with info to do testing
+                <FontAwesomeIcon icon="lightbulb" className="space orange"/>
             </p>
             <p>Try our app</p>
             <button onClick={this.handleClick.bind(this)} value="null">Basic</button>

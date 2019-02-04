@@ -2,15 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate } from '../utils/utils';
+import '../css/low-stock-table.css';
 
 function LowStockTable( props ){
 
     let product = props.data.product;
     return(
-        <div>
-            <h1>{ product.name }</h1>
+        <div className="low-stock-table">
             <table>
                 <tbody>
+                <th colSpan={2}>{ product.name }</th>
                 <tr>
                     <td>Category</td>
                     <td>{ product.category.name }</td>
@@ -24,16 +25,21 @@ function LowStockTable( props ){
                     <td>{ product.model }</td>
                 </tr>
                 <tr>
+                    <td>Shortfall
+                         <FontAwesomeIcon 
+                            className="space orange"
+                            icon={['far', 'tachometer-slowest']}
+                        />
+                    </td>
+                    <td>{ props.data.shortfall }</td>
+                </tr>
+                <tr>
                     <td>In Stock</td>
                     <td>{ props.data.inStock.length }</td>
                 </tr>
                 <tr>
                     <td>Minimum Required</td>
                     <td>{ props.data.minimumRequired } </td>
-                </tr>
-                <tr>
-                    <td>Difference</td>
-                    <td>{ props.data.difference }</td>
                 </tr>
                 <tr>
                     <td>Units</td>

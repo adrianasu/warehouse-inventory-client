@@ -51,7 +51,7 @@ ul{
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 200px;
+    min-width: 40px;
     background-color: #fff0bc;
     color: black;
     text-align: center;

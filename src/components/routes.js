@@ -34,7 +34,6 @@ class Routes extends React.Component{
                 <Route exact path="/reports" component={ ReportsPage } />
                 <Route exact path="/list/:type" component={ ListPage } />
                 <Route path="/account" component={ AccountPage } />
-                <Route path="/account/:employeeId" component={ AccountResults } />
                 <Route path="/my-account" component={ AccountResults } />
                 <Route path="/manage" component={ ManagePage } /> 
                 <Route path="/create/:type" component={ CreatePage } />

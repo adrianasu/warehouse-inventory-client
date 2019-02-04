@@ -48,11 +48,7 @@ class CheckInOrOutResults extends React.Component{
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>
                 <p> { this.message() } </p> 
                 
-                {/* { this.props.hasErrored ? this.displayError() : null } */}
-                
-                {/* { this.props.data ? this.displayCheck() : null } */}
                 { this.props.data ? this.displayCheck() : null }
-
 
             </div>
         )

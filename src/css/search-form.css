@@ -3,14 +3,18 @@
     text-align: center;
 }
 
+.search-form label {
+    font-size: 1.1em;
+}
+
 .search-form input{
-    margin: 1.2em auto;
-    font-size: .9em;
+    margin: 1.2em auto .5em;
+    font-size: 1.2em;
     padding: .4em .2em;
 }
 
 .search-form .tooltip .tooltiptext {
-    left: 30px;
-    bottom: -80px;
+    left: 35px;
+    bottom: -30px;
     font-size: 1em;
 }

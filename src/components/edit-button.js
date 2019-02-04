@@ -21,7 +21,7 @@ class EditButton extends React.Component{
 
     render(){
         return(
-            <button 
+            <button className="main-button"
                 onClick={ this.handleEdit.bind(this) }>
                 Edit
             </button>

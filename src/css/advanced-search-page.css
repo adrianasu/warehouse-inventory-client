@@ -19,10 +19,15 @@
 }
 
 .advanced-search .tooltip .tooltiptext {
-   left: 30px;
+   left: 60px;
    bottom: -80px;
 }
 
 .space{
     margin-left: .5em;
+}
+
+.advanced-search button{
+    display: block;
+    margin: 1em auto;
 }

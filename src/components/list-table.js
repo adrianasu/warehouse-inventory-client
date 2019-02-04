@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSpace } from '../utils/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { addSpace, accessLevelToString } from '../utils/utils';
 import { getKeys } from '../utils/list-content';
 import { showModal } from '../actions/modal';
+import '../css/list-table.css';
 
 class ListTable extends React.Component{
     // show details of the item in a modal
@@ -25,8 +28,9 @@ class ListTable extends React.Component{
     generateRow( item, titles ){
         let row = [];
         titles.forEach( title => {
+            // Low Stock report sends product as an object
             if( title === 'product' && 
-                titles.includes('inStock')) {
+                titles.includes('shortfall')) {
                 row.push(<td  key = {title}>{ `${item.product.name}, mod. ${item.product.model}, manuf. ${item.product.manufacturer.name}` }</td>);
             } else if( title === 'product' && 
                 titles.includes('consummable')) {
@@ -35,18 +39,12 @@ class ListTable extends React.Component{
                 row.push(<td  key = {title}>{ `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer}` }</td>);
             } else if( title === 'location' ){
                 row.push(<td  key = {title}>{ item.warehouse }</td>);
-            } else if( title === 'minimumRequired' ){
-               row.push( <td key ={title} > {
-                                `${item[title]} ${item[title].units}`
-                        } </td>);
             } else if( title === 'consummable' ){
                row.push( <td key ={title} > {
-                                item[title] ? 'yes':'no'
-                        } </td>);
-            } else if( title === 'inStock' ){
-                row.push( <td key = {title} > {
-                                `${item[title].length} ${item.product.minimumRequired.units}`
-                        } </td>)
+                                item[title] ? 
+                                <FontAwesomeIcon icon={ ['far', 'check'] } />
+                                : <FontAwesomeIcon icon='times'/> 
+                            } </td>);
             } else if (title === 'usefulLife') {
                 row.push( <td key={title} > {
                             `${item[title]} ${item[title] !=="NA" ? 'days' : ""}`
@@ -54,14 +52,20 @@ class ListTable extends React.Component{
             } else if (title === 'isCheckedOut') {
                 // This column header is "Available"
                 row.push( <td key={title} > {
-                            item[title] === true ? 'no' : 'yes'
+                            item[title] === true ? 
+                            <FontAwesomeIcon icon='times'/> 
+                            : <FontAwesomeIcon icon={ ['far', 'check'] }/>
                         } </td>)
             
-            }else {
+            }else if( title === 'accessLevel' ){
+                row.push(<td key={title}>{ accessLevelToString(item.accessLevel) }</td>);
+            } else {
                 row.push( <td key={title} > { item[title] } </td>)
             }
         })
-     
+            row.push( <td key="more">
+                    <FontAwesomeIcon icon={ ['far', 'ellipsis-v'] }/>
+                 </td>)
         return row;
     }
 
@@ -95,6 +99,7 @@ class ListTable extends React.Component{
                 header.push(<th key={title}>Available</th>)
                 : header.push(<th key={title}>{ addSpace(title) }</th>)
         })
+        header.push(<th key="more"></th>)
         return header;
     }
     
@@ -111,7 +116,7 @@ class ListTable extends React.Component{
         let results = this.props.currData;
         console.log("FILTERED ", results)
         return(
-            <table>
+            <table className="results-table">
                 <tbody>
                     { results.length !== 0 ? this.makeTable(results) : null }
                 </tbody>

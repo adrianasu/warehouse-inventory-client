@@ -5,12 +5,14 @@ import { fetchData } from '../actions/fetch-data';
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
 import { getRelatedData } from '../utils/utils'
+import { deleteQueryValues } from '../actions/query-values';
 
 class ConfirmDelete extends React.Component{
 
     showResultMessage(itemId, dataType) {
         // If item was updated, show confirmation message
         if (this.props.wasDeleted) {
+            this.props.deleteQueryValues();
             this.props.showModal('CONFIRM_MODAL', {
                 message: `${ dataType } was deleted.`
             })
@@ -30,9 +32,9 @@ class ConfirmDelete extends React.Component{
              dataType
         })
    .then(() => {
-           this.props.hideModal();
-           this.props.hideForm();
-           this.showResultMessage(itemId, dataType);
+        this.props.hideModal();
+        this.props.hideForm();
+        this.showResultMessage(itemId, dataType);
        })
                
     }
@@ -55,12 +57,16 @@ class ConfirmDelete extends React.Component{
         let dataType = this.props.dataType;
         return(
             <div>
-                <p>Are you sure you want to delete { dataType }?</p>
                 { this.displayWarning() }
-                <button onClick={ this.handleDelete.bind(this) }>
+                <p>Are you sure you want to delete this { dataType }?</p>
+                <button 
+                    className="main-button"
+                    onClick={ this.handleDelete.bind(this) }>
                     Delete
                 </button>
-                <button onClick={ this.handleCancel.bind(this) }>
+                <button 
+                    className="main-button"
+                    onClick={ this.handleCancel.bind(this) }>
                     Cancel
                 </button>
             </div>
@@ -77,6 +83,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
+    deleteQueryValues,
     fetchData,
     hideForm,
     hideModal,

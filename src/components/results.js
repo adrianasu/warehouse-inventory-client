@@ -45,17 +45,14 @@ export class Results extends React.Component{
                             list.push( <li key = {field} > {
                                         `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
                                     } </li>)
-                            
-                // }  else if( field === 'difference' ){
-               
-               
-                //             list.push(<li key={field}> { `${addSpace(field)}: ${item[field]}` } </li>)
-                            
+                
                 } else if (field === 'usefulLife') {
                         list.push( <li key={field} > {
                             `${addSpace(field)}: ${item[field]} ${item[field] !=="NA" ? 'days' : ""}`
                         } </li>)
                     
+                } else if ( field === 'product' ){
+                    list.push(<li key={field}> { item[field] } </li>)
                 } else if ( !noDescription.includes(field) ){
                     list.push(
                         <li key={field}>{ addSpace(field) }: { item[field] } </li>)
@@ -105,39 +102,13 @@ export class Results extends React.Component{
         return;
     }
 
-    // filteredResults(){
-    //     let searchTerm = this.props.searchTerm;
-    //     let re = new RegExp(searchTerm,1)
-    //     console.log("TERM ", re)
-    //     let fields = ['product', 'category', 'manufacturer'];
-    //     if( this.props.data 
-    //         && this.props.data.length !== 0
-    //         && re !== '' ){
-           
-    //             this.props.data.filter(item => 
-    //                 Object.keys(item).forEach(key =>{
-    //                   if( fields.includes( key ) ){
-    //                     item[key].name = re;
-    //                   } else if (key === 'location') {
-    //                       item[key].warehouse = re;
-    //                   } 
-    //                 }
-                       
-    //                 )
-    //                 )
-    //     } else {
-    //         return this.props.data;
-    //     }
-    // }
 
     render(){
-        // let results = this.filteredResults();
-        let results = this.props.data;
-        //let results = this.props.currData;
+   
+        let results = this.props.currData;
         console.log("FILTERED ", results)
         return(
             <div className="results-container">
-              
             {  results.length !== 0 ? 
                     this.generateResults(results, results.length)
                     : null }
@@ -147,17 +118,14 @@ export class Results extends React.Component{
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        data: state.search.data,
+const mapStateToProps = state => ({
+        // data: state.search.data,
         // searchTerm: state.filter.searchTerm,
         user: state.auth.currentUser,
-    }
-};
+});
 
-const mapDispatchToProps = dispatch => ({
-    showModal: (modalType, modalProps) =>
-        dispatch(showModal(modalType, modalProps)),
+const mapDispatchToProps = ({
+    showModal,
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( Results );

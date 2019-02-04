@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import ListTable from './list-table';
 
+import '../css/list-page.css';
+
 class ListPage extends React.Component{
 
     constructor(props){
         super(props);
-        //console.log("CONS",this.props.data)
         this.state ={
-            searchTerm: '',
-            currentlyDisplayed: []
+            currentlyDisplayed: this.props.data,
         }
-        this.onChange = this.onChange.bind(this);
     }
     
     componentDidMount(){
@@ -25,80 +25,84 @@ class ListPage extends React.Component{
             || this.props.wasUpdated
             || this.props.hasErrored
             || this.props.wasCreated ){
-
             // Use last search query values
             let query = this.props.query;
             return this.props.fetchData(query)
-            .then(() => 
-                this.setState({
-                    currentlyDisplayed: this.props.data
-                })
-            )
-        } else {
-            this.setState({
-                currentlyDisplayed: this.props.data
-            })
         }
+    }
+
+    searchInItem(item, term) {
+        let reportType = this.props.match.params.type;      
+        let keys = Object.keys(item);
+        let testItem = item;
+        // If the report displayed is low-stock,
+        // look inside its 'product' embedded object.
+        if( reportType === 'low-stock'){
+            testItem = item.product;
+            keys = Object.keys(testItem);
+        }
+        // Loop through the keys of an item
+        for (let x = 0; x < keys.length; x += 1) {
+            // Return the item , if the term was
+            // found inside the item.
+            if( term.test(testItem[keys[x]]) ){
+                return item;
+            // Check in the shortfall object,
+            // if it's a low-stock report.
+            }else if( reportType === 'low-stock'
+                && term.test(item.shortfall) ){
+                return item;
+            }
+        }
+        // If the term was not found, return null
+        return null;
+    }
+
+    filterData(results, term) {
+        let filtered = [];
+        // Loop through our data to look for the search
+        // term inside each item object.
+        for (let x = 0; x < results.length; x += 1) {
+            let item = this.searchInItem(results[x], term)
+            // If the term was found inside our
+            // item add it to the filtered array.
+            if (item !== null) {
+                filtered.push(item)
+            }
+        }
+        return filtered;
     }
     
+   handleChange(searchTerm) {
+       let results = this.props.data;
+       let re = new RegExp(searchTerm, 'i')
 
-    filterData() {
-        let searchTerm = this.state.searchTerm;
-        // let re = new RegExp(searchTerm)
-        // console.log("TERM ", re)
-        console.log("DATA ", this.props.data)
-        let fields = ['product', 'category', 'manufacturer'];
-        if (this.props.data &&
-            this.props.data.length !== 0 &&
-            searchTerm !== '') {
-// return this.props.data
-                let currentlyDisplayed = [];
-                searchTerm.toLowerCase();
-            this.props.data.forEach(item =>
-                Object.keys(item).forEach(key => {
-                    if (fields.includes(key) && 
-                        item[key].name.toLowerCase().includes(searchTerm) ){
-                            currentlyDisplayed.push(item);
-                    } else if (key === 'location' &&
-                        item[key].warehouse.toLowerCase().includes(searchTerm)) {
-                            currentlyDisplayed.push(item);
-                        }
-                    }
-                )
-            )
-            console.log("CURR")
-            return this.setState({
-                currentlyDisplayed
-            });
-        }
-            
-        // } else if(this.props.data &&
-        //         this.props.data.length > 0 ) {
-        //     console.log("ALL")
-        //     return this.setState({
-        //         currentlyDisplayed: this.props.data
-        //     });
+       if (results &&
+           results.length !== 0 &&
+           searchTerm !== '') {
+           results = this.filterData(results, re)
+       }
+       // Set the currently displayed data to show
+       // only the filtered items.
+       this.setState({
+           currentlyDisplayed: results,
 
-        // }
-        
-        //return this.state.currentlyDisplayed;
+       })
+   }
 
-    }
-
-    onChange(value) {
-        console.log(value);
-        this.setState(value);
-        this.filterData();
-    }
+   
 
     // Get either the number of items or the message 
     // sent by the server.
     message(){
-        let result = this.props.data;
-        if( result && result.message ){
-            return this.props.data.message;
-        } else if( result && result.length > 0){
-            return `${this.props.data.length } items found.`;
+        let filteredData = this.state.currentlyDisplayed;
+        let data = this.props.data;
+        if( data && data.message ){
+            return data.message;
+        } else if( filteredData && filteredData.length > 0){
+            return `${filteredData.length } results found.`;
+        } else if (filteredData && filteredData.length === 0) {
+            return `No results found.`;
         }
         return "";
     }
@@ -111,20 +115,27 @@ class ListPage extends React.Component{
 
 
     render(){
-        let doNotCreate = ['checked-out', 'on-shelf', 'useful-life', 'low-stock', 'user'];
-        let data = this.state.currentlyDisplayed
+        let noCreateButton = ['checked-out', 'on-shelf', 'useful-life', 'low-stock', 'user'];
+        let currData = this.state.currentlyDisplayed
         let reportType = this.props.match.params.type;
         return(
-            <div>
+            <div className="list-page">
+                <FilterForm onChange={this.handleChange.bind(this)}/>
                 <h1>{ reportType.replace("-", " ") } </h1>
                 { 
-                    doNotCreate.includes(reportType) ? null
-                        : <button onClick={ this.handleClick.bind(this) }>+New</button>
+                    noCreateButton.includes(reportType) ? null
+                    : <button 
+                        onClick={ this.handleClick.bind(this) }
+                        className="tooltip">
+                        <span className="tooltiptext">Create new one.</span>
+                        <FontAwesomeIcon 
+                            icon={ ['far', 'file-plus'] }
+                             />
+                    </button>
                 }
-                <FilterForm onChange={this.onChange}/>
-                <p> { this.message() } </p> 
+                <p> { this.message(reportType) } </p> 
                 <ListTable 
-                    currData={ data } 
+                    currData={ currData } 
                     reportType={ reportType }/>
             </div>
         )

@@ -26,10 +26,10 @@ class SearchForm extends React.Component{
             }
         })
     }
-
-   
+    
     render(){
-        const label = 'Enter a barcode, serial number or keyword.';
+
+        const label = 'Enter a barcode, serial number or a keyword.';
         return(
             <div className='form search-form'>
                 <form
@@ -44,7 +44,8 @@ class SearchForm extends React.Component{
                         id="searchTerm"
                         name="searchTerm"
                         type="text"
-                        validate={[required, nonEmpty, noSpecialChars]} />
+                        validate={[required, nonEmpty, noSpecialChars]} 
+                        />
                     <button 
                         disabled={this.props.pristine || this.props.submitting}
                         type ="submit" >
@@ -64,6 +65,7 @@ const mapDispatchToProps = ({
 
 const mapStateToProps = state => ({
     data: state.search.data,
+    options: state.options.options,
 })
 
 SearchForm = withRouter(connect(mapStateToProps, mapDispatchToProps) (SearchForm));

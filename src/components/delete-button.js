@@ -18,6 +18,7 @@ class DeleteButton extends React.Component{
     render(){
         return(
                 <button 
+                    className="main-button"
                     data={ this.props.modalProps } 
                     onClick={ this.handleDelete.bind(this) }>
                     Delete

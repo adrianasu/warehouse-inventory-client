@@ -26,9 +26,9 @@ export const checkInOrOutError = error => ({
 
 export const doCheckInOrOut = (values, transactionType) => (dispatch, getState) => {
     dispatch(checkInOrOutBegin());
-    const { itemId } = values;
+    const { barcode } = values;
     const authToken = getState().auth.authToken;
-    return fetch(`${ API_BASE_URL }/item/${transactionType}/${ itemId }`, {
+    return fetch(`${ API_BASE_URL }/item/${transactionType}/${ barcode }`, {
         method: 'PUT',
         headers: {
             // Provide our auth token as credentials

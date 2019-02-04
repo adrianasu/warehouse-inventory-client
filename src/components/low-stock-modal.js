@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { hideModal }  from '../actions/modal';
 import LowStockTable from './low-stock-table';
 import Modal from './modal';
-import '../css/modal-item.css';
 
 class LowStockModal extends React.Component{
     onClose(){
@@ -27,9 +26,7 @@ class LowStockModal extends React.Component{
         let product = this.getProduct();
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                <div className="item">
                     <LowStockTable data={ product } />
-                </div>
             </Modal>
         )
     }

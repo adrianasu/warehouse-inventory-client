@@ -2,7 +2,8 @@ import {
     FETCH_BEGIN,
     FETCH_DATA_ERROR,
     FETCH_DATA_SUCCESS,
-    RESET_ERROR
+    RESET_DATA,
+    RESET_ERROR,
 } from '../actions/fetch-data';
 
 const initialState = {
@@ -32,6 +33,10 @@ export default function searchReducer( state = initialState, action ){
     } else if( action.type === RESET_ERROR){
         return Object.assign({}, state, {
             error: null,
+        })
+    } else if (action.type === RESET_DATA) {
+        return Object.assign({}, state, {
+            data: [],
         })
     }
     return state;

@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchData } from '../actions/fetch-data';
+import { fetchData, resetData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../css/account-form.css';
 
 class AccountForm extends React.Component{
      constructor(props) {
@@ -27,24 +29,16 @@ class AccountForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         let employeeId = this.state.value;
-        this.props.history.push(`/account`)
+        this.props.history.push(`/account`);
         return this.props.fetchData({
                     method: 'GET',
                     searchTerm: employeeId,
                     searchType: "myAccount",
         })
-            
-            
-        .then(() => {
-            // Display results, if found.
-            if (this.props.data && this.props.data.employee) {
-                this.props.history.push(`/account/${employeeId}`)
-            }
-        })
     }
 
     resetForm(){
-        this.props.history.push(`/account`);
+        this.props.resetData();
         this.setState({
             value: ''
         })
@@ -60,29 +54,36 @@ class AccountForm extends React.Component{
 
     render(){
         return(
-            <div className="account-form form">
+            <div className="account-form">
                 <form onSubmit={ this.handleSubmit.bind(this)}>
                     <label htmlFor="employeeId">Employee ID</label>
-                    <input name="employeeId" 
-                        type="number" 
-                        id="employeeId"
-                        value={ this.state.value}
-                        onChange={this.handleChange.bind(this)}></input>
+                    <div className="employee-id">
+                        <input name="employeeId" 
+                            type="number" 
+                            id="employeeId"
+                            value={ this.state.value}
+                            onChange={this.handleChange.bind(this)}
+                            required>
+                        </input>
+                        <button 
+                            type="button" 
+                            className="small"
+                            disabled = {
+                                this.props.pristine || this.props.submitting
+                            }
+                            onClick={ this.resetForm.bind(this) }>
+                            <FontAwesomeIcon icon="times" />
+                        </button>
                     <button 
+                        className="main"
                         type="submit"
                         disabled = {
-                                this.props.pristine || this.props.submitting
-                            }>
+                            this.props.pristine || this.props.submitting
+                        }>
                         Search
                     </button>
-                    <button 
-                        type="button" 
-                        disabled = {
-                            this.props.pristine || this.props.submitting
-                        }
-                        onClick={ this.resetForm.bind(this) }>
-                        Reset
-                    </button>
+                    </div>
+                    
                 </form>
             </div>
         )
@@ -95,8 +96,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = ({
-    fetchData: fetchData,
-    showModal: showModal,
+    fetchData,
+    resetData,
+    showModal,
 });
 
 export default withRouter(connect( mapStateToProps, mapDispatchToProps )( AccountForm ));

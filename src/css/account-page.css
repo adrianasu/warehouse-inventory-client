@@ -1,0 +1,11 @@
+.account-page{
+    width: 80%;
+    margin: 5.5em auto;
+}
+
+.account-page .tooltip .tooltiptext {
+    left: 70px;
+    bottom: -110px;
+    font-size: .6em;
+    width: 100%;
+}

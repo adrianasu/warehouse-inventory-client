@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { formatDate } from '../utils/utils';
+import '../css/account-results.css';
 
 class Account extends React.Component{
 
@@ -25,7 +27,7 @@ class Account extends React.Component{
         if( items && items.length > 0 ){
             return (
                 <div>
-                    <h2>Checked-Out Items: { items.length }</h2>
+                    <h3>Checked-Out Items: { items.length }</h3>
                     <ol>
                         { this.generateItemsList(items)}
                     </ol>
@@ -42,7 +44,7 @@ class Account extends React.Component{
         let items = this.listItems(this.props.data.items);
         return(
             <div>
-                <h1>{ name }</h1>
+                <h2>{ name }</h2>
                     <p>Employee ID: { employee.employeeId }</p>
                     <p>{ formatDate(Date.now()) }</p>
                         { items }

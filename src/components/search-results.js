@@ -7,109 +7,93 @@ import Results from './results';
 import '../css/search-results.css';
 
 class SearchResults extends React.Component{
-
     constructor(props){
         super(props);
-        //console.log("CONS",this.props.data)
-        this.state ={
-            searchTerm: '',
-            currentlyDisplayed: []
+        this.state = {
+            currentlyDisplayed: this.props.data,
         }
-        this.onChange = this.onChange.bind(this);
     }
+
     componentDidMount(){
+        // If an item was deleted or updated,
+        // fetch data to display new data.
         if( this.props.wasDeleted || this.props.wasUpdated ){
             let query = this.props.query;
             return this.props.fetchData( query )
-            .then(() =>
-                this.setState({
-                    currentlyDisplayed: this.props.data
-                })
-            )
-        } else {
-            return this.setState({
-                currentlyDisplayed: this.props.data
-            })
         }
     }
-
- 
-
-  
-    
-
-    filterData() {
-        let searchTerm = this.state.searchTerm;
-        // let re = new RegExp(searchTerm)
-        // console.log("TERM ", re)
-        console.log("DATA ", this.props.data)
-        let fields = ['product', 'category', 'manufacturer'];
-        if (this.props.data &&
-            this.props.data.length !== 0 &&
-            searchTerm !== '') {
-// return this.props.data
-                let currentlyDisplayed = [];
-                searchTerm.toLowerCase();
-            this.props.data.forEach(item =>
-                Object.keys(item).forEach(key => {
-                    if (fields.includes(key) && 
-                        item[key].name.toLowerCase().includes(searchTerm) ){
-                            currentlyDisplayed.push(item);
-                    } else if (key === 'location' &&
-                        item[key].warehouse.toLowerCase().includes(searchTerm)) {
-                            currentlyDisplayed.push(item);
-                        }
-                    }
-                )
-            )
-            console.log("CURR")
-            return this.setState({
-                currentlyDisplayed
-            });
-        }
-            
-        // } else if(this.props.data &&
-        //         this.props.data.length > 0 ) {
-        //     console.log("ALL")
-        //     return this.setState({
-        //         currentlyDisplayed: this.props.data
-        //     });
-
-        // }
-        
-        //return this.state.currentlyDisplayed;
-
-    }
-
 
     // Get either the number of items or the message 
     // sent by the server.
     message(){
-        let result = this.props.data;
-        if( result && result.message ){
-            return this.props.data.message;
-        } else if( result && result.length > 0){
-            return `${this.props.data.length } items found.`;
+        let filteredData = this.state.currentlyDisplayed;
+        let data = this.props.data;
+        if (data && data.message) {
+            return data.message;
+        } else if (filteredData && filteredData.length > 0) {
+            return `${filteredData.length } results found.`;
+        } else if (filteredData && filteredData.length === 0) {
+            return `No results found.`;
         }
         return "";
     }
 
-    onChange(value) {
-        console.log(value);
-        this.setState(value);
-        this.filterData();
+    searchInItem(item, term ){
+        let keys = Object.keys(item);
+        // Loop through the keys of an item
+        for( let x=0; x<keys.length; x+=1 ){
+            // If the term is found, return the item
+            if( term.test(item[keys[x]]) ){
+                return item;
+            }
+        }
+        // If the term was not found in an item,
+        // return null
+        return null;
     }
 
+    
+   filterData( results, term ){
+       let filtered = [];
+       // Loop through our data to look for the search
+       // term inside each item object.
+       for( let x=0; x<results.length; x+=1 ){
+          let item = this.searchInItem(results[x], term)
+          // If the term was found inside our
+          // item add it to the filtered array.
+          if( item !== null ){
+              filtered.push(item)
+          }
+       }
+       return filtered;
+}
+
+   handleChange(searchTerm){
+       let results = this.props.data;
+       let re = new RegExp(searchTerm, 'i')
+
+       if( results &&
+           results.length !== 0 &&
+           searchTerm !== '' ) {
+           results = this.filterData(results, re)
+        }
+        // Set the currently displayed data to show
+        // only the filtered items.
+        this.setState ({
+           currentlyDisplayed: results,
+        
+        })
+   }
+
     render(){
-        let data = this.state.currentlyDisplayed
-         console.log(data);
+        let currData = this.state.currentlyDisplayed;
         return(
             <div className="search-results">
-                <FilterForm onChange={this.onChange}/>
+                <FilterForm onChange={this.handleChange.bind(this)}/>
                 <div className="background">
                     <h1>Results: { this.props.match.params.option.replace("-", " ") } </h1>
                     <p> { this.message() } </p> 
-                <Results/>
+                    <Results currData={currData}/>
                 </div>
             </div>
         )

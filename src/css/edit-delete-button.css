@@ -1,0 +1,17 @@
+.main-button {
+    width: 35%;
+    padding: .6em;
+    margin: .5em;
+    background-color: #5c4d4d;
+    cursor: pointer;
+    color: #e8fcf6;
+    box-shadow: 0px 1px 2px 1px #5d5d5a;
+    transition: background-color .4s ease;
+}
+
+.main-button:hover,
+.main-button:focus {
+    background-color: #857671;
+    box-shadow: 0px 1px 3px 1px #738598;
+    outline: none;
+}

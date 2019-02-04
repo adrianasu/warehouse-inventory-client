@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 
+import { deleteQueryValues } from '../actions/query-values';
 import { fetchOptions } from '../actions/fetch-options';
 import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
@@ -12,6 +13,9 @@ import RadioInput from './radio-input';
 import Select from './select';
 import { getEditFields, isInput, isSelect, isCheck, whatType } from '../utils/form-content';
 import { getId, addSpace } from '../utils/utils';
+import '../css/edit-delete-button.css';
+import '../css/edit-form.css';
+import '../css/form.css';
 
 class EditForm extends React.Component{
 
@@ -45,9 +49,11 @@ class EditForm extends React.Component{
     showResultMessage( dataType){
         // If item was updated, show confirmation message
         if (this.props.wasUpdated) {
+            this.props.deleteQueryValues();
             this.props.showModal('CONFIRM_MODAL', {
                 message: `${ dataType } was edited.`
             })
+
         // If an error occurred, let the user know
         } else if (this.props.hasErrored) {
             let modalProps = this.props.error.message;
@@ -103,6 +109,7 @@ class EditForm extends React.Component{
                         label={addSpace(field)}/>
                     : isCheck(field) ?
                         <Field 
+                            className="radio-fields"
                             component={ RadioInput } 
                             name={field} key={ field }
                              label={field} 
@@ -126,10 +133,9 @@ class EditForm extends React.Component{
     render(){
 
         return(
-            <div>
-                <p>This is the data you can edit:</p>
+            <div className="edit-form">
                 <form
-                    className='edit-item'
+                    className="form"
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
@@ -137,8 +143,9 @@ class EditForm extends React.Component{
                         : this.displayFields() }
 
                     <button 
-                        type ="submit" 
-                        disabled = {
+                        className="main-button"
+                        type="submit"
+                        disabled={
                             this.props.pristine || this.props.submitting
                         } >
                         Edit
@@ -162,6 +169,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
+    deleteQueryValues,
     fetchData,
     fetchOptions,
     hideForm,

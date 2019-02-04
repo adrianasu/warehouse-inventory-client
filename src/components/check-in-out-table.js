@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { formatDate } from '../utils/utils.js'
 
+import '../css/check-in-out-table.css';
 
 function CheckInOutTable( props ){
     // If we're doing check-out get data from the last
@@ -16,28 +17,25 @@ function CheckInOutTable( props ){
     }
        
     return(
+        <div className="check-in-out">
             <table>
                 <tbody>
                 <tr>
                     <th colSpan={2}>{ transaction }</th>
                 </tr>
                 <tr>
-                    <td>Item ID</td>
-                    <td>{ props.data.data.id }</td>
+                    <td>Item Barcode</td>
+                    <td>{ props.data.data.barcode }</td>
                 </tr>
                 <tr>
-                    <td>Employee ID</td>
+                    <td>Employee</td>
                     <td> 
                         {`${ checkData.employee.firstName } ${ checkData.employee.lastName }`}
                     </td>
                 </tr>
                 <tr>
                     <td>Item</td>
-                    <td>{ props.data.data.product.name }</td>
-                </tr>
-                <tr>
-                    <td>Warehouse</td>
-                    <td>{ props.data.data.location.warehouse }</td>
+                    <td>{ props.data.data.product }</td>
                 </tr>
                 <tr>
                     <td>Date</td>
@@ -53,12 +51,17 @@ function CheckInOutTable( props ){
                      </tr>
                      : null
                  }
-                {/* <tr>
+                <tr>
                     <td>Authorized by</td>
-                    <td>{ checkData.user }</td>
-                </tr> */}
+                    < td > {
+                        checkData.authorizedBy.firstName
+                    } {
+                        checkData.authorizedBy.lastName
+                    } </td>
+                </tr>
                 </tbody>
             </table>
+        </div>
     )
 
 }

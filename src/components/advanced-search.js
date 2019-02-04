@@ -54,7 +54,7 @@ class AdvancedSearch extends React.Component{
                             <Field component={ Select } type="text" name="warehouse" label="Warehouse"/>
                         </React.Fragment>
                     }
-               
+                <div className="radio-fields">
                     <Field component={ RadioInput } 
                         name="consummable" 
                         label="Consummable"
@@ -71,7 +71,7 @@ class AdvancedSearch extends React.Component{
                             true: "true"}
                         }
                       />
-
+                </div>
 
                     <button type ="submit" >
                         Search Items

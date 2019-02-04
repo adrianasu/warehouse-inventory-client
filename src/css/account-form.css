@@ -1,0 +1,66 @@
+.account-form{
+    width: 100%;
+    margin: auto;
+    padding-bottom: .5em;
+    background-color: #acdbdf;
+    border-radius: 3px;
+}
+
+.account-form label{
+    display: block;
+    margin-left: 1em;
+    padding-top: 1em;
+    font-size: 1.2em;
+}
+
+.account-form input{
+    font-size: 1.2em;
+    width: 40%;
+    padding: .5em .3em;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.account-form input:focus,
+.account-form select:focus {
+    background-color: #e8fcf6;
+    outline: none;
+}
+
+.employee-id{
+    text-align: center;
+}
+
+.account-form .main{
+    margin: 1em .2em 1em .4em;
+    font-size: 1.1em;
+    background-color: #6d6262;
+    box-shadow: 0px 1px 2px 1px #5d5d5a;
+    color: #e8fcf6;
+    transition: background-color .4s ease;
+}
+
+.account-form button {
+    display: inline-block;
+    padding: .6em;
+    cursor: pointer;
+}
+
+.account-form button:hover,
+.account-form button:focus {
+    background-color: #857671;
+    box-shadow: 0px 1px 3px 1px #738598;
+    outline: none;
+}
+
+.employee-id .small {
+    display: inline-block;
+    max-width: 15%;
+    font-size: 1.1em;
+    border-radius: 3px 3px 0 0;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    color: #857671;
+}
+
+
+

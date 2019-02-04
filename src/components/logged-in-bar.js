@@ -4,13 +4,11 @@ import { withRouter }  from 'react-router-dom';
 
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
+import OverviewLinks from './overview-links';
+import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
+import PublicAdminLinks from './public-admin-links';
 import { underlineOption } from '../actions/underline-option';
 import { welcome } from  '../actions/welcome';
-import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
-
-
-import PublicAdminLinks from './public-admin-links';
-import OverviewLinks from './overview-links';
 
 class LoggedInBar extends React.Component{
          closeOrUnderline() {

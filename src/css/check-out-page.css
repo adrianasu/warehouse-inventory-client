@@ -1,0 +1,8 @@
+.check-out {
+    width: 90%;
+    margin: 5em auto;
+}
+
+.check-out .tooltip .tooltiptext {
+    font-size: .7em;
+}

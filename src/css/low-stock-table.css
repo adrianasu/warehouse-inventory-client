@@ -1,0 +1,27 @@
+.low-stock-table{
+    min-width: 300px;
+    margin: 1em 1em 2em;
+}
+
+.low-stock-table table {
+    width: 90%;
+}
+
+.low-stock-table th{
+    background-color: #e8fcf6;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-radius: 6px;
+    text-align: center;
+    padding: 5px;
+    margin: auto .5em 1em;
+}
+
+.low-stock-table tbody>tr:nth-child(odd) {
+    background-color: #e8fcf6;
+}
+
+.low-stock-table tr>td:nth-child(odd) {
+    width: 20%;
+}
+

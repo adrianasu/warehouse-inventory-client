@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import Hamburguer from './hamburguer';
 import HeaderOptions from './header-options';
+import { accessLevelToString } from '../utils/utils';
 import '../css/header-bar.css';
 
 
@@ -30,13 +31,14 @@ export class HeaderBar extends React.Component {
                         fromSideDrawer={ false }/>
                     </div>
                 </nav>
-                { !this.props.loggedIn ? null :
-                // If user is logged in, display his name and access level
+                {/* If user is logged in, display his name and access level */}
                 <div className='user-info'>
+                { !this.props.loggedIn ? null :
                     <p><FontAwesomeIcon icon="user-circle" /> {user.employee.firstName} {user.employee.lastName } 
-                    <span><FontAwesomeIcon icon="star" />{ user.accessLevel }</span>
-                    </p>
-                </div>}
+                    <span className="tooltip"><FontAwesomeIcon icon="star" />{ accessLevelToString(user.accessLevel) }
+                    <span className="tooltiptext">User access level</span></span>
+                    </p>}
+                </div>
             </header>
         );
     }

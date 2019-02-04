@@ -1,0 +1,36 @@
+.create-form .form{
+    padding: .5em 1em 5em;
+    margin: 0 auto 2em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.create-form label{
+    text-align: left;
+    padding-top: .5em;
+    padding-left: 1em;
+    display: block;
+}
+
+.create-form label::first-letter {
+    text-transform: capitalize;
+}
+
+.create-form select {
+    display: block;
+    width: 95%;
+}
+
+.create-form button{
+    width: 30%;
+}
+
+.create-form .create-button{
+    float: left;
+    margin-left: 1em;
+}
+
+.create-form .cancel-button {
+    float: right;
+    margin-right: 1em;
+}

@@ -1,21 +1,19 @@
-.check-in{
-    width: 90%;
-    margin: 5em auto;
-}
-
 .check-in-form{
     padding: 1em;
     margin: 1em auto;
-    /* text-align: center; */
 }
 
 .check-in-form label{
-    margin-left: 2.5em;
+    margin-left: 1.5em;
+    font-size: 1.3em;
+    padding-top: .5em;
 }
 
 .check-in-form input{
     display: block;
+    width: 80%;
     margin: .5em auto;
+    font-size: 1.5em;
 }
 
 .check-in-form button{
@@ -23,3 +21,9 @@
     display: block;
     margin: 1.5em auto 1em;
 }
+
+.check-in-form .tooltip .tooltiptext{
+     left: 20px;
+     bottom: -50px;
+}
+

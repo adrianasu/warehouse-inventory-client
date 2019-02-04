@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
-import './css/App.css';
-import './css/form.css';
 import ModalContainer from './components/modal-container';
 import NonModalContainer from './components/non-modal-container';
 import { refreshAuthToken } from './actions/auth';
-import { faCheckCircle, faTimesCircle, faPrint, faUserCircle, faStar, faTimes, faLightbulb, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faCheckCircle, faTimesCircle, faPrint, faUserCircle, faStar, faTimes, faLightbulb, faQuestionCircle );
+import './css/App.css';
+import './css/colors.css';
+import './css/form.css';
+import '../src/utils/icons';
 
 class App extends React.Component {
     componentDidUpdate(prevProps) {

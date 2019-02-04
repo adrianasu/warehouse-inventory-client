@@ -1,5 +1,6 @@
 .sign-up-form{
-    background: white;
+    /* override background-color from 'form' class */
+    background-color: white !important;
     min-width: 280px;
 }
 
@@ -10,11 +11,11 @@
 
 .sign-up-form button{
     width: 70%;
+    background-color: #acdbdf;
+    color: #5c4d4d;
 }
 
-.sign-up-form .form-error {
-    color: orange;
-}
+
 
 
 

@@ -3,15 +3,14 @@
     width: 100%;
     border-radius: 3px;
     padding: 0em 2em .5em;
+    color: #4e413b;
 }
 
 .modal-item ul{
     text-align: left;
 }
 
-
-
-.modal-item li:last-child {
+.modal-item .big {
     text-align: right;
     font-size: 1.3em;
     border-bottom: none;
@@ -44,8 +43,11 @@
 
 .close-button:hover,
 .close-button:focus{
-
-    color: orange;
+    color: #834c69;
     outline: none;
     cursor: pointer;
+}
+
+.delete-button{
+    
 }

@@ -1,44 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import Input from './input';
-import { setFilter } from '../actions/filter';
 
 class FilterForm extends React.Component{
    
-    // onChange(value){
-    //     console.log(value);
-    //     if( value.searchTerm !== undefined){
-    //         this.props.setFilter(value.searchTerm);
-    //     }
-    // }
-
+    handleChange(e){
+        console.log(e.target.value);
+        if( e.target.value !== undefined ){
+            this.props.onChange(e.target.value);
+        }
+    }
 
     render(){
         return(
-                <form onChange={
-                    this.props.handleSubmit(value => this.props.onChange(value))
-                    // this.props.handleSubmit(value => this.onChange(value))
-                } >
-                    <Field 
-                        component={ Input } 
-                        type="text"
-                        name="searchTerm"
-                        label="Refine your search"
-                    />
-                </form>
+            <div>
+                <label htmlFor="filter">Filter </label>
+                <input 
+                    type="text" 
+                    id="filter" 
+                    onChange={this.handleChange.bind(this)}/>
+            </div>
         )
+
     }
 }
 
-const mapDispatchToProps = ({
-    setFilter: setFilter
-})
-
-FilterForm = connect(
-    null, mapDispatchToProps
-)(FilterForm);
-
-export default reduxForm({
-    form: 'filter'
-})( FilterForm );
+export default FilterForm;
