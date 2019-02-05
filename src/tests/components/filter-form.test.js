@@ -5,7 +5,10 @@ import { FilterForm }  from '../../components/filter-form';
 describe('<FilterForm />', () => {
 
     it('Renders without crashing', () => {
-        shallow(<FilterForm />)
+        const callback = jest.fn();
+        shallow(<FilterForm 
+                    handleSubmit={ callback }
+                    onChange= { callback }/>)
    });
 
    it('Renders error', () => {
