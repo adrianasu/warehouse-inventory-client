@@ -106,7 +106,6 @@ export class Results extends React.Component{
     render(){
    
         let results = this.props.currData;
-        console.log("FILTERED ", results)
         return(
             <div className="results-container">
             {  results.length !== 0 ? 

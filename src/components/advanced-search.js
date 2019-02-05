@@ -5,6 +5,7 @@ import { Field, reduxForm, focus, reset } from 'redux-form';
 import { fetchData } from '../actions/fetch-data';
 import { fetchOptions } from '../actions/fetch-options';
 import { saveQueryValues } from '../actions/query-values';
+import { getId, capitalize } from '../utils/utils';
 import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
@@ -12,8 +13,30 @@ import '../css/advanced-search.css';
 
 
 class AdvancedSearch extends React.Component{
- 
+    getIdsAndValues(val){
+        let fromSelect = ['manufacturer', 'category'];
+        let values = {};
+        Object.keys(val).forEach( key => {
+            // Capitalize category, department, manufacturer and 
+            // product coming from an Input.
+            values[key] = key === 'name' ? 
+            capitalize(val[key])
+            // Check keys and find the ones coming from a Select
+            // input with a value and get their ids.
+                : fromSelect.includes(key) && val[key] !== 'Select one' ? 
+                    getId({
+                        data: this.props.options[key],
+                        value: val[key],
+                        key: 'name'
+                    })
+                    : val[key];
+        });
+        return values;
+    }
+
     onSubmit( values ){
+        values = this.getIdsAndValues(values);
+    console.log(values)
         let query = {
             method: 'GET',
             searchTerm: values,

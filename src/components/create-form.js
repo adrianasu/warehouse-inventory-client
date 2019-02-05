@@ -44,7 +44,7 @@ class CreateForm extends React.Component{
             // product coming from an Input.
             values[key] = key === 'name' ? 
                 capitalize(val[key])
-                : fromSelect.includes(key) ? 
+                : fromSelect.includes(key) && val[key] !== 'Select one' ?
                     getId({
                         data: this.props.options[key],
                         value: val[key],

@@ -7,8 +7,12 @@
 
 .account-results h2{
     background-color: #acdbdf;
-    text-align: center;
     clear: right;
+}
+
+.account-results h2,
+.account-results h3 {
+    text-align: center;
 }
 
 .account-results p {

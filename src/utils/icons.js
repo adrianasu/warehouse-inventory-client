@@ -27,7 +27,8 @@ import {
 } from '@fortawesome/pro-regular-svg-icons';
 
 import {
-  faInventory
+    faInfoCircle,
+    faInventory,
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -43,6 +44,7 @@ library.add(
     faFilePlus,
     faHeartbeat,
     faIndustryAlt,
+    faInfoCircle,
     faInventory,
     faLightbulb, 
     faPrint, 

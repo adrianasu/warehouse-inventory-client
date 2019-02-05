@@ -7,3 +7,17 @@
 .search-results p {
     margin-left: .5em;
 }
+
+.results-header{
+    width: 80%;
+    margin: auto;
+    
+}
+
+.results-header p{
+    font-weight: bold;
+}
+
+.results-header .icon{
+    font-size: 1.2em;
+}

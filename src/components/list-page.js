@@ -14,6 +14,7 @@ class ListPage extends React.Component{
         super(props);
         this.state ={
             currentlyDisplayed: this.props.data,
+            searchTerm: '',
         }
     }
     
@@ -28,7 +29,17 @@ class ListPage extends React.Component{
             // Use last search query values
             let query = this.props.query;
             return this.props.fetchData(query)
-        }
+            .then(() => this.setState({
+                currentlyDisplayed: this.props.data,
+                searchTerm: '',
+            }))
+            }
+            else {
+                this.setState({
+                    currentlyDisplayed: this.props.data,
+                    searchTerm: '',
+                })
+            }
     }
 
     searchInItem(item, term) {
@@ -86,7 +97,7 @@ class ListPage extends React.Component{
        // only the filtered items.
        this.setState({
            currentlyDisplayed: results,
-
+           searchTerm
        })
    }
 
@@ -120,7 +131,7 @@ class ListPage extends React.Component{
         let reportType = this.props.match.params.type;
         return(
             <div className="list-page">
-                <FilterForm onChange={this.handleChange.bind(this)}/>
+                <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
                 <h1>{ reportType.replace("-", " ") } </h1>
                 { 
                     noCreateButton.includes(reportType) ? null

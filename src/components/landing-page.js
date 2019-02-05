@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { login } from '../actions/auth';
 import { welcome } from '../actions/welcome';
+import '../css/landing-page.css';
 
 class LandingPage extends React.Component{
     // Set welcome state to hide header-bar
@@ -37,20 +38,25 @@ class LandingPage extends React.Component{
 
     render(){
     return (
-        <div className="home">
+        <div className="landing-page">
             <h2>Welcome!</h2>
             <p>This app will make it easy to track all assets
                 in your warehouse(s). Our system provides information
-                about the location inside your warehouse.....
-                It also allows you to check in and check out
+                about the location of your products inside your warehouse
+                and if 
+            </p>
+            <p>It also allows you to check in and check out
                 tools, equipment and consumables to
                 employees.
+            </p>
+            <p>
                 MORE...
 
                 Youll find lightbulbs with info to do testing
                 <FontAwesomeIcon icon="lightbulb" className="space orange"/>
             </p>
-            <p>Try our app</p>
+            <h3>Try our app</h3>
+            <p>Depending on the user access level</p>
             <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
             <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
             <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>

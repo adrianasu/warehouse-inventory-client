@@ -1,0 +1,23 @@
+.filter-form{
+    padding-bottom: .3em;
+    padding-top: .3em;
+    /* background-color: #e8e2db; */
+    background-color: #fab95b;
+}
+
+.filter-form input{
+    font-size: 1.2em;
+    display: block;
+    margin: .3em auto;
+    padding-bottom: .3em;
+    background-color: white;
+}
+
+.filter-form input:focus,
+.filter-form input:hover{
+    background-color: #fcf9f4;
+}
+
+.filter-form label{
+    padding-left: 1em;
+}

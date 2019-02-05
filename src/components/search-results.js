@@ -1,19 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {withRouter} from 'react-router-dom';
+
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import Results from './results';
 import '../css/search-results.css';
+import { addSpace } from '../utils/utils';
 
 class SearchResults extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             currentlyDisplayed: this.props.data,
+            searchTerm: ''
         }
     }
 
+    componentDidUpdate(prevProps){
+        if( this.props.data !== prevProps.data){
+            this.setState({
+                currentlyDisplayed: this.props.data,
+                searchTerm: ''
+            })
+        }
+    }
+ 
     componentDidMount(){
         // If an item was deleted or updated,
         // fetch data to display new data.
@@ -71,7 +84,6 @@ class SearchResults extends React.Component{
    handleChange(searchTerm){
        let results = this.props.data;
        let re = new RegExp(searchTerm, 'i')
-
        if( results &&
            results.length !== 0 &&
            searchTerm !== '' ) {
@@ -81,20 +93,28 @@ class SearchResults extends React.Component{
         // only the filtered items.
         this.setState ({
            currentlyDisplayed: results,
-        
+           searchTerm
         })
    }
 
     render(){
         let currData = this.state.currentlyDisplayed;
+        let option = this.props.match.params.option;
+        let title = !option ? null
+                        : option.indexOf("-") === -1 ? 
+                            addSpace(option) 
+                            : option.replace("-", " ")
         return(
             <div className="search-results">
-                <FilterForm onChange={this.handleChange.bind(this)}/>
-                <div className="background">
-                    <h1>Results: { this.props.match.params.option.replace("-", " ") } </h1>
-                    <p> { this.message() } </p> 
-                    <Results currData={currData}/>
+                <div className="results-header">
+                    <h1>{ title } Results</h1>
+                    <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
+                    <p> 
+                        <FontAwesomeIcon icon="info-circle" className="icon"/>
+                        <span className="space">{ this.message() }</span>
+                    </p>
                 </div>
+                <Results currData={currData}/>
             </div>
         )
     }
@@ -110,7 +130,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = ({
-    fetchData: fetchData
+    fetchData,
 })
 
 
