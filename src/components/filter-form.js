@@ -11,7 +11,7 @@ export class FilterForm extends React.Component{
 
     render(){
         return(
-            <div className="filter-form form">
+            <div className="filter-form">
                 <label htmlFor="filter">Enter keyword(s) to filter results.</label>
                 <input 
                     value={ this.props.value }
