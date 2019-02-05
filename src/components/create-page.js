@@ -6,7 +6,7 @@ import { showModal } from '../actions/modal';
 import CreateForm from './create-form';
 import '../css/create-page.css';
 
-class CreatePage extends React.Component{
+export class CreatePage extends React.Component{
 componentDidMount() {
     // Make sure the options are available in
     // the store for the Select component.

@@ -8,7 +8,7 @@ import CheckInOutTable from './check-in-out-table';
 import { hideModal }  from '../actions/modal';
 import Modal from './modal';
 
-class  CheckModal extends React.Component{
+export class  CheckModal extends React.Component{
     
     onClose(){
         this.props.checkInOrOutReset();

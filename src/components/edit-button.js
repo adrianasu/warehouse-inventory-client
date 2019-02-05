@@ -4,7 +4,7 @@ import { showForm } from '../actions/show-form';
 import { load } from '../actions/load';
 import { getItem } from '../utils/utils';
 
-class EditButton extends React.Component{
+export class EditButton extends React.Component{
 
 
     handleEdit( e ){

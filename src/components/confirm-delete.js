@@ -7,9 +7,9 @@ import { hideModal, showModal } from '../actions/modal';
 import { getRelatedData } from '../utils/utils'
 import { deleteQueryValues } from '../actions/query-values';
 
-class ConfirmDelete extends React.Component{
+export class ConfirmDelete extends React.Component{
 
-    showResultMessage(itemId, dataType) {
+    showResultMessage( dataType) {
         // If item was updated, show confirmation message
         if (this.props.wasDeleted) {
             this.props.deleteQueryValues();

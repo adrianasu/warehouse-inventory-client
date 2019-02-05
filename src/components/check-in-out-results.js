@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { showModal } from '../actions/modal';
 
-class CheckInOrOutResults extends React.Component{
+export class CheckInOrOutResults extends React.Component{
 
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ class CheckInOrOutResults extends React.Component{
     componentDidUpdate(prevProps){
         if (this.props.hasErrored &&
             !prevProps.hasErrored) {
-            this.displayError()
+            this.displayError();
         }
     }
 
@@ -45,7 +45,7 @@ class CheckInOrOutResults extends React.Component{
     render(){
         return(
             <div>
-                <p> { this.props.isLoading ? "Loading..." : ""} </p>
+                <p className="loader">{ this.props.isLoading ? "...Loading" : ""}</p>
                 <p> { this.message() } </p> 
                 
                 { this.props.data ? this.displayCheck() : null }

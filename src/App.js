@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ModalContainer from './components/modal-container';
-import NonModalContainer from './components/non-modal-container';
 import { refreshAuthToken } from './actions/auth';
 import './css/App.css';
 import './css/colors.css';

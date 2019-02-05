@@ -1,19 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { formatDate } from '../utils/utils.js'
+import { formatDate, addSpace } from '../utils/utils.js'
 
 import '../css/check-in-out-table.css';
 
-function CheckInOutTable( props ){
+export default function CheckInOutTable( props ){
+    let item = props.data.data;
     // If we're doing check-out get data from the last
     // check-out transaction
-    let transaction = "Check-Out";
     let checkData = props.data.data.checkedOut[0];
     // If we're doing check-in, then get data from 
     // last check-in transaction.
     if( props.data.checkType === "checkIn" ){
         checkData = props.data.data.checkedIn[0];
-        transaction = "Check-In";
     }
        
     return(
@@ -21,7 +19,7 @@ function CheckInOutTable( props ){
             <table>
                 <tbody>
                 <tr>
-                    <th colSpan={2}>{ transaction }</th>
+                    <th colSpan={2}>{ addSpace(props.data.checkType) }</th>
                 </tr>
                 <tr>
                     <td>Item Barcode</td>
@@ -65,5 +63,3 @@ function CheckInOutTable( props ){
     )
 
 }
-
-export default connect() (CheckInOutTable);

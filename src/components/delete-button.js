@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { showForm } from '../actions/show-form';
 
-class DeleteButton extends React.Component{
+export class DeleteButton extends React.Component{
 
     handleDelete( e ){
         e.stopPropagation();
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = ({
-    showForm: showForm
+    showForm
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( DeleteButton );

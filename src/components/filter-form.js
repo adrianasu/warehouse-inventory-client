@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/filter-form.css';
 
-class FilterForm extends React.Component{
+export class FilterForm extends React.Component{
    
     handleChange(e){
         if( e.target.value !== undefined ){

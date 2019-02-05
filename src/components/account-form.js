@@ -6,7 +6,7 @@ import { showModal } from '../actions/modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/account-form.css';
 
-class AccountForm extends React.Component{
+export class AccountForm extends React.Component{
      constructor(props) {
         super(props);
         this.state = { 
@@ -101,4 +101,4 @@ const mapDispatchToProps = ({
     showModal,
 });
 
-export default withRouter(connect( mapStateToProps, mapDispatchToProps )( AccountForm ));
+export default connect( mapStateToProps, mapDispatchToProps )( AccountForm );

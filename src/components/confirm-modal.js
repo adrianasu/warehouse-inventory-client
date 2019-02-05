@@ -6,7 +6,7 @@ import { hideModal }  from '../actions/modal';
 import Modal from './modal';
 import '../css/modal-item.css';
 
-class ConfirmModal extends React.Component{
+export class ConfirmModal extends React.Component{
     onClose(){
         this.props.hideModal();
     }

@@ -5,7 +5,7 @@ import AdvancedSearch from './advanced-search';
 import { showModal } from '../actions/modal';
 import '../css/advanced-search-page.css';
 
-class AdvancedSearchPage extends React.Component{
+export class AdvancedSearchPage extends React.Component{
 
     displayError(){
         let modalProps = this.props.hasErrored.message;
@@ -19,7 +19,7 @@ class AdvancedSearchPage extends React.Component{
             this.displayError()
         }
     }
-
+    
     render(){
         return(
             <div className="advanced-search">
@@ -28,22 +28,19 @@ class AdvancedSearchPage extends React.Component{
                     <FontAwesomeIcon icon="question-circle" className="space orange"/>
                 </h1>
                 <AdvancedSearch />
-                <p> { this.props.isLoading ? "Loading..." : ""} </p>
+                <p className='loader'>{ this.props.isLoading ? "...Loading" : ""}</p>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = state => ({
         hasErrored: state.search.error,
         isLoading: state.search.loading,
-    }
-}
+})
 
-const mapDispatchToProps = dispatch => ({
-    showModal: (modalType, modalProps) =>
-        dispatch(showModal(modalType, modalProps)),
+const mapDispatchToProps = ({
+    showModal
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdvancedSearchPage);

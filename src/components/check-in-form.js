@@ -48,7 +48,7 @@ class CheckInForm extends React.Component{
           );
     }
 }
-
+  
 const mapStateToProps = state => ({
     options: state.options.options
 })

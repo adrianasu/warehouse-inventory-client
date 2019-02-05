@@ -17,7 +17,7 @@ import '../css/edit-delete-button.css';
 import '../css/edit-form.css';
 import '../css/form.css';
 
-class EditForm extends React.Component{
+export class EditForm extends React.Component{
 
     getDepartmentId(values){
         // Set value for department as an id

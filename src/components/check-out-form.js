@@ -9,7 +9,7 @@ import Input from './input';
 import RadioInput from './radio-input';
 import '../css/check-out-form.css';
 
-class CheckOutForm extends React.Component{
+export class CheckOutForm extends React.Component{
  
     onSubmit( values ){
         return this.props
