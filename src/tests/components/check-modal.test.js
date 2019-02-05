@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import ConCheckModal, { CheckModal } from '../../components/check-modal';
+import { shallow } from 'enzyme';
+import { CheckModal } from '../../components/check-modal';
 
 const data = {
     product: 'Awesome Product'
@@ -13,7 +13,7 @@ describe('<CheckModal />', () => {
    });
 
    it('Renders title', () => {
-        const wrapper = shallow( <CheckModal data={data} /> );
+        const wrapper = shallow(<CheckModal data={data} /> );
         expect(wrapper.contains(<h1>{ data.product }</h1>)).toEqual(true);
    });
 

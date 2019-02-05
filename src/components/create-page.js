@@ -6,7 +6,7 @@ import { showModal } from '../actions/modal';
 import CreateForm from './create-form';
 
 
-class CreatePage extends React.Component{
+export class CreatePage extends React.Component{
 componentDidMount() {
     // Make sure the options are available in
     // the store for the Select component.
@@ -28,7 +28,7 @@ componentDidMount() {
         let dataType = this.props.match.params.type;
         return(
             <div>
-                <h1>Create New { dataType } </h1>
+                <h1>Create New { dataType }</h1>
                 <CreateForm dataType={ dataType } />
             </div>
         )

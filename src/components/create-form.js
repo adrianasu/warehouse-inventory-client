@@ -15,7 +15,7 @@ import { getCreateFields, isInput, isSelect, isCheck, whatType } from '../utils/
 import { getId, addSpace } from '../utils/utils';
 import { required, checkType, isText, isNumber } from '../utils/validators';
 
-class CreateForm extends React.Component{
+export class CreateForm extends React.Component{
 
 
     showResultMessage( dataType ){

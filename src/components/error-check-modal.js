@@ -6,7 +6,7 @@ import { hideModal }  from '../actions/modal';
 import Modal from './modal';
 import '../css/modal-item.css';
 
-class ErrorCheckModal extends React.Component{
+export class ErrorCheckModal extends React.Component{
     onClose(){
         this.props.checkInOrOutReset();
         this.props.hideModal();

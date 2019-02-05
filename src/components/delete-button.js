@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { showForm } from '../actions/show-form';
 
-class DeleteButton extends React.Component{
+export class DeleteButton extends React.Component{
 
     handleDelete( e ){
         e.stopPropagation();
@@ -17,11 +17,11 @@ class DeleteButton extends React.Component{
 
     render(){
         return(
-                <button 
-                    data={ this.props.modalProps } 
-                    onClick={ this.handleDelete.bind(this) }>
-                    Delete
-                </button>
+            <button 
+                data={ this.props.modalProps } 
+                onClick={ this.handleDelete.bind(this) }>
+                Delete
+            </button>
         )
     }
 

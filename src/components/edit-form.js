@@ -13,7 +13,7 @@ import Select from './select';
 import { getEditFields, isInput, isSelect, isCheck, whatType } from '../utils/form-content';
 import { getId, addSpace } from '../utils/utils';
 
-class EditForm extends React.Component{
+export class EditForm extends React.Component{
 
     getDepartmentId(values){
         // Set value for department as an id
