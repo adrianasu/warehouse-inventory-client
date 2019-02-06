@@ -8,7 +8,7 @@ import HeaderBar from './header-bar';
 import SideDrawer from './side-drawer';
 import Routes from './routes';
 
-class InRouter extends React.Component{
+export class InRouter extends React.Component{
    
     // To open and close SideDrawer in mobile.
     drawerOpenClickHandler(){

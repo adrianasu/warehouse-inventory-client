@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import FilterForm from './filter-form';
 import ResultsTable from './results-table';
 
-class SearchResults extends React.Component{
+export class SearchResults extends React.Component{
 
     constructor(props){
         super(props);

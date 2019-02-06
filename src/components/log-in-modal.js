@@ -11,7 +11,6 @@ export class LogInModal extends React.Component{
     }
 
     render(){
-       
         return(
             <Modal onClose={this.onClose.bind(this)}> 
                     <h1>Log In</h1>

@@ -37,5 +37,4 @@ describe('<EditButton />', () => {
         expect(dispatch).toHaveBeenCalledTimes(2);
    });
 
-
 });

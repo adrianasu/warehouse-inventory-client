@@ -7,7 +7,7 @@ import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
 import { welcome } from '../actions/welcome';
 
-class LoggedOutBar extends React.Component{
+export class LoggedOutBar extends React.Component{
 
      closeOrUnderline(option) {
          // If click comes from side drawer, close it.

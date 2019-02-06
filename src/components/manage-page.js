@@ -7,7 +7,7 @@ import { saveQueryValues } from '../actions/query-values';
 import { showModal } from '../actions/modal';
 import '../css/manage-page.css'
 
-class ManagePage extends React.Component{
+export class ManagePage extends React.Component{
     constructor(){
         super();
         this.onClick = this.onClick.bind(this);

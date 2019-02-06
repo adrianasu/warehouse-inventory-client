@@ -7,5 +7,4 @@ describe('<EditForm />', () => {
         shallow(<EditForm />);
     }); 
 
-    
 });

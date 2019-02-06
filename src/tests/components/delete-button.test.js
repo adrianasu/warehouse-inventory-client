@@ -30,5 +30,4 @@ describe('<DeleteButton />', () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
    });
 
-
 });

@@ -8,26 +8,29 @@ describe('<FilterForm />', () => {
         const callback = jest.fn();
         shallow(<FilterForm 
                     handleSubmit={ callback }
-                    onChange= { callback }/>)
+                    onChange= { callback }/>);
    });
 
-   it('Renders error', () => {
-        const error = "Error";
-        const wrapper = shallow(<FilterForm hasErrored={ error } /> );
-        expect(wrapper.contains(<p>{ error }</p>)).toEqual(true);
+   it('Renders label text', () => {
+        const callback = jest.fn();
+        const message = "Enter keyword(s) to filter results.";
+        const wrapper = shallow(<FilterForm 
+                handleSubmit={ callback }
+                onChange= { callback }/>);
+        expect(wrapper.text()).toBe(message);
    });
 
-   it(`Dispatches onClose when clicked`, () => {
-        const error = "Error";
-        const dispatch = jest.fn();
+   it(`Should fire handleChange on input change`, () => {
+        const value = {value: "m"};
+        const e= {target : { value }};   
         const callback = jest.fn();
         const wrapper = shallow(
             <FilterForm 
-                hasErrored={ error }
-                onClose={ callback }
-                hideModal={ dispatch } /> );
-        wrapper.instance().onClose();
-        expect(dispatch).toHaveBeenCalledTimes(1);
+                value={ value }
+                onChange={ callback }
+             /> );
+        wrapper.instance().handleChange(e);
+        expect(callback).toHaveBeenCalledTimes(1);
    });
 
 });

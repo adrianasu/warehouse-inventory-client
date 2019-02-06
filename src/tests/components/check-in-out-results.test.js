@@ -2,8 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { CheckInOrOutResults } from '../../components/check-in-out-results';
 
-
-
 describe('<CheckInOrOutResults />', () => {
     it('Renders without crashing', () => {
         shallow(<CheckInOrOutResults />);

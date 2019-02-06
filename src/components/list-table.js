@@ -7,7 +7,7 @@ import { getKeys } from '../utils/list-content';
 import { showModal } from '../actions/modal';
 import '../css/list-table.css';
 
-class ListTable extends React.Component{
+export class ListTable extends React.Component{
     // show details of the item in a modal
     openModal(e) {
         let itemId = e.currentTarget.dataset.id; 
@@ -114,7 +114,6 @@ class ListTable extends React.Component{
 
     render(){
         let results = this.props.currData;
-        console.log("FILTERED ", results)
         return(
             <table className="results-table">
                 <tbody>
@@ -127,7 +126,7 @@ class ListTable extends React.Component{
 }
 
 const mapDispatchToProps = ({
-    showModal: showModal,
+    showModal
 })
 
 export default connect(null, mapDispatchToProps) ( ListTable );

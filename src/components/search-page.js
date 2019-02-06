@@ -8,7 +8,7 @@ import { fetchOptions } from '../actions/fetch-options';
 import { capitalize, firstWord } from '../utils/utils';
 import '../css/search-page.css';
 
-class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
    
     displayError() {
         let modalProps = this.props.hasErrored.message;

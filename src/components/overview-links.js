@@ -6,7 +6,7 @@ import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
 
-class OverviewLinks extends React.Component{
+export class OverviewLinks extends React.Component{
 
     closeOrUnderline(option) {
         // If click comes from side drawer, close it.

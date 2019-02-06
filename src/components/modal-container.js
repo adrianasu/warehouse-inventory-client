@@ -20,7 +20,7 @@ const MODAL_COMPONENTS = {
     SIGN_UP_MODAL: SignUpModal,
 }
 
-function ModalContainer(props){
+export function ModalContainer(props){
     // if there's no modal type specified, return null
     if( !props.modalType ){
         return null;

@@ -10,7 +10,7 @@ import { required, nonEmpty, noSpecialChars } from '../utils/validators';
 import { saveQueryValues } from '../actions/query-values';
 import '../css/search-form.css';
 
-class SearchForm extends React.Component{
+export class SearchForm extends React.Component{
 
     onSubmit( value ){
         let query = {

@@ -8,7 +8,7 @@ import ListTable from './list-table';
 
 import '../css/list-page.css';
 
-class ListPage extends React.Component{
+export class ListPage extends React.Component{
 
     constructor(props){
         super(props);

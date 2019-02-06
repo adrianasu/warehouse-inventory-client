@@ -8,7 +8,7 @@ import ModalContent from './modal-content';
 import Modal from './modal';
 import '../css/modal-item.css';
 
-class ItemModal extends React.Component{
+export class ItemModal extends React.Component{
     onClose(){
         this.props.hideModal();
         this.props.hideForm();

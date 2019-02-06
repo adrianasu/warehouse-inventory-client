@@ -5,7 +5,7 @@ import { showModal } from '../actions/modal';
 import '../css/reports-page.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class ReportsPage extends React.Component{
+export class ReportsPage extends React.Component{
     constructor(){
         super();
         this.onClick = this.onClick.bind(this);

@@ -7,7 +7,7 @@ import DeleteButton from './delete-button';
 import EditButton from './edit-button';
 import '../css/edit-delete-button.css';
 
-class ModalContent extends React.Component{
+export class ModalContent extends React.Component{
 
     generateList(item){
         let list = [];

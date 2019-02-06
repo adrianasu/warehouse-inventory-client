@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate } from '../utils/utils';
 import '../css/low-stock-table.css';
 
-function LowStockTable( props ){
+export function LowStockTable( props ){
 
     let product = props.data.product;
     return(

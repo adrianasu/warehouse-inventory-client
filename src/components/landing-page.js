@@ -6,7 +6,7 @@ import { login } from '../actions/auth';
 import { welcome } from '../actions/welcome';
 import '../css/landing-page.css';
 
-class LandingPage extends React.Component{
+export class LandingPage extends React.Component{
     // Set welcome state to hide header-bar
     componentDidMount(){
         this.props.welcome(true)

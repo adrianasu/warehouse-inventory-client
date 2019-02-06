@@ -28,5 +28,4 @@ describe('<ErrorCheckModal />', () => {
         expect(dispatch).toHaveBeenCalledTimes(2);
    });
 
-
 });

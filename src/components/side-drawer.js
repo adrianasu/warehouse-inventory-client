@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { closeSideDrawer } from '../actions/side-drawer';
 
 
-class SideDrawer extends React.Component{
+export class SideDrawer extends React.Component{
  render(){
     let drawerClasses = 'side-drawer';
     // props.show passed from parent

@@ -13,7 +13,7 @@ describe('<CreatePage />', () => {
 
    it('Renders title', () => {
         const wrapper = shallow(<CreatePage match={ match } /> );
-        expect(wrapper.contains(<h1>Create New { match.params.type }</h1>)).toEqual(true);
+        expect(wrapper.contains(<h1>New { match.params.type } </h1>)).toEqual(true);
    });
 
    it(`Dispatches showModal when dataType and redirects to Manage menu is 'user'`, () => {
@@ -27,6 +27,5 @@ describe('<CreatePage />', () => {
         expect(historyMock.push.mock.calls[0]).toEqual([('/manage')]);
         expect(dispatch).toHaveBeenCalledTimes(1);
    });
-
 
 });

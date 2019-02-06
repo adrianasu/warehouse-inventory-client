@@ -17,7 +17,7 @@ import { requiredSelect } from '../utils/validators';
 
 import '../css/create-form.css';
 
-class CreateForm extends React.Component{
+export class CreateForm extends React.Component{
 
     showResultMessage( dataType ){
         // If item was created, show confirmation message

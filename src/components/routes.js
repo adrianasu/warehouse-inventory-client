@@ -20,7 +20,7 @@ import SearchResults from './search-results';
 import '../css/routes.css';
 
 
-class Routes extends React.Component{
+export class Routes extends React.Component{
     render(){
             
         return(

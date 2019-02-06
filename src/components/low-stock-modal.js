@@ -4,7 +4,7 @@ import { hideModal }  from '../actions/modal';
 import LowStockTable from './low-stock-table';
 import Modal from './modal';
 
-class LowStockModal extends React.Component{
+export class LowStockModal extends React.Component{
     onClose(){
         this.props.hideModal();
     }

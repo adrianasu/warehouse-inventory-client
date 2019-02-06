@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { AccountResults } from '../../components/account-results';
-
+//
 describe('<AccountResults />', () => {
      let data = {
          employee: {
@@ -29,7 +29,7 @@ describe('<AccountResults />', () => {
     it('Renders employee name', () => {
         let name = data.employee.firstName + " " + data.employee.lastName;
         const wrapper = shallow(<AccountResults data={data} />)
-        expect(wrapper.contains(<h1>{ name }</h1>)).toEqual(true);
+        expect(wrapper.contains(<h2>{ name }</h2>)).toEqual(true);
     });
 
     it(`Renders checked-out items' list`, () => {

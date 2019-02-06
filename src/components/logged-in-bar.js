@@ -10,7 +10,7 @@ import PublicAdminLinks from './public-admin-links';
 import { underlineOption } from '../actions/underline-option';
 import { welcome } from  '../actions/welcome';
 
-class LoggedInBar extends React.Component{
+export class LoggedInBar extends React.Component{
          closeOrUnderline() {
              // If click comes from side drawer, close it.
              if (this.props.fromSideDrawer) {

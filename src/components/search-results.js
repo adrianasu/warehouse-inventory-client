@@ -9,7 +9,7 @@ import Results from './results';
 import '../css/search-results.css';
 import { addSpace } from '../utils/utils';
 
-class SearchResults extends React.Component{
+export class SearchResults extends React.Component{
     constructor(props){
         super(props);
         this.state = {
