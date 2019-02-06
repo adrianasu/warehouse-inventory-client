@@ -1,26 +1,29 @@
 .edit-form{
-    margin: 1em 0em 2em;
+    margin: 1em auto 2em;
 }
 
 .edit-form input{
     display: block;
-    font-size: 1.2em;
-    padding: .3em;
-    width: 80%;
+    font-size: 1.1em;
+    padding: .2em;
+    width: 60%;
     margin: auto;
 }
 
 .edit-form select {
     display: block;
+    margin: auto;
+    width: 60%;
     padding: .3em;
 }
 
 .edit-form label {
     text-transform: capitalize;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: left;
-    margin-left: 1em;
-    margin-top: .7em;
+    width: 65%;
+    margin: .7em auto 0;
+    padding-left: .4em;
 }
 
 .edit-form input[type="radio"]{
@@ -31,4 +34,17 @@
 
 .edit-form .radio-fields label {
     margin-left: 0em;
+}
+
+@media screen and (orientation: landscape){
+     .edit-form {
+         width: 90%;
+     }
+
+}
+
+@media screen and (min-width: 750px) {
+     .edit-form {
+         width: 80%;
+     }
 }

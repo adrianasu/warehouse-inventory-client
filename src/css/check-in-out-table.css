@@ -4,10 +4,28 @@
     padding-bottom: 2em; 
 }
 
+.check-in-out th{
+    text-transform: capitalize;
+     font-size: 1.3em;
+}
+
 .check-in-out tr>td:first-child{
     width: 20%;
+    text-align: left;
 }
 
 .check-in-out tbody>tr:nth-child(odd) {
     background-color: #e8fcf6;
+}
+
+@media screen and (orientation: landscape) {
+    .check-in-out {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .check-in-out th {
+        font-size: 1.5em;
+    }
 }

@@ -25,5 +25,29 @@
 .check-in-form .tooltip .tooltiptext{
      left: 20px;
      bottom: -50px;
+     font-size: .9em;
 }
+
+@media screen and (orientation: landscape) {
+    .check-in-form {
+        padding: 0 0 .5em;
+    }
+    
+    .check-in h1 {
+        margin-block-start: 0.2em;
+        margin-block-end: 0;
+    }
+    
+  
+    .check-in-form label { 
+        margin-left: 3em;
+    }
+    
+    .check-in-form input {
+        width: 70%;
+        margin: .2em auto;
+    }
+
+}
+
 

@@ -3,9 +3,29 @@
     margin: 0em auto;
 }
 
-.account-page .tooltip .tooltiptext {
-    left: 70px;
-    bottom: -110px;
-    font-size: .6em;
+.account-page h1{
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+}
+
+.account-page>.tooltip .tooltiptext:first-of-type {
+    left: 20px;
+    bottom: -45px;
+    font-size: .5em;
     width: 100%;
+}
+
+@media screen and (orientation: landscape) {
+    .account-page {
+        margin: 0em auto;
+        width: 60%;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .account-page {
+        width: 40%;
+    }
+
 }

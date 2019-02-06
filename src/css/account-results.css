@@ -38,7 +38,17 @@
     outline: none;
 }
 
-.account-results .tooltiptext{
-    left: -10px;
-    bottom: -30px;
+.account-results .tooltip .tooltiptext {
+    left: 20px;
+    bottom: -25px;
+    font-size: .6em;
+    width: 100%;
+}
+
+@media screen and (orientation: landscape) {
+    .account-results {
+        margin: 1em auto;
+        width: 100%;
+    }
+
 }

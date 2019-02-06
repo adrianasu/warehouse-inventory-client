@@ -18,7 +18,8 @@
 
 .create-form select {
     display: block;
-    width: 95%;
+    width: 90%;
+    margin: auto;
 }
 
 .create-form button{

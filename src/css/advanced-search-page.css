@@ -31,3 +31,23 @@
     display: block;
     margin: 1em auto;
 }
+
+@media screen and (orientation: landscape) {
+    .advanced-search {
+        margin: 0em auto;
+        width: 65%;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .advanced-search {
+        width: 40%;
+    }
+
+    .advanced-search h1 {
+        margin: 1em auto;
+        font-size: 1.5em;
+    }
+
+}

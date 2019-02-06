@@ -43,3 +43,24 @@
 .modal-dialog-div p{
     padding: 0 1em 1em;
 }
+
+.modal-dialog-div h1 {
+    margin-block-start: 0em;
+}
+
+
+@media screen and (orientation: landscape) {
+    .modal-dialog-div{
+        width: 60%;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .modal-dialog-div {
+        width: 40%;
+        padding-bottom: 2em;
+    }
+ 
+
+}

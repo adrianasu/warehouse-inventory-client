@@ -55,3 +55,41 @@
 .background-blue {
     background-color: #acdbdf;
 }
+
+@media screen and (orientation: landscape) {
+    .manage-page {
+        margin: 0em auto;
+        width: 80%;
+    }
+
+    .manage-page h1 {
+        padding-top: .2em;
+        margin-block-end: 0.4em;
+    }
+
+    .manage-page ul {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .manage-page button {
+        padding: .7em;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .manage-page {
+        margin: 7em auto;
+        width: 70%;
+    }
+
+    .manage-page ul {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .manage-page button {
+        padding: 1em;
+        font-size: 1.5em;
+    }
+
+}

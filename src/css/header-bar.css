@@ -85,15 +85,18 @@ header {
     border-radius: 0px;
 }
 
-@media(max-width: 800px){
+@media(max-width: 750px)
+ {
     .site-nav{
         display: none;
     }
 }
 
-@media ( min-width: 800px){
+@media (min-width: 750px){
     .nav-toggle-button{
         display: none;
     }
     
 }
+
+

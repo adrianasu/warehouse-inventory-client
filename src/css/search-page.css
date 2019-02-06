@@ -8,11 +8,38 @@
     font-size: 1.7em;
     padding-left: .7em;
     padding-right: 1em;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+
 }
 
 .search-page .tooltip .tooltiptext {
-    left: 0px;
-    bottom: -110px;
-    font-size: .6em;
     width: 100%;
+}
+
+.search-page>.tooltip .tooltiptext:first-of-type {
+    font-size: .6em;
+    left: 0px;
+    bottom: -100px;
+    padding: 0em
+}
+
+
+@media screen and (orientation: landscape) {
+    .search-page {
+        margin: 0em auto;
+        width: 70%;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .search-page {
+        width: 40%;
+    }
+
+    .search-page h1 {
+        margin: 1.5em auto;
+    }
+
 }

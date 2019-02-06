@@ -7,10 +7,10 @@ import '../css/account-results.css';
 export class AccountResults extends React.Component{
 
     generateItemsList(items){
-        return items.map( item => (
-                <React.Fragment key={item}>
-                    <li key={item}>
-                        <ul className='list item'>
+        return items.map( (item, key) => (
+                <React.Fragment key={key}>
+                    <li key={key}>
+                        <ul>
                             <li key='barcode'>Barcode: { item.barcode }</li>
                             <li key='prod'>Product: { item.product.name }</li>
                             <li key='man'>Manufacturer: { item.product.manufacturer.name }</li>

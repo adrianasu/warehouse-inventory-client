@@ -3,6 +3,31 @@
     margin: 5em auto;
 }
 
-.check-out .tooltip .tooltiptext {
-    font-size: .7em;
+.check-out>.tooltip .tooltiptext:first-of-type {
+    font-size: .6em;
+    width: 150px;
+}
+
+@media screen and (orientation: landscape) {
+    .check-out {
+        margin: 0em auto;
+        width: 60%;
+    }
+
+    .check-out h1 {
+        margin-block-start: 0.3em;
+        margin-block-end: 0.3em;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .check-out {
+        width: 40%;
+    }
+
+    .check-out h1 {
+        margin: 1em auto;
+    }
+
 }

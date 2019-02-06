@@ -16,15 +16,15 @@
     transform: translateX(0);
 }
 
+.side-drawer li {
+    margin-top: 1.5em;
+}
+
 .side-drawer ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.side-drawer li {
-    margin-top: 1.5em;
 }
 
 .side-drawer button {
@@ -44,8 +44,22 @@
     outline: none;
 }
 
-@media (min-width: 750px) {
+@media (min-width: 750px) 
+and (orientation: landscape){
     .side-drawer {
         display: none;
     }
+}
+
+@media (max-width: 750px)
+    and (orientation: landscape){
+
+    .side-drawer li {
+        margin-top: .8em;
+    }
+    .side-drawer button {
+        margin-left: 3em;
+        font-size: 1em;
+    }
+
 }

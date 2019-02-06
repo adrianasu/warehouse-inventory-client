@@ -18,3 +18,20 @@
     bottom: -30px;
     font-size: 1em;
 }
+
+@media screen and (orientation: landscape) {
+    .search-form {
+        padding: 3% 7% 0;
+    }
+
+    .search-form input {
+        margin: .4em auto .4em;
+    }
+
+}
+
+@media screen and (min-width: 750px){
+    .search-form {
+        padding: 5% 7% 2%;
+    }
+}

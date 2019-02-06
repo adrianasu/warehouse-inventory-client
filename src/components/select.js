@@ -56,6 +56,7 @@ export class Select extends React.Component{
                 <label>{ this.props.label }
                     { error }
                     { warning }
+                    </label>
                     <select
                         id={ this.props.input.name }
                         { ...this.props.input
@@ -63,7 +64,6 @@ export class Select extends React.Component{
                         >
                         { options }
                     </select>
-                </label>
              </div>
          )
     }

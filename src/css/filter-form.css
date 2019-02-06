@@ -1,7 +1,7 @@
 .filter-form{
     padding-bottom: .3em;
     padding-top: .3em;
-    /* background-color: #e8e2db; */
+    border-radius: 3px;
     background-color: #fab95b;
 }
 
@@ -20,4 +20,29 @@
 
 .filter-form label{
     padding-left: 1em;
+}
+
+@media screen and (orientation: landscape) {
+    .filter-form label,
+    .filter-form input{
+        display: inline-block;
+        margin: auto;
+    }
+
+    .filter-form label {
+        margin-right: 1.5em;
+    }
+   
+}
+
+@media screen and (min-width: 750px) {
+
+    .filter-form{
+        text-align: right;
+    }
+
+    .filter-form input {
+        margin-right: 1.5em;
+    }
+
 }

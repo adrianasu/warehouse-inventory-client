@@ -32,5 +32,14 @@
     color: lightgray;
 }
 
+@media screen and (orientation: landscape) {
+    .results-table {
+        clear: right;
+        margin: auto;
+        width: 70%;
+    }
+
+}
+
 
 

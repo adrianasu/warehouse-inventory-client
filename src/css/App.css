@@ -1,17 +1,7 @@
-/* background-color: #8fbbaf; */
-/* button:
-  background-color: #ffcd60; */
-/* box-shadow: 0px 1px 2px 1px #5c8d89; */
-  /* hover:
-   background-color: #fdb44b; */
-
 main{
     /* to allow space for the nav-bar */
     height: 100%;
-   
 }
-
-
 
 button {
     border: none;

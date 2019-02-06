@@ -3,6 +3,31 @@
     margin: 5em auto;
 }
 
-.check-in .tooltip .tooltiptext {
-    font-size: .7em;
+.check-in>.tooltip .tooltiptext:first-of-type {
+    font-size: .6em;
+    width: 150px;
+}
+
+@media screen and (orientation: landscape) {
+    .check-in {
+        margin: 0em auto;
+        width: 60%;
+    }
+
+    .check-in h1{
+        margin-block-start: 0.2em;
+        margin-block-end: 0;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .check-in {
+        width: 40%;
+    }
+
+    .check-in h1 {
+        margin: 1em auto;
+    }
+
 }

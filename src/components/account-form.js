@@ -101,4 +101,4 @@ const mapDispatchToProps = ({
     showModal,
 });
 
-export default connect( mapStateToProps, mapDispatchToProps )( AccountForm );
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )( AccountForm ));

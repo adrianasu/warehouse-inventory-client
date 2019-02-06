@@ -22,7 +22,7 @@ export default function CheckInOutTable( props ){
                     <th colSpan={2}>{ addSpace(props.data.checkType) }</th>
                 </tr>
                 <tr>
-                    <td>Item Barcode</td>
+                    <td>Barcode</td>
                     <td>{ props.data.data.barcode }</td>
                 </tr>
                 <tr>

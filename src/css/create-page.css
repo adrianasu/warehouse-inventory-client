@@ -2,3 +2,16 @@
     width: 90%;
     margin: auto;
 }
+
+@media screen and (orientation: landscape) {
+    .create-page {
+        width: 60%;
+    }
+
+}
+
+@media screen and (min-width: 750px) {
+    .create-page {
+        width: 40%;
+    }
+}
