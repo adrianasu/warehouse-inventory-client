@@ -130,8 +130,9 @@ export class ListPage extends React.Component{
         let currData = this.state.currentlyDisplayed
         let reportType = this.props.match.params.type;
         return(
-            <div className="list-page">
+            <div>
                 <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
+            <div className="list-page">
                 <h1>{ reportType.replace("-", " ") } </h1>
                 { 
                     noCreateButton.includes(reportType) ? null
@@ -148,6 +149,7 @@ export class ListPage extends React.Component{
                 <ListTable 
                     currData={ currData } 
                     reportType={ reportType }/>
+            </div>
             </div>
         )
     }

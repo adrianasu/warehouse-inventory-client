@@ -4,11 +4,11 @@
     box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 55%;
     z-index: 200;
-    /* to make side drawer apper from the left slowly */
-    transform: translateX(-200%);
+    /* to make side drawer appear from the right side slowly */
+    transform: translateX(200%);
     transition: transform 0.3s ease-out;
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate } from '../utils/utils';
 import '../css/low-stock-table.css';
@@ -57,4 +56,4 @@ export function LowStockTable( props ){
 
 }
 
-export default connect() (LowStockTable);
+export default LowStockTable;

@@ -35,3 +35,14 @@
     float: right;
     margin-right: 1em;
 }
+
+@media screen and (orientation: landscape) {
+    .create-form select{
+        width: 73%;
+    }
+
+    .create-form label {
+        padding-left: 2.5em;
+    }
+
+}

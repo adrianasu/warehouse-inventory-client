@@ -106,9 +106,9 @@ export class SearchResults extends React.Component{
                             : option.replace("-", " ")
         return(
             <div className="search-results">
+                    <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
                 <div className="results-header">
                     <h1>{ title } Results</h1>
-                    <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
                     <p> 
                         <FontAwesomeIcon icon="info-circle" className="icon"/>
                         <span className="space">{ this.message() }</span>

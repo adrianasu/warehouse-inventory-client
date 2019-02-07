@@ -1,5 +1,4 @@
 .list-page{
-    margin-top: 6em;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -44,4 +43,11 @@
     left: -50px;
     top: 20px;
     width: 5em;
+}
+
+@media screen and (min-width: 750px) {
+    .list-page {
+        width: 70%;
+    }
+
 }

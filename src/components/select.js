@@ -4,7 +4,7 @@ import { fetchOptions } from '../actions/fetch-options';
 import { accessLevelToString } from '../utils/utils';
 
 export class Select extends React.Component{
-    
+
     render(){
         let options = [];
         let searchableFields = this.props.searchableFields;
@@ -74,7 +74,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = ({
-    fetchOptions: fetchOptions
+    fetchOptions
 })
 
 export default connect( mapStateToProps, mapDispatchToProps )( Select );

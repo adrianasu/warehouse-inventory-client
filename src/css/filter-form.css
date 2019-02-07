@@ -1,13 +1,18 @@
 .filter-form{
     padding-bottom: .3em;
     padding-top: .3em;
-    border-radius: 3px;
     background-color: #fab95b;
 }
 
-.filter-form input{
-    font-size: 1.2em;
+.filter-form label {
     display: block;
+    font-size: 1em;
+    text-align: center;
+}
+
+.filter-form input{
+    display: block;
+    font-size: 1.2em;
     margin: .3em auto;
     padding-bottom: .3em;
     background-color: white;
@@ -15,16 +20,12 @@
 
 .filter-form input:focus,
 .filter-form input:hover{
-    background-color: #fcf9f4;
-}
-
-.filter-form label{
-    padding-left: 1em;
+    background-color: #fff4e3;
 }
 
 @media screen and (orientation: landscape) {
     .filter-form label,
-    .filter-form input{
+    .filter-form input {
         display: inline-block;
         margin: auto;
     }
@@ -32,11 +33,29 @@
     .filter-form label {
         margin-right: 1.5em;
     }
-   
+
+    .filter-form {
+        text-align: right;
+    }
+
+    .filter-form input {
+        margin-right: 1.5em;
+    }
+    
 }
 
-@media screen and (min-width: 750px) {
-
+@media screen and (min-width: 580px){
+    
+    .filter-form label,
+    .filter-form input{
+        display: inline-block;
+        margin: auto;
+    }
+    
+    .filter-form label {
+        margin-right: 1.5em;
+    }
+    
     .filter-form{
         text-align: right;
     }

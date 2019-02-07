@@ -1,19 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { reduxForm, focus, reset } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
 import { fetchOptions } from '../actions/fetch-options';
 import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
-import { load } from '../actions/load';
-import Input from './input';
-import RadioInput from './radio-input';
-import Select from './select';
-import { getCreateFields, isInput, isSelect, isCheck, whatType, validateThis } from '../utils/form-content';
-import { getId, addSpace, capitalize } from '../utils/utils';
-import { requiredSelect } from '../utils/validators';
+import { load } from '../actions/load';import { getCreateFields, isInput, isSelect, isCheck, whatType, validateThis } from '../utils/form-content';
+import { getId, capitalize } from '../utils/utils';
 
 import '../css/create-form.css';
 
@@ -63,18 +58,49 @@ export class CreateForm extends React.Component{
         return val;
     }
 
-    onSubmit( values ){
-        let dataType = this.props.dataType;
+    formatValuesAndFetch(values, dataType){
         values = this.getFetchValues(dataType, values)
         
         return this.props.fetchData({
-             method: 'POST', 
-             dataType,
-             values
+            method: 'POST',
+            dataType,
+            values
         })
-        .then( () => {
+        .then(() => {
+            this.setState({
+                numberOfFields: 0,
+                nameOfFields: null
+            })
             this.showResultMessage(dataType);
         })
+    }
+    
+    missingValuesMessage(values, dataType){
+        let missing = [];
+        let fields = getCreateFields(dataType);
+        let filledFields = Object.keys(values);
+        fields.forEach( field => {
+            if( !filledFields.includes(field) ){
+                missing.push(field);
+            }
+        })
+        this.props.showModal('CONFIRM_MODAL', {
+            message: capitalize(`${ missing.join(", ") } ${missing.length > 1 ? 'are' : 'is'} missing.`)
+        })
+    }
+    
+    onSubmit( values ){
+        console.log(values)
+        let dataType = this.props.dataType;
+        let numberOfFields = this.props.fields.length;
+        let numberOfValues = Object.keys(values).length;
+        // If all fields were filled, continue with fetch
+        if( numberOfFields === numberOfValues){
+            this.formatValuesAndFetch(values, dataType);
+        // If some fields were not filled, send message
+        } else {
+            this.missingValuesMessage(values, dataType);
+        }
     }
 
     componentDidMount() {
@@ -84,47 +110,6 @@ export class CreateForm extends React.Component{
             return this.props.fetchOptions()
         }
      }
-
-    generateFields( field ){
-        let valType = whatType(field);
-        let validateField = validateThis(field)
-        return isInput(field) ?
-                <Field component={ Input } 
-                    type={ valType} 
-                    name={field} 
-                    key={ field } 
-                    label={addSpace(field)}
-                    validate={ validateField }
-                    />
-                : isSelect(field) ?
-                    <Field component={ Select } 
-                        type={ valType } 
-                        name={field} 
-                        key={ field } 
-                        label={addSpace(field)}
-                        validate={ [requiredSelect] }
-                        />
-                    : isCheck(field) ?
-                        <Field 
-                            component={ RadioInput } 
-                            name={field} key={ field }
-                            label={field} 
-                            options={ { false: "false", true: "true"}} />
-                        : null;
-    }
-
-    displayFields(){
-        // dataType is sent by CreatePage as props
-        let dataType = this.props.dataType;
-        let createFields = getCreateFields(dataType);
-        let fields = [];
-        if( createFields ){
-            createFields.forEach( field => {
-                fields.push(this.generateFields(field))
-            })
-        }
-        return fields;
-    }
 
     handleCancel(e){
         e.preventDefault();
@@ -142,13 +127,13 @@ export class CreateForm extends React.Component{
                         this.onSubmit(values))}>
                     
                     { this.props.isLoading ? <p>...Loading</p>
-                        : this.displayFields() }
+                        : this.props.fields }
                   
                     <button 
                         className="create-button"
                         type ="submit" 
                         disabled = {
-                            this.props.pristine || this.props.submitting
+                            this.props.pristine || this.props.submitting || this.props.invalid
                         } >
                         Create
                     </button>

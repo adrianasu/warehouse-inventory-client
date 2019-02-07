@@ -17,11 +17,11 @@ export class HeaderBar extends React.Component {
         return (
             <header>
                 <nav className="nav-container">
-                    <div className="nav-toggle-button">
-                        <Hamburguer click={this.props.drawerOpenClickHandler} />
-                    </div>
                     <div className="logo">
                         <h1>Warehouse</h1>
+                    </div>
+                    <div className="nav-toggle-button">
+                        <Hamburguer click={this.props.drawerOpenClickHandler} />
                     </div>
                     <div className="site-nav">
                         <HeaderOptions 

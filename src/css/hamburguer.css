@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
+ 
 
 }
 
@@ -19,5 +20,6 @@
 .toggle-button-line{
     width: 30px;
     height: 2px;
+    margin-right: 1em;
     background-color: #fcf9f4;
 }
