@@ -19,11 +19,9 @@
 .list-page button{
     float: right;
     margin-right: 2em;
-    /* width: 20%; */
     padding: .5em .9em;
     font-size: 1.3em;
     font-weight: bold;
-    /* margin-top: 1em; */
     margin-bottom: 1em;
     background-color: #5c4d4d;
     cursor: pointer;

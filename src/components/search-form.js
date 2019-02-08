@@ -37,7 +37,7 @@ export class SearchForm extends React.Component{
                     onSubmit={ this.props.handleSubmit( value => this.onSubmit( value ))}>
                     <label htmlFor="searchTerm" className="tooltip">{ label }
                         <span className="tooltiptext">Keyword: a word or few letters contained in the name of a product, model, warehouse, category or manufacturer.</span>
-                        <FontAwesomeIcon icon="question-circle" className="space orange tooltip"/>
+                        <FontAwesomeIcon icon="question-circle" className="space tooltip"/>
                     </label>
                     <Field 
                         component={ Input } 

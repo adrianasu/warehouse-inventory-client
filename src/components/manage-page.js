@@ -48,13 +48,13 @@ export class ManagePage extends React.Component{
 
     generateButtons(){
         const options = {
-            'items': {icon: ['far', 'toolbox'], color: 'blue'},
-            'products': { icon: ['far', 'wrench'], color: 'blue'},
-            'categories': {icon: ['far', 'boxes'], color: 'blue'}, // PRO icon
-            'manufacturers': {icon: ['far', 'industry-alt'], color: 'blue'},
-            'departments': { icon: ['far', 'users'], color: 'blue'},
-            'employees': {icon: ['fal', 'user-hard-hat'], color: 'blue'}, // PRO icon
-            'users': {icon: ['far', 'user'], color: 'blue'}
+            'items': {icon: ['far', 'toolbox'], color: 'lightbrown'},
+            'products': { icon: ['far', 'wrench'], color: 'lightbrown'},
+            'categories': {icon: ['far', 'boxes'], color: 'lightbrown'}, // PRO icon
+            'manufacturers': {icon: ['far', 'industry-alt'], color: 'lightbrown'},
+            'departments': { icon: ['far', 'users'], color: 'lightbrown'},
+            'employees': {icon: ['fal', 'user-hard-hat'], color: 'lightbrown'}, // PRO icon
+            'users': {icon: ['far', 'user'], color: 'lightbrown'}
         };
     
         return Object.keys(options).map( (option, key) => 

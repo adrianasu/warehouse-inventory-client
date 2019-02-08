@@ -15,7 +15,7 @@ export class ConfirmModal extends React.Component{
 
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                <div className="item">
+                <div>
                     <p>{ this.props.message }</p>
                 </div>
             </Modal>

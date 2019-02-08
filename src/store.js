@@ -6,6 +6,7 @@ import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import authReducer from './reducers/auth';
 import checkInOrOutReducer from './reducers/check-in-out';
+import landingReducer from './reducers/landing';
 import loadReducer from './reducers/load';
 import modalReducer from './reducers/modal';
 import optionsReducer from './reducers/fetch-options';
@@ -15,7 +16,6 @@ import searchReducer from './reducers/fetch-data';
 import sideDrawerReducer from './reducers/side-drawer';
 import showFormReducer from './reducers/show-form';
 import underlineReducer from './reducers/underline-option';
-import welcomeReducer from './reducers/welcome';
 
 const store = createStore(
     combineReducers({
@@ -31,7 +31,7 @@ const store = createStore(
         sideDrawer: sideDrawerReducer,
         showForm: showFormReducer,
         underline: underlineReducer,
-        welcome: welcomeReducer,
+        landing: landingReducer,
     }), composeWithDevTools(
     applyMiddleware(thunk)),
 );

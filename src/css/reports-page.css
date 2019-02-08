@@ -16,19 +16,19 @@
 }
 
 .reports-page li{
-    box-shadow: 0px 1px 2px 1px #5d5d5a;
+    box-shadow: 1px 3px 2px 1px #4e413b;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color .4s ease;
 }
 
 .reports-page button{
+    color: #4e413b;
     width: 100%;
     cursor: pointer;
     padding: 1em;
     background-color: transparent;
     border: none;
-    color: black;
 }
 
 .reports-page li:hover,
@@ -48,7 +48,7 @@
     display: block;
     width: 100%;
     margin: 1em auto 0;
-    color: #4e413b;
+    color: black;
     font-size: 1.4em;
 }
 

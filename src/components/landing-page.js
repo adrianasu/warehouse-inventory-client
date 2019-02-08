@@ -3,19 +3,24 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { login } from '../actions/auth';
-import { welcome } from '../actions/welcome';
+import { landing } from '../actions/landing';
 import '../css/landing-page.css';
+import scanner from '../images/scanner.jpg';
+import tools from '../images/tools.jpg';
+import girl from '../images/girl-scanning.jpg';
+import lab from '../images/lab-equipment.jpg';
+import logo from '../images/logo.png';
 
 export class LandingPage extends React.Component{
-    // Set welcome state to hide header-bar
+    // Set landing state to hide header-bar
     componentDidMount(){
-        this.props.welcome(true)
+        this.props.landing(true)
     }
 
     doNotLogIn(){
         this.props.history.push("/search")
          // Change state to display header-bar
-        return this.props.welcome(false)
+        return this.props.landing(false)
     }
 
     doLogIn( email, password){
@@ -23,7 +28,7 @@ export class LandingPage extends React.Component{
              .then(() => {
                  this.props.history.push("/search")
                  // Change state to display header-bar
-                 return this.props.welcome(false)
+                 return this.props.landing(false)
              })
     }
     // User will be automatically signed in 
@@ -39,36 +44,80 @@ export class LandingPage extends React.Component{
     render(){
     return (
         <div className="landing-page">
-            <h2>Welcome!</h2>
-            <p>This app will make it easy to track all assets
-                in your warehouse(s). Our system provides information
-                about the location of your products inside your warehouse
-                and if 
-            </p>
-            <p>It also allows you to check in and check out
-                tools, equipment and consumables to
-                employees.
-            </p>
-            <p>
-                MORE...
-
-                Youll find lightbulbs with info to do testing
-                <FontAwesomeIcon icon="lightbulb" className="space orange"/>
-            </p>
-            <h3>Try our app</h3>
-            <p>Depending on the user access level</p>
-            <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
-            <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
-            <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>
-            <button onClick={this.handleClick.bind(this)} value="admin@m.com">Admin</button>            
+            <div className="logo-bar">
+                <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
+            </div>
+            <div className="intro land-container">
+                <h3>Track & Manage</h3>
+                <div className="grid-container">
+                    <p>
+                        If you have items, tools or equipment of any kind
+                        and need to track and manage them, our app will
+                        help you do that in an easy way.
+                    </p>
+                    <img src={ scanner } alt="Scanner and boxes cartoon" className="scanner"/>
+                </div>
+            </div>
+            <div className="locate land-container">
+                <h3>Locate</h3>
+                <img src={ tools } alt="Four hands holding tools cartoon" className="tools"/>
+                <p>
+                    Our app will provide you information about the location
+                    of your assets inside your warehouse or about the person 
+                    who currently has it. 
+                </p>
+            </div>
+            <div className="fulfill land-container">
+                <h3>Fulfilling</h3>
+                <img src={ lab } alt="Laboratory eqquipment cartoon" className="lab"/>
+                <p>In the case of consummables, you can set minimum required 
+                    quantities for each item so you will be able to know when is
+                    time to reorder.
+                </p>  
+            </div>
+            <div className="benefits land-container">            
+                <h3>Benefits</h3>
+                <div className="grid-container">                
+                    <ul>
+                        <li>
+                            Decrease tool and equipment loss.
+                        </li>
+                        <li>
+                            Increase productivity by ensuring people have what they need.
+                        </li>
+                        <li>
+                            Increase efficiency by having all the information at your fingertips.
+                        </li>
+                    </ul>
+                    <div className="frame">
+                        <img src={ girl } alt="Lady scanning barcode on a box cartoon" className="girl"/>
+                    </div>
+                </div>
+            </div>
+            <div className="try land-container">
+                <h3>Try our app</h3>
+                <FontAwesomeIcon icon="lightbulb" className="icon orange"/>
+                <p>
+                    You'll find lightbulbs along our demo. Click on them to get
+                    examples that can be entered to get information from
+                    our demo database.
+                </p>
+                <h4>Select a user level</h4>
+                <div className="levels-container">
+                    <button onClick={this.handleClick.bind(this)} value="admin@m.com">Admin</button>            
+                    <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>
+                    <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
+                    <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
+                </div>
+            </div>
         </div>
     )
     }
 }
 
 const mapDispatchToProps = ({
-    login: login,
-    welcome: welcome,
+    landing,
+    login,
 })
 
 export default connect(null, mapDispatchToProps)(LandingPage);

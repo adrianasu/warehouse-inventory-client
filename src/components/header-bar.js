@@ -7,6 +7,7 @@ import Hamburguer from './hamburguer';
 import HeaderOptions from './header-options';
 import { accessLevelToString } from '../utils/utils';
 import '../css/header-bar.css';
+import logo from '../images/logo.png';
 
 
 export class HeaderBar extends React.Component { 
@@ -17,9 +18,9 @@ export class HeaderBar extends React.Component {
         return (
             <header>
                 <nav className="nav-container">
-                    <div className="logo">
-                        <h1>Warehouse</h1>
-                    </div>
+                <div className="logo">
+                    <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
+                </div>
                     <div className="nav-toggle-button">
                         <Hamburguer click={this.props.drawerOpenClickHandler} />
                     </div>

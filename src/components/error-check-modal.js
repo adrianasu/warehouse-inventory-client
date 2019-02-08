@@ -15,7 +15,7 @@ export class ErrorCheckModal extends React.Component{
     render(){
         return(
             <Modal onClose={this.onClose.bind(this)}>
-                <div className="item">
+                <div>
                     <p>{ this.props.hasErrored }</p>
                 </div>
             </Modal>

@@ -20,7 +20,7 @@ describe('<LoggedInBar />', () => {
                 history={ historyMock } 
                 logOut={ callback }
                 underlineOption={ dispatch }
-                welcome={ dispatch } /> );
+                landing={ dispatch } /> );
         wrapper.instance().logOut();
         expect(dispatch).toHaveBeenCalledTimes(3);
    });

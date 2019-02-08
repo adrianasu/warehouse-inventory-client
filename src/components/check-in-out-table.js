@@ -4,7 +4,6 @@ import { formatDate, addSpace } from '../utils/utils.js'
 import '../css/check-in-out-table.css';
 
 export default function CheckInOutTable( props ){
-    let item = props.data.data;
     // If we're doing check-out get data from the last
     // check-out transaction
     let checkData = props.data.data.checkedOut[0];

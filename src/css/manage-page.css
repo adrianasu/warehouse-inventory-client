@@ -16,7 +16,7 @@
 }
 
 .manage-page li{
-    box-shadow: 0px 1px 2px 1px #5d5d5a;
+    box-shadow: 1px 3px 2px 1px #4e413b;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color .4s ease;
@@ -28,7 +28,7 @@
     padding: .5em;
     background-color: transparent;
     border: none;
-    color: black;
+    color: #4e413b;
 }
 
 .manage-page li:hover,
@@ -48,13 +48,10 @@
     display: block;
     width: 100%;
     margin: .6em auto 0;
-    color: #4e413b;
+    color: black;
     font-size: 1.4em;
 }
 
-.background-blue {
-    background-color: #acdbdf;
-}
 
 @media screen and (orientation: landscape) {
     .manage-page {

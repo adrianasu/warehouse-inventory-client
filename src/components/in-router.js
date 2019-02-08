@@ -30,7 +30,7 @@ export class InRouter extends React.Component{
 
         return(
             <div>
-                { this.props.isWelcome ? null :
+                { this.props.isLanding ? null :
                     <React.Fragment>
                         <HeaderBar drawerOpenClickHandler={this.drawerOpenClickHandler.bind(this)}/>
                         <SideDrawer show={this.props.sideDrawerOpen} history={this.props.history}/>
@@ -45,7 +45,7 @@ export class InRouter extends React.Component{
     }
 }
 const mapStateToProps = state => ({
-    isWelcome: state.welcome.isWelcome,
+    isLanding: state.landing.isLanding,
     isDrawerOpen: state.sideDrawer.open === true,
     sideDrawerOpen: state.sideDrawer.open
 });

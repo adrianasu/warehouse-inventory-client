@@ -1,4 +1,213 @@
 .landing-page{
-    width: 80%;
+    width: 100%;
     margin: auto;
+    position: absolute;
+    top: 0;
+}
+
+
+.landing-page h1,
+.landing-page h3{
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.landing-page ul {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+.land-container{
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px #5c4d4d;
+    color: black;
+    padding: 1.5em;
+    width: 90%;
+    margin: 0 auto 2em;
+    background-color: #e8e2db;
+}
+
+.logo-bar{
+    background-color: #0a516d;
+    width: 100%;
+    padding-bottom: .5em;
+    padding-top: .5em;
+    margin-bottom: 1em;
+}
+
+.landing-page .logo{
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+.landing-page .icon{
+    float: left;
+    font-size: 2em;
+    margin-right: .5em;
+    margin-top: .4em;
+}
+
+.landing-page li{
+    padding: .2em .2em;
+    margin-left: 1.2em;
+    text-transform: initial;
+    list-style-type: circle;
+}
+
+.landing-page p{
+    text-align: center;
+    margin: .6em auto;
+}
+
+.land-container img{
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 1px #5d5d5a;
+
+}
+
+.scanner{
+    width: 100%;
+}
+
+.tools {
+    width: 50%;
+    float: left;
+    margin-top: .5em;
+    margin-right: .5em;
+}
+
+.girl {
+    width: 100%;
+    display: block;
+    border-radius: 65px;
+    box-shadow: none;
+}
+
+.lab {
+    width: 43%;
+    float: right;
+    margin-top: .5em;
+    margin-left: .5em;
+    margin-bottom: .5em;
+}
+.fulfill,
+.locate{
+    overflow: auto;
+}
+
+.clearfix{
+    clear: right;
+    clear: left;
+}
+
+.frame{
+    width: 60%;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #23a393;
+    box-shadow: 0px 2px 2px 1px #5d5d5a;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.levels-container{
+    display: grid;
+    width: 90%;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5em;
+    justify-items: center;
+    justify-content: space-evenly;
+}
+
+.levels-container button{
+    background-color: #018790;
+    color: white;
+    border-radius: 50px;
+    padding: 2.1em 0;
+    width: 90%;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px 1px #5d5d5a;
+    transition: transform .99s ease;
+}
+
+.levels-container button:hover,
+.levels-container button:focus {
+    background-color: #857671;
+    outline: none;
+    -webkit-transform: rotateY(360deg);/* Safari */
+    transform: rotateY(360deg);/* Standard syntax */
+}
+
+@media (orientation: landscape){
+    .landing-page .logo {
+        width: 33%;
+    }
+    .logo-bar {
+        padding-bottom: .4em;
+        padding-top: .4em;
+    }
+
+    .tools{
+        margin-right: 1em;
+    }
+    .lab{
+        margin-top: 0;
+        margin-left: 1em;
+    }
+
+    .scanner{
+        margin-left: 1em;
+    }
+
+    .locate>p{
+        margin-top: 3em;
+    }
+
+    .fulfill>p {
+        margin-top: 1.5em;
+    } 
+
+    .girl{
+        width: 100%;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
+         align-items: center;
+    }
+    .benefits ul{
+            grid-column: 1/3;
+        }
+
+    /* .benefits.frame {
+        grid-column: 1/2;
+    }  */
+
+    .levels-container {
+        width: 60%;
+        margin: auto;
+    }
+
+    .levels-container button {
+        padding: 2.65em 0;
+    }
+
+    .land-container {
+        padding: 2em 2.5em;
+    }
+
+}
+
+@media (min-width: 750px){
+    .land-container{
+        width: 90%;
+        font-size: 1.7em;
+    }
 }

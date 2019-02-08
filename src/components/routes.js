@@ -28,7 +28,7 @@ export class Routes extends React.Component{
                 <Route path="/advanced-search" component={ AdvancedSearchPage } />
                 <Route exact path="/dashboard" component={ Dashboard } />
                 <Route exact path="/search" component={ SearchPage } />
-                <Route exact path="/welcome" component={ LandingPage } />
+                <Route exact path="/about" component={ LandingPage } />
                 <Route path="/check-in" component={ CheckInPage } />
                 <Route path="/check-out" component={ CheckOutPage } />
                 <Route path="/results/:option" component={ SearchResults } />

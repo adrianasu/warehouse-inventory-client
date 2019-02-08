@@ -40,10 +40,10 @@ export class ReportsPage extends React.Component{
 
     generateButtons(){
         const options = {
-            'checked out': {icon: 'ban', color: 'blue'},
-            'on shelf': { icon:'inventory', color: 'blue'},
-            'low stock': {icon: ['far', 'tachometer-slowest'], color: 'blue'}, // PRO icon
-            'useful life': {icon: ['far', 'heartbeat'], color: 'blue'}
+            'checked out': {icon: 'ban', color: 'lightbrown'},
+            'on shelf': { icon:'inventory', color: 'lightbrown'},
+            'low stock': {icon: ['far', 'tachometer-slowest'], color: 'lightbrown'}, // PRO icon
+            'useful life': {icon: ['far', 'heartbeat'], color: 'lightbrown'}
         };
 
     

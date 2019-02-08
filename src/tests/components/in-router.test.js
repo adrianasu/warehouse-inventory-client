@@ -8,10 +8,10 @@ describe('<InRouter />', () => {
         shallow(<InRouter />);
    });
 
-   it('Should not render if it is Welcome page', () => {
+   it('Should not render if  is Landing page', () => {
        const wrapper = shallow(
             <InRouter
-                isWelcome={ true }
+                isLanding={ true }
                 />);
         expect(wrapper.find('.nav-container').exists()).toEqual(false);
    });

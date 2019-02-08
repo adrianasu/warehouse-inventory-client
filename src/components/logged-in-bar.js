@@ -8,7 +8,7 @@ import OverviewLinks from './overview-links';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 import PublicAdminLinks from './public-admin-links';
 import { underlineOption } from '../actions/underline-option';
-import { welcome } from  '../actions/welcome';
+import { landing } from  '../actions/landing';
 
 export class LoggedInBar extends React.Component{
          closeOrUnderline() {
@@ -24,8 +24,8 @@ export class LoggedInBar extends React.Component{
 
         logOut() {
             this.closeOrUnderline();
-            this.props.history.push('/welcome');
-            this.props.welcome(true)
+            this.props.history.push('/landing');
+            this.props.landing(true)
             this.props.clearAuth();
             clearAuthToken();
         }
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
-    welcome,
+    landing,
     clearAuth,
     underlineOption
 })

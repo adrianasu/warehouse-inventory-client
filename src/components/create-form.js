@@ -7,7 +7,8 @@ import { fetchOptions } from '../actions/fetch-options';
 import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
-import { load } from '../actions/load';import { getCreateFields, isInput, isSelect, isCheck, whatType, validateThis } from '../utils/form-content';
+import { load } from '../actions/load';
+import { getCreateFields } from '../utils/form-content';
 import { getId, capitalize } from '../utils/utils';
 
 import '../css/create-form.css';

@@ -1,7 +1,7 @@
 .form {
     width: 100%;
     margin: auto;
-    background-color: #acdbdf;
+    background-color: #dfd3c3;
     border-radius: 3px;
 }
 
@@ -12,7 +12,7 @@
 
 .form input:focus,
 .form select:focus{
-    background-color: #e8fcf6;
+    background-color: #ffecda;
     outline: none;
 }
 

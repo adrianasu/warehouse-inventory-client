@@ -7,7 +7,7 @@ describe('<LandingPage />', () => {
     it('Renders without crashing', () => {
         const dispatch = jest.fn();
         shallow(<LandingPage 
-                    welcome={dispatch}/>);
+                    landing={dispatch}/>);
    });
 
 });

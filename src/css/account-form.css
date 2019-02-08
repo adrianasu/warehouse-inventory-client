@@ -2,7 +2,7 @@
     width: 100%;
     margin: auto;
     padding-bottom: .5em;
-    background-color: #acdbdf;
+    background-color: #dfd3c3;
     border-radius: 3px;
 }
 
@@ -21,8 +21,8 @@
 }
 
 .account-form input:focus,
-.account-form select:focus {
-    background-color: #e8fcf6;
+.account-form input:hover {
+    background-color: #ffecda;
     outline: none;
 }
 

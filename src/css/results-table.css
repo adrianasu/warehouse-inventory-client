@@ -20,8 +20,7 @@
 
 .results-container>.item:hover,
 .results-container>.item:focus {
-    background-color: #acdbdf;
-    
+    background-color: #dfd3c3;
     transform: translateY(-9px);
 }
 
@@ -33,7 +32,7 @@
 }
 
 .results-container li:first-child{
-    background-color: #acdbdf;
+    background-color: #dfd3c3;
     font-weight: bold;
     font-size: 1.1em;
     border-radius: 6px;

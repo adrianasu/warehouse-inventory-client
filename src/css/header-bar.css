@@ -5,7 +5,7 @@ header {
     z-index: 100;
     width: 100%;
     height: 70px; 
-    background-color: #834c69;
+    background-color: #0a516d;
 }
 
 .nav-container {
@@ -17,16 +17,20 @@ header {
     padding: 0 1em;
 }
 
-.logo {
+header .logo {
     font-size: .8em;
+    width: 12em;
+    border: none;
+    border-radius: 2px;
+    box-shadow: none;
+    display: block;
+    margin-right: 5em;
+    margin-top: .5em;
 }
 
-.logo h1{
-    padding: 2em;
-}
 
 .user-info {
-    background-color: black;
+    background-color: #3e3838;
     color: white;
     text-align: right;
     height: 20px;
@@ -37,6 +41,7 @@ header {
     margin-block-start: 0;
     margin-block-end: 0;
     padding-right: 1em;
+    text-align: right;
 }
 
 .user-info span {
@@ -62,7 +67,7 @@ header {
 }
 
 .site-nav button{
-    background-color: #834c69;
+    background-color: #0a516d;
     color: #f9f9f9;
     padding: auto 1.3em;
     text-decoration: none;
@@ -89,14 +94,14 @@ header {
     border-radius: 0px;
 }
 
-@media(max-width: 749px)
+@media(max-width: 799px)
  {
     .site-nav{
         display: none;
     }
 }
 
-@media (min-width: 750px){
+@media (min-width: 800px){
     .nav-toggle-button{
         display: none;
     }
@@ -112,8 +117,9 @@ header {
 
     }
 
-    .logo h1{
-        padding: 0;
+    header .logo{
+        margin-right: .5em;
+        width: 14em;
     }
 
 }

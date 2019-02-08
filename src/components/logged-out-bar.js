@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
-import { welcome } from '../actions/welcome';
+import { landing } from '../actions/landing';
 
 export class LoggedOutBar extends React.Component{
 
@@ -21,9 +21,9 @@ export class LoggedOutBar extends React.Component{
      }
     
     goHome() {
-        this.closeOrUnderline("welcome");
-        this.props.history.push('/welcome');
-        this.props.welcome(true);
+        this.closeOrUnderline("landing");
+        this.props.history.push('/landing');
+        this.props.landing(true);
     }
     
     logIn() {
@@ -97,7 +97,7 @@ const mapDispatchToProps = ({
     fetchData,
     showModal,
     underlineOption,
-    welcome,
+    landing,
 })
 
 const mapStateToProps = state => ({
