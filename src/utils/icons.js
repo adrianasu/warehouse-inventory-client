@@ -2,9 +2,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faBan,
     faCheckCircle,
+    faHome,
     faLightbulb,
+    faList,
     faPrint,
     faQuestionCircle,
+    faSearch,
     faStar,
     faTimes,
     faTimesCircle,
@@ -14,7 +17,6 @@ import {
 
 import {
     faBoxes,
-    faCheck,
     faEllipsisV,
     faFilePlus,
     faHeartbeat,
@@ -27,28 +29,53 @@ import {
 } from '@fortawesome/pro-regular-svg-icons';
 
 import {
+    faArrowAltCircleLeft,
+    faCartPlus,
+    faChartBar,
+    faCheck,
+    faDoorOpen,
+    faFileUser,
+    faInboxIn,
+    faInboxOut,
     faInfoCircle,
     faInventory,
+    faListAlt,
+    faShieldCheck,
+    faSignInAlt,
+    faUserPlus,
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
-    faUserHardHat
+    faUserHardHat, 
 } from '@fortawesome/pro-light-svg-icons';
 
 library.add(
+    faArrowAltCircleLeft,
     faBan, 
     faBoxes,
+    faCartPlus,
+    faChartBar,
     faCheck,
     faCheckCircle, 
+    faDoorOpen,
     faEllipsisV,
     faFilePlus,
+    faFileUser,
     faHeartbeat,
+    faHome,
+    faInboxIn,
+    faInboxOut,
     faIndustryAlt,
     faInfoCircle,
     faInventory,
     faLightbulb, 
+    faList,
+    faListAlt,
     faPrint, 
     faQuestionCircle, 
+    faSearch,
+    faShieldCheck,
+    faSignInAlt,
     faStar, 
     faTachometerSlowest,
     faTimes, 
@@ -57,6 +84,7 @@ library.add(
     faUser,
     faUserCircle, 
     faUserHardHat,
+    faUserPlus,
     faUsers,
     faWarehouse, 
     faWrench,

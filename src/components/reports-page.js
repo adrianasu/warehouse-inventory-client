@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import '../css/reports-page.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class ReportsPage extends React.Component{
     constructor(){

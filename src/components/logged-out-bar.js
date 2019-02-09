@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
 import { fetchData } from '../actions/fetch-data';
@@ -19,10 +20,10 @@ export class LoggedOutBar extends React.Component{
              this.props.underlineOption(option);
          }
      }
-    
-    goHome() {
-        this.closeOrUnderline("landing");
-        this.props.history.push('/landing');
+
+    help() {
+        this.closeOrUnderline("Start");
+        this.props.history.push('/start');
         this.props.landing(true);
     }
     
@@ -67,26 +68,44 @@ export class LoggedOutBar extends React.Component{
          return(
             <React.Fragment>
                 <li><button 
-                    className={this.props.activeOption === "all-items" ? "show-active" : null}
+                    className={this.props.activeOption === "items" ? "show-active" : null}
                     onClick={ this.showAll.bind(this) }
-                    >All Items
+                    >   Items
                 </button></li>
                 <li><button 
                     className={this.props.activeOption === "available-items" ? "show-active" : null}
                     onClick={ this.showAvailableItems.bind(this) }
                     >Available Items
                 </button></li>
-                <li><button 
-                    onClick={ this.goHome.bind(this) }
-                    >Home
+                <li className="tooltip">
+                    <button 
+                    onClick={ this.logIn.bind(this) }>
+                    <span className="tooltiptext">Log In</span>
+                    <FontAwesomeIcon 
+                            icon='sign-in-alt'
+                            className="header-icon" />
+                    {
+                        this.props.fromSideDrawer ? '  Log In' : ''
+                    }
                 </button></li>
-                <li><button 
-                    onClick={ this.logIn.bind(this) }
-                    >Log In
+                <li className="tooltip">
+                    <button 
+                    onClick={ this.signUp.bind(this) }>
+                     <span className="tooltiptext">Sign Up</span>
+                    <FontAwesomeIcon 
+                            icon='user-plus'
+                            className="header-icon" />
+                    {
+                        this.props.fromSideDrawer ? '  Sign Up' : ''
+                    }
                 </button></li>
-                <li><button 
-                    onClick={ this.signUp.bind(this) }
-                    >Sign Up
+                <li className="tooltip">
+                    <button 
+                        onClick={ this.help.bind(this) }>
+                    <span className="tooltiptext">Info Page</span>
+                    <FontAwesomeIcon 
+                            icon='info-circle'
+                            className="header-icon" />   
                 </button></li>
             </React.Fragment>
          )

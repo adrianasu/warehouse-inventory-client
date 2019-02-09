@@ -27,13 +27,19 @@
     justify-content: center;
 }
 
+.side-drawer .tooltiptext {
+    top: 30px;
+    right: 200px;
+}
+
+
 .side-drawer button {
     margin-left: 2em;
     text-align: left;
     color: #fcf9f4;
     background-color: #0a516d;
     font-size: 1em;
-    width: 50%;
+    width: 80%;
     transition: font-size .3s ease;
 }
 
@@ -55,10 +61,14 @@ and (orientation: landscape){
     and (orientation: landscape){
 
     .side-drawer li {
-        margin-top: .8em;
+        margin-top: .5em;
     }
     .side-drawer button {
         margin-left: 3em;
+        font-size: 1em;
+    }
+
+    .side-drawer .header-icon {
         font-size: 1em;
     }
 

@@ -1,19 +1,11 @@
-.sign-up-form{
-    /* override background-color from 'form' class */
-    background-color: white !important;
-    min-width: 280px;
+.sign-up .tooltip .tooltiptext{
+    font-size: .5em;
+    right: 0px;
+    top: -30px;
+    min-width: 200px;
+    padding: 0;
 }
 
-.sign-up label{
-    font-size: 1.1em;
-    text-transform: capitalize;
-}
-
-.sign-up-form button{
-    width: 70%;
-    background-color: #acdbdf;
-    color: #5c4d4d;
-}
 
 
 

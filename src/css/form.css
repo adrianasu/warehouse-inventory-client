@@ -3,6 +3,8 @@
     margin: auto;
     background-color: #dfd3c3;
     border-radius: 3px;
+    box-shadow: 1px 2px 2px #5c4d4d;
+
 }
 
 .form label {

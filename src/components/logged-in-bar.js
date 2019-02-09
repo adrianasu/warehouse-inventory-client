@@ -9,6 +9,7 @@ import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 import PublicAdminLinks from './public-admin-links';
 import { underlineOption } from '../actions/underline-option';
 import { landing } from  '../actions/landing';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class LoggedInBar extends React.Component{
          closeOrUnderline() {
@@ -24,7 +25,7 @@ export class LoggedInBar extends React.Component{
 
         logOut() {
             this.closeOrUnderline();
-            this.props.history.push('/landing');
+            this.props.history.push('/start');
             this.props.landing(true)
             this.props.clearAuth();
             clearAuthToken();
@@ -40,11 +41,16 @@ export class LoggedInBar extends React.Component{
             }
             return(
             <React.Fragment>
+               
                 {barLinks}
-                <li>
+                <li className="tooltip">
                     <button 
                         value="log-out"
-                        onClick={ () => this.logOut() }> Log Out </button>
+                        onClick={ () => this.logOut() }>
+                        <span className="tooltiptext">Log Out</span>
+                        <FontAwesomeIcon icon="door-open" className="header-icon" />
+                        { this.props.fromSideDrawer ? ' Log Out' : ''}
+                    </button>
                 </li> 
             </React.Fragment>
          )

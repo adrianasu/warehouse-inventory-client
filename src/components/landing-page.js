@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { login } from '../actions/auth';
 import { landing } from '../actions/landing';
+import { underlineOption } from '../actions/underline-option';
 import '../css/landing-page.css';
 import scanner from '../images/scanner.jpg';
 import tools from '../images/tools.jpg';
@@ -17,8 +18,9 @@ export class LandingPage extends React.Component{
         this.props.landing(true)
     }
 
-    doNotLogIn(){
-        this.props.history.push("/search")
+    goToHome(){
+        this.props.history.push("/home");
+        this.props.underlineOption("home");
          // Change state to display header-bar
         return this.props.landing(false)
     }
@@ -26,9 +28,7 @@ export class LandingPage extends React.Component{
     doLogIn( email, password){
          return this.props.login(email, password)
              .then(() => {
-                 this.props.history.push("/search")
-                 // Change state to display header-bar
-                 return this.props.landing(false)
+                 return this.goToHome();
              })
     }
     // User will be automatically signed in 
@@ -37,16 +37,17 @@ export class LandingPage extends React.Component{
     handleClick(e){
         let email = e.target.value;
         let password = `${email}123`;
-        email === "null" ? this.doNotLogIn()
+        email === "null" ? this.goToHome()
                         : this.doLogIn( email, password);       
     }
 
     render(){
     return (
-        <div className="landing-page">
-            <div className="logo-bar">
+    <div className="landing-page">
+        <div className="logo-bar">
                 <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
-            </div>
+        </div>
+        <div  className="landing-grid">
             <div className="intro land-container">
                 <h3>Track & Manage</h3>
                 <div className="grid-container">
@@ -67,8 +68,8 @@ export class LandingPage extends React.Component{
                     who currently has it. 
                 </p>
             </div>
-            <div className="fulfill land-container">
-                <h3>Fulfilling</h3>
+            <div className="reorder land-container">
+                <h3>Reorder</h3>
                 <img src={ lab } alt="Laboratory eqquipment cartoon" className="lab"/>
                 <p>In the case of consummables, you can set minimum required 
                     quantities for each item so you will be able to know when is
@@ -111,6 +112,7 @@ export class LandingPage extends React.Component{
                 </div>
             </div>
         </div>
+        </div>
     )
     }
 }
@@ -118,6 +120,7 @@ export class LandingPage extends React.Component{
 const mapDispatchToProps = ({
     landing,
     login,
+    underlineOption
 })
 
 export default connect(null, mapDispatchToProps)(LandingPage);

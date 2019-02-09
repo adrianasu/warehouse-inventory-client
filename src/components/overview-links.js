@@ -67,7 +67,7 @@ export class OverviewLinks extends React.Component{
             <React.Fragment>
                 <li><button 
                     className={this.props.activeOption === "all-items" ? "show-active" : null}
-                    onClick={ this.showAll.bind(this) }>All Items
+                    onClick={ this.showAll.bind(this) }>Items
                 </button></li>
                 <li><button
                     className={this.props.activeOption === "available-items" ? "show-active" : null}

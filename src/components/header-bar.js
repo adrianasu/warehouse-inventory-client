@@ -6,11 +6,34 @@ import { withRouter } from 'react-router-dom';
 import Hamburguer from './hamburguer';
 import HeaderOptions from './header-options';
 import { accessLevelToString } from '../utils/utils';
+import { underlineOption } from '../actions/underline-option';
+import { landing } from  '../actions/landing';
+import {clearAuth} from '../actions/auth';
+import {clearAuthToken} from '../local-storage';
 import '../css/header-bar.css';
 import logo from '../images/logo.png';
 
 
 export class HeaderBar extends React.Component { 
+
+    closeOrUnderline() {
+        // If click comes from side drawer, close it.
+        if (this.props.fromSideDrawer) {
+            this.props.closeSideDrawer();
+            // If click comes from header-bar, underline
+            // selected option.
+        } else {
+            this.props.underlineOption(null);
+        }
+    }
+
+    logOut() {
+        this.closeOrUnderline();
+        this.props.history.push('/start');
+        this.props.landing(true)
+        this.props.clearAuth();
+        clearAuthToken();
+    }
     
     render() { 
         let user = this.props.user;
@@ -18,9 +41,10 @@ export class HeaderBar extends React.Component {
         return (
             <header>
                 <nav className="nav-container">
-                <div className="logo">
-                    <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
-                </div>
+                    <div className="logo tooltip" onClick={ () => this.logOut() }>
+                        <span className="tooltiptext">Start</span>
+                        <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
+                    </div>
                     <div className="nav-toggle-button">
                         <Hamburguer click={this.props.drawerOpenClickHandler} />
                     </div>
@@ -50,4 +74,10 @@ const mapStateToProps = state => ({
     user: state.auth.currentUser
 });
 
-export default withRouter(connect(mapStateToProps)(HeaderBar));
+const mapDispatchToProps = ({
+    landing,
+    clearAuth,
+    underlineOption
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderBar));

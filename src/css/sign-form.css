@@ -2,6 +2,7 @@
     /* override background-color from 'form' class */
     background-color: white !important;
     min-width: 280px;
+    box-shadow: none;
 }
 
 .sign-form label{

@@ -5,6 +5,7 @@ import { required, nonEmpty, email, length, isTrimmed, isEqual } from '../utils/
 import { signupUser } from '../actions/users';
 import { login } from '../actions/auth';
 import { hideModal } from '../actions/modal';
+import { deleteQueryValues } from '../actions/query-values';
 import '../css/sign-form.css';
 
 const passwordLength = length({ min: 7, max: 72 });
@@ -14,7 +15,10 @@ export class SignUpForm extends React.Component {
         const { email, password } = values;
         return this.props
             .dispatch( signupUser( values ))
-            .then(() => this.props.dispatch(login( email, password )));
+            .then(() => {
+                this.props.dispatch(deleteQueryValues());
+                return this.props.dispatch(login( email, password ))
+            });
     }
 
     render() {

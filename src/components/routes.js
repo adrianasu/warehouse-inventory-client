@@ -15,8 +15,10 @@ import ListPage from './list-page';
 import ManagePage from './manage-page';
 import NotFound from './not-found';
 import ReportsPage from './reports-page';
+import ScrollToTop from './scroll-to-top';
 import SearchPage from './search-page';
 import SearchResults from './search-results';
+import Home from './home';
 import '../css/routes.css';
 
 
@@ -25,10 +27,11 @@ export class Routes extends React.Component{
             
         return(
             <div className="routes">
+                <ScrollToTop>
                 <Route path="/advanced-search" component={ AdvancedSearchPage } />
                 <Route exact path="/dashboard" component={ Dashboard } />
                 <Route exact path="/search" component={ SearchPage } />
-                <Route exact path="/about" component={ LandingPage } />
+                <Route exact path="/start" component={ LandingPage } />
                 <Route path="/check-in" component={ CheckInPage } />
                 <Route path="/check-out" component={ CheckOutPage } />
                 <Route path="/results/:option" component={ SearchResults } />
@@ -37,7 +40,9 @@ export class Routes extends React.Component{
                 <Route path="/account" component={ AccountPage } />
                 <Route path="/my-account" component={ AccountResults } />
                 <Route path="/manage" component={ ManagePage } /> 
+                <Route exact path="/home" component={ Home } />
                 <Route path="/create/:type" component={ CreatePage } />
+                </ScrollToTop>
             </div>
         )
     }

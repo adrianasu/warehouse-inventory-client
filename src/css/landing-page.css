@@ -3,6 +3,7 @@
     margin: auto;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 
@@ -17,6 +18,12 @@
     margin-block-end: 0.5em;
 }
 
+.landing-grid{
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+
 .land-container{
     border: 1px solid lightgray;
     border-radius: 3px;
@@ -25,7 +32,7 @@
     padding: 1.5em;
     width: 90%;
     margin: 0 auto 2em;
-    background-color: #e8e2db;
+    background-color: #dfd3c3;
 }
 
 .logo-bar{
@@ -78,7 +85,7 @@
     margin-right: .5em;
 }
 
-.girl {
+.benefits .girl {
     width: 100%;
     display: block;
     border-radius: 65px;
@@ -92,7 +99,7 @@
     margin-left: .5em;
     margin-bottom: .5em;
 }
-.fulfill,
+.reorder,
 .locate{
     overflow: auto;
 }
@@ -102,12 +109,12 @@
     clear: left;
 }
 
-.frame{
+.benefits .frame{
     width: 60%;
     height: auto;
     margin: auto;
     border-radius: 5px;
-    background-color: #23a393;
+    background-color: #488b8f;
     box-shadow: 0px 2px 2px 1px #5d5d5a;
 }
 
@@ -154,6 +161,10 @@
         padding-top: .4em;
     }
 
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
+         align-items: center;
+    }
     .tools{
         margin-right: 1em;
     }
@@ -164,31 +175,26 @@
 
     .scanner{
         margin-left: 1em;
+        grid-column: 2/4;
     }
 
     .locate>p{
         margin-top: 3em;
     }
 
-    .fulfill>p {
+    .reorder>p {
         margin-top: 1.5em;
     } 
 
-    .girl{
-        width: 100%;
-    }
+  
 
-    .grid-container {
-        grid-template-columns: 1fr 1fr 1fr;
-         align-items: center;
-    }
     .benefits ul{
             grid-column: 1/3;
         }
 
-    /* .benefits.frame {
-        grid-column: 1/2;
-    }  */
+    .benefits .frame{
+        width: 100%;
+    }
 
     .levels-container {
         width: 60%;
@@ -205,9 +211,84 @@
 
 }
 
-@media (min-width: 750px){
+@media (min-width: 700px){
     .land-container{
-        width: 90%;
-        font-size: 1.7em;
+        width: 80%;
+        font-size: 1.2em;
+    }
+     .levels-container {
+         width: 50%;
+         margin: auto;
+         grid-gap: 1em;
+     }
+
+     .levels-container button {
+         padding: 2.1em 0;
+     }
+}
+
+@media (min-width: 900px) {
+    .landing-page{
+        font-size: .9em;
+        margin: auto;
+    }
+
+    .landing-grid {
+        display: grid;
+        width: 80%;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .levels-container {
+        width: 40%;
+        margin: auto;
+        grid-gap: 1em;
+    }
+
+    .levels-container button {
+        padding: 2.1em 0;
+    }
+    .grid-container{
+        display: block;
+        margin: auto;
+    }
+
+    .intro .grid-container {
+        margin-top: 1.5em;
+    }
+
+    .scanner {
+        margin-left: 0em;
+        margin-top: 1em;
+    }
+
+    .tools{
+        margin: 1em 2em;
+        width: 80%;
+      
+    }
+
+ 
+    .locate p{
+        clear: left;
+    }
+
+    .benefits .frame{
+        width: 50%;
+    }
+
+    .land-container .lab{
+        clear: right;
+        width: 60%;
+        margin: 1.5em 4em;
+    }
+
+    .levels-container {
+        width: 100%;
+        margin: auto;
+    }
+
+    .levels-container button {
+        padding: 1.8em 0;
     }
 }
