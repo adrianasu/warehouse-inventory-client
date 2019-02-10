@@ -33,8 +33,9 @@ describe('<AccountResults />', () => {
     });
 
     it(`Renders checked-out items' list`, () => {
+        //
         const wrapper = shallow(<AccountResults data={data} />)
-        const items = wrapper.find('.item');
+        const items = wrapper.find('ol>li');
         expect(items.length).toEqual(data.items.length);
     })
     
