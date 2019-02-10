@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter }  from 'react-router-dom';
 
+import { closeSideDrawer } from '../actions/side-drawer';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
@@ -35,6 +36,7 @@ export class OverviewLinks extends React.Component{
 
     goToMyAccount(){
         this.closeOrUnderline("my-account");
+
         let employeeId = this.props.employee.employeeId;
         return this.props.fetchData({
             method: 'GET',
@@ -83,6 +85,7 @@ export class OverviewLinks extends React.Component{
 }
 
 const mapDispatchToProps = ({
+    closeSideDrawer,
     fetchData,
     showModal,
     underlineOption

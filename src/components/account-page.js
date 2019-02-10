@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AccountForm from './account-form';
 import AccountResults from './account-results';
 import { fetchOptions } from '../actions/fetch-options';
+import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
+import { resetData } from '../actions/fetch-data';
 import '../css/account-page.css';
 
 
@@ -16,6 +18,10 @@ class AccountPage extends React.Component{
         if (!this.props.options) {
             return this.props.fetchOptions()   
         }
+    }
+
+    componentWillUnmount(){
+        this.props.resetData();
     }
 
     examples(){
@@ -29,13 +35,20 @@ class AccountPage extends React.Component{
     }
 
     render(){
+        let resultsClass = this.props.accessLevel >= PUBLIC_ACCESS_LEVEL ?
+            "account-page" : "account-page increase-margin";
         return(
-            <div className="account-page">
-                <h1 className="tooltip">Account
-                    <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
-                    <FontAwesomeIcon icon="lightbulb" className="space orange"/>
-                </h1>
-                <AccountForm />
+            <div className={ resultsClass }>
+                { this.props.accessLevel >= PUBLIC_ACCESS_LEVEL ?
+                    <React.Fragment>
+                        <h1 className="tooltip">Account
+                            <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
+                            <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                        </h1>
+                        <AccountForm />
+                    </React.Fragment>
+                    : null
+                }
                 { this.props.data && this.props.data.employee ?
                     <div className="account-results">
                         <ReactToPrint
@@ -62,10 +75,12 @@ class AccountPage extends React.Component{
 const mapStateToProps = state => ({
     data: state.search.data,
     options: state.options.options,
+    accessLevel: state.auth.currentUser.accessLevel
 })
 
 const mapDispatchToProps = ({
     fetchOptions,
+    resetData
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )(AccountPage);

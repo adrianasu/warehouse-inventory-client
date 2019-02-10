@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import LoggedInBar from './logged-in-bar';
 import LoggedOutBar from './logged-out-bar';
 import { underlineOption } from '../actions/underline-option';
-
+import { resetData } from '../actions/fetch-data';
 
 export class HeaderOptions extends React.Component{
 
@@ -22,19 +22,18 @@ export class HeaderOptions extends React.Component{
     }
 
     handleClick(e) { 
-
-        this.closeOrUnderline(e.target.value);         
+        this.closeOrUnderline(e.target.value);    
         this.props.history.push(`/${e.target.value}`)
     }
 
     goHome(){
         this.closeOrUnderline('home');
-        this.props.history.push(`/home`)
+        this.props.history.push(`/home`);
     }
 
      goToSearch() {
-         this.closeOrUnderline('search');
-         this.props.history.push(`/search`)
+        this.closeOrUnderline('search');
+        this.props.history.push(`/search`);
      }
 
     render(){
@@ -85,7 +84,8 @@ const mapStateToProps = state => ({
     activeOption: state.underline.activeOption
 });
 
-const mapDispatchToProps =({
+const mapDispatchToProps = ({
+    resetData,
     underlineOption
 });
 

@@ -4,12 +4,12 @@ import { withRouter }  from 'react-router-dom';
 
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { landing } from  '../actions/landing';
 import OverviewLinks from './overview-links';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 import PublicAdminLinks from './public-admin-links';
 import { underlineOption } from '../actions/underline-option';
-import { landing } from  '../actions/landing';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class LoggedInBar extends React.Component{
          closeOrUnderline() {

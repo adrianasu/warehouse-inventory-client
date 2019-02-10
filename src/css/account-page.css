@@ -3,6 +3,10 @@
     margin: 0em auto;
 }
 
+.increase-margin {
+    margin-top: 5.5em;
+}
+
 .account-page h1{
     margin-block-start: 0.3em;
     margin-block-end: 0.3em;
@@ -21,11 +25,19 @@
         width: 60%;
     }
 
+    .increase-margin {
+        margin-top: 5.5em;
+    }
+
 }
 
 @media screen and (min-width: 750px) {
     .account-page {
         width: 40%;
+    }
+
+    .increase-margin {
+        margin-top: 7em;
     }
 
 }

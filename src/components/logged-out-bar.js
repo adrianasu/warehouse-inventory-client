@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
-import { fetchData } from '../actions/fetch-data';
+import { fetchData, resetData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
 import { landing } from '../actions/landing';
@@ -21,8 +21,9 @@ export class LoggedOutBar extends React.Component{
          }
      }
 
-    help() {
+    infoPage() {
         this.closeOrUnderline("Start");
+        this.props.resetData();
         this.props.history.push('/start');
         this.props.landing(true);
     }
@@ -101,7 +102,7 @@ export class LoggedOutBar extends React.Component{
                 </button></li>
                 <li className="tooltip">
                     <button 
-                        onClick={ this.help.bind(this) }>
+                        onClick={ this.infoPage.bind(this) }>
                     <span className="tooltiptext">Info Page</span>
                     <FontAwesomeIcon 
                             icon='info-circle'
@@ -114,9 +115,10 @@ export class LoggedOutBar extends React.Component{
 
 const mapDispatchToProps = ({
     fetchData,
+    landing,
+    resetData,
     showModal,
     underlineOption,
-    landing,
 })
 
 const mapStateToProps = state => ({

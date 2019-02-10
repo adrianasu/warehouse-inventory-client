@@ -13,7 +13,6 @@ import Dashboard from './dashboard';
 import LandingPage from './landing-page';
 import ListPage from './list-page';
 import ManagePage from './manage-page';
-import NotFound from './not-found';
 import ReportsPage from './reports-page';
 import ScrollToTop from './scroll-to-top';
 import SearchPage from './search-page';
@@ -38,7 +37,7 @@ export class Routes extends React.Component{
                 <Route exact path="/reports" component={ ReportsPage } />
                 <Route exact path="/list/:type" component={ ListPage } />
                 <Route path="/account" component={ AccountPage } />
-                <Route path="/my-account" component={ AccountResults } />
+                <Route path="/my-account" component={ AccountPage } />
                 <Route path="/manage" component={ ManagePage } /> 
                 <Route exact path="/home" component={ Home } />
                 <Route path="/create/:type" component={ CreatePage } />

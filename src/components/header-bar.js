@@ -6,12 +6,12 @@ import { withRouter } from 'react-router-dom';
 import Hamburguer from './hamburguer';
 import HeaderOptions from './header-options';
 import { accessLevelToString } from '../utils/utils';
-import { underlineOption } from '../actions/underline-option';
-import { landing } from  '../actions/landing';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
-import '../css/header-bar.css';
+import { landing } from  '../actions/landing';
 import logo from '../images/logo.png';
+import { underlineOption } from '../actions/underline-option';
+import '../css/header-bar.css';
 
 
 export class HeaderBar extends React.Component { 
@@ -30,7 +30,7 @@ export class HeaderBar extends React.Component {
     logOut() {
         this.closeOrUnderline();
         this.props.history.push('/start');
-        this.props.landing(true)
+        this.props.landing(true);
         this.props.clearAuth();
         clearAuthToken();
     }
