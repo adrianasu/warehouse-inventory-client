@@ -39,7 +39,7 @@
   ],
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.1",
-    "@fortawesome/fontawesome-pro": "^5.7.0",
+    "@fortawesome/fontawesome-pro": "^5.7.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/react-fontawesome": "^0.1.3",
     "enzyme": "^3.8.0",
