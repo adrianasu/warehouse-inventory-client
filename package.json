@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.1",
     "@fortawesome/fontawesome-pro": "^5.7.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
