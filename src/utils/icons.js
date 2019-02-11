@@ -1,8 +1,3 @@
-//  "@fortawesome/free-solid-svg-icons": "^5.6.3",
-//  "@fortawesome/pro-light-svg-icons": "^5.7.0",
-//  "@fortawesome/pro-regular-svg-icons": "^5.7.0",
-//  "@fortawesome/pro-solid-svg-icons": "^5.7.0",
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faBan,
