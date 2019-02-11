@@ -6,7 +6,7 @@ import { refreshAuthToken } from './actions/auth';
 import './css/App.css';
 import './css/colors.css';
 import './css/form.css';
-import '../src/utils/icons';
+
 
 class App extends React.Component {
     componentDidUpdate(prevProps) {
