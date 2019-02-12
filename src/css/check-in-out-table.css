@@ -6,7 +6,7 @@
 
 .check-in-out th{
     text-transform: capitalize;
-     font-size: 1.3em;
+     font-size: 1.2em;
 }
 
 .check-in-out tr>td:first-child{
@@ -17,6 +17,8 @@
 .check-in-out tbody>tr:nth-child(odd) {
     background-color: #e8fcf6;
 }
+
+
 
 @media screen and (orientation: landscape) {
     .check-in-out {

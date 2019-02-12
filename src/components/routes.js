@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import AccountPage from './account-page';
-import AccountResults from './account-results';
 import AdvancedSearchPage from './advanced-search-page';
 import CheckInPage from './check-in-page';
 import CheckOutPage from './check-out-page';

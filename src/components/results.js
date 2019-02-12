@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { showModal } from '../actions/modal';
 import { addSpace } from '../utils/utils.js';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 import '../css/results-table.css';
-
+import checkIcon from '../images/green-check.png';
+import closeIcon from '../images/red-cross.png';
 
 export class Results extends React.Component{
 
@@ -38,8 +38,8 @@ export class Results extends React.Component{
                 return;
             } else if( field === "isCheckedOut" ) {
                 list.push(<li key={ field }> { item[field] ?  
-                        <React.Fragment><FontAwesomeIcon icon="times-circle" className="red"/> {item.checkedOut[0].condition}</React.Fragment>
-                        : <React.Fragment><FontAwesomeIcon icon="check-circle" className="green"/>Available</React.Fragment>
+                        <React.Fragment><img src={ closeIcon } alt="close icon" className="icon"/> {item.checkedOut[0].condition}</React.Fragment>
+                        : <React.Fragment><img src={ checkIcon } alt="check icon" className="icon"/>Available</React.Fragment>
                     } </li>)
                 } else if( field === 'inStock' ){
                             list.push( <li key = {field} > {
@@ -89,7 +89,6 @@ export class Results extends React.Component{
     }
 
     generateResults(items, numberOfItems){
-        // let items = this.props.data;
         // if "items" is an object (only one item was found)
         if(items.id && numberOfItems === undefined){
             return this.generateDescription( items );
@@ -118,8 +117,6 @@ export class Results extends React.Component{
 }
 
 const mapStateToProps = state => ({
-        // data: state.search.data,
-        // searchTerm: state.filter.searchTerm,
         user: state.auth.currentUser,
 });
 

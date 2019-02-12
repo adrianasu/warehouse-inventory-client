@@ -173,3 +173,20 @@ export const firstWord = aString => {
     return spaceIdx === -1 ? aString
         : aString.slice(0, spaceIdx);
 }
+
+const generateExamples = (arr, key) => {
+        let examples = [];
+        // Send only 3 examples.
+        for (let x = 0; x < 3; x++) {
+            // Pick a random element from array
+            let ranElem = Math.floor(Math.random() * arr.length);
+            examples.push(arr[ranElem][key]);
+        }
+        return examples;
+}
+
+export const getExamples = (arr, key) => {
+        return arr.length === 0 ? [' - No examples available'] :
+            arr.length < 3 ? arr.map(item => item[key]) :
+            generateExamples(arr, key);
+    }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addSpace, formatDate, getItem, accessLevelToString } from '../utils/utils';
 import { PUBLIC_ACCESS_LEVEL, ADMIN_ACCESS_LEVEL } from '../utils/list-content';
 import DeleteButton from './delete-button';
 import EditButton from './edit-button';
 import '../css/edit-delete-button.css';
+import redCross from '../images/red-cross.png';
+import greenCheck from '../images/green-check.png';
 
 export class ModalContent extends React.Component{
 
@@ -23,8 +24,8 @@ export class ModalContent extends React.Component{
                 return;
             } else if( field === "isCheckedOut" ) {
                 list.push(<li key={ field } className="big"> { item[field] ?  
-                        <React.Fragment><FontAwesomeIcon icon="times-circle" className="red"/> {item.checkedOut[0].condition}</React.Fragment>
-                        : <React.Fragment><FontAwesomeIcon icon="check-circle" className="green" />Available</React.Fragment>
+                            <React.Fragment><img src={ redCross } alt="Reject icon" className="icon"/>{item.checkedOut[0].condition}</React.Fragment>
+                            : <React.Fragment><img src={ greenCheck } alt="check icon" className="icon"/>Available</React.Fragment>
                     } </li>)  
             } else if( field === 'inStock' ){
                 list.push( <li key = {field} > {

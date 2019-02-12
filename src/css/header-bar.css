@@ -30,9 +30,9 @@ header .logo {
 }
 
 .header-icon{
-    color: #fcf9f4;
-    font-size: 1.4em;
     margin-right: .5em;
+    width: 1.1em;
+    filter: invert(100%);
 }
 
 header .logo .tooltiptext{
@@ -46,25 +46,28 @@ header .tooltiptext{
 .user-info {
     background-color: #3e3838;
     color: white;
-    text-align: right;
     height: 20px;
-    font-size: .9em;
+    font-size: .8em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
-.user-info p{
-    margin-block-start: 0;
-    margin-block-end: 0;
-    padding-right: 1em;
-    text-align: right;
+.user-info img{
+    filter: invert(100%);
+    background: none;
+    height: 15px;
 }
 
 .user-info span {
-    padding-left: 10%
+    padding-left: .5em;
+    padding-right: .5em;
 }
 
 .user-info .tooltiptext{
-    font-size: 1.2em;
-    left: -20px;
+    font-size: 1.1em;
+    left: -35px;
+    width: 5em;
 }
 
 .site-nav ul{
@@ -138,6 +141,15 @@ header .tooltiptext{
 
     .header-icon{
         font-size: 1.5em;
+    }
+
+    .user-info{
+        font-size: 1.1em;
+        height: 25px;
+    }
+
+    .user-info img {
+        height: 20px;
     }
 
 }

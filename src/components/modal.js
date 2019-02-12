@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import closeIcon from '../images/close.png';
 
 import '../css/modal.css';
 
@@ -33,7 +33,7 @@ export class Modal extends React.Component{
                     <button  
                         onClick={this.handleClick.bind(this)}
                         className="close-button">
-                       <FontAwesomeIcon icon="times"/>
+                            <img src={ closeIcon } alt="close icon" className="icon"/>
                     </button>
                     {this.props.children}
                 </div>

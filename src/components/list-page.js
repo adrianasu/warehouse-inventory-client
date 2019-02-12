@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import ListTable from './list-table';
+import createIcon from '../images/create.png';
 
 import '../css/list-page.css';
 
@@ -140,9 +140,8 @@ export class ListPage extends React.Component{
                         onClick={ this.handleClick.bind(this) }
                         className="tooltip">
                         <span className="tooltiptext">Create new one.</span>
-                        <FontAwesomeIcon 
-                            icon={ ['far', 'file-plus'] }
-                             />
+                        <img src={ createIcon } alt="create icon" className="create-icon"/>
+                        
                     </button>
                 }
                 <p> { this.message(reportType) } </p> 

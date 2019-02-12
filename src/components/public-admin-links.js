@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter }  from 'react-router-dom';
 import { closeSideDrawer } from '../actions/side-drawer';
 import { underlineOption } from '../actions/underline-option';
 import { capitalize } from '../utils/utils';
+import checkInIcon from '../images/check-in.png';
+import checkOutIcon from '../images/check-out.png';
+import userFileIcon from '../images/user-file.png';
+import manageIcon from '../images/manage.png';
+import reportIcon from '../images/report.png';
 
 export class PublicAdminLinks extends React.Component{
     closeOrUnderline(option) {
@@ -45,11 +49,11 @@ export class PublicAdminLinks extends React.Component{
 
     render(){
         const options = [
-            {name: 'check-in', icon: 'inbox-in', handleClick: this.handleCheckIn.bind(this)},
-            {name: 'check-out', icon:'cart-plus', handleClick: this.handleCheckOut.bind(this)},
-            {name: 'account', icon: 'file-user', handleClick: this.handleAccount.bind(this)}, 
-            {name: 'manage', icon: 'list-alt', handleClick: this.handleManage.bind(this)},
-            {name: 'reports', icon: 'chart-bar', handleClick: this.handleReports.bind(this)},
+            {name: 'check-in', icon: checkInIcon, handleClick: this.handleCheckIn.bind(this)},
+            {name: 'check-out', icon: checkOutIcon , handleClick: this.handleCheckOut.bind(this)},
+            {name: 'account', icon: userFileIcon , handleClick: this.handleAccount.bind(this)}, 
+            {name: 'manage', icon: manageIcon , handleClick: this.handleManage.bind(this)},
+            {name: 'reports', icon: reportIcon , handleClick: this.handleReports.bind(this)},
         ];
         
         
@@ -60,7 +64,7 @@ export class PublicAdminLinks extends React.Component{
                     className={this.props.activeOption === option.name ? "show-active" : null}
                     onClick={ option.handleClick }>
                     <span className="tooltiptext">{ capitalize(option.name) }</span>
-                    <FontAwesomeIcon icon={ option.icon } className="header-icon" />
+                    <img src={ option.icon } alt="icon" className="header-icon"/>                    
                     {
                         this.props.fromSideDrawer ? `  ${option.name}` : ''
                     }

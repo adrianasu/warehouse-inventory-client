@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchData } from '../actions/fetch-data';
 import { saveQueryValues } from '../actions/query-values';
 import { showModal } from '../actions/modal';
-import '../css/manage-page.css'
+import '../css/manage-page.css';
+import gearIcon from '../images/department.png';
+import boxIcon from '../images/box.png';
+import employeeIcon from '../images/employee.png';
+import manufacturerIcon from '../images/manufacturer.png';
+import toolboxIcon from '../images/toolbox.png';
+import usersIcon from '../images/users.png';
+import wrenchIcon from '../images/wrench.png';
 
 export class ManagePage extends React.Component{
     constructor(){
@@ -48,20 +54,21 @@ export class ManagePage extends React.Component{
 
     generateButtons(){
         const options = {
-            'items': {icon: ['far', 'toolbox'], color: 'lightbrown'},
-            'products': { icon: ['far', 'wrench'], color: 'lightbrown'},
-            'categories': {icon: ['far', 'boxes'], color: 'lightbrown'}, // PRO icon
-            'manufacturers': {icon: ['far', 'industry-alt'], color: 'lightbrown'},
-            'departments': { icon: ['far', 'users'], color: 'lightbrown'},
-            'employees': {icon: ['fal', 'user-hard-hat'], color: 'lightbrown'}, // PRO icon
-            'users': {icon: ['far', 'user'], color: 'lightbrown'}
+            'items': {icon: toolboxIcon, color: 'lightbrown'},
+            'products': { icon: wrenchIcon, color: 'lightbrown'},
+            'categories': {icon: boxIcon, color: 'lightbrown'}, // PRO icon
+            'manufacturers': {icon:  manufacturerIcon, color: 'lightbrown'},
+            'departments': { icon: gearIcon, color: 'lightbrown'},
+            'employees': {icon: employeeIcon, color: 'lightbrown'}, // PRO icon
+            'users': {icon: usersIcon, color: 'lightbrown'}
         };
     
         return Object.keys(options).map( (option, key) => 
             <li key={key}
                 className={ `background-${options[option].color}` }>
-                <FontAwesomeIcon 
-                    icon={ options[option].icon }
+                <img
+                    src={ options[option].icon }
+                    alt="icon"
                     className="manage-icon" />
                 <button 
                     name={ this.makeItSingular(option) } 

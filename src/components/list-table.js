@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { addSpace, accessLevelToString } from '../utils/utils';
 import { getKeys } from '../utils/list-content';
 import { showModal } from '../actions/modal';
 import '../css/list-table.css';
+import checkIcon from '../images/check.png';
+import closeIcon from '../images/close.png';
+import moreIcon from '../images/more.png';
 
 export class ListTable extends React.Component{
     // show details of the item in a modal
@@ -42,8 +44,8 @@ export class ListTable extends React.Component{
             } else if( title === 'consummable' ){
                row.push( <td key ={title} > {
                                 item[title] ? 
-                                <FontAwesomeIcon icon={ ['far', 'check'] } />
-                                : <FontAwesomeIcon icon='times'/> 
+                            <img src={ checkIcon } alt="check icon" className="check-icon"/>
+                            : <img src={ closeIcon } alt="close icon" className="close-icon"/>
                             } </td>);
             } else if (title === 'usefulLife') {
                 row.push( <td key={title} > {
@@ -53,8 +55,8 @@ export class ListTable extends React.Component{
                 // This column header is "Available"
                 row.push( <td key={title} > {
                             item[title] === true ? 
-                            <FontAwesomeIcon icon='times'/> 
-                            : <FontAwesomeIcon icon={ ['far', 'check'] }/>
+                            <img src={ checkIcon } alt="check icon" className="check-icon"/>
+                            : <img src={ closeIcon } alt="close icon" className="close-icon"/>
                         } </td>)
             
             }else if( title === 'accessLevel' ){
@@ -64,7 +66,7 @@ export class ListTable extends React.Component{
             }
         })
             row.push( <td key="more">
-                    <FontAwesomeIcon icon={ ['far', 'ellipsis-v'] }/>
+                    <img src={ moreIcon } alt="more icon" className="more-icon"/>
                  </td>)
         return row;
     }

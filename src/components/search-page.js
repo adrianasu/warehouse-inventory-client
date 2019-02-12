@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SearchForm from './search-form';
 import { showModal } from '../actions/modal';
 import { fetchOptions } from '../actions/fetch-options';
 import { capitalize, firstWord } from '../utils/utils';
+import lightbulb from '../images/lightbulb.png';
 import '../css/search-page.css';
 
 export class SearchPage extends React.Component {
@@ -62,7 +62,7 @@ export class SearchPage extends React.Component {
                 {/* Show examples in demo. */}
                 <h1 className="tooltip">Search Items
                     <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
-                    <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                    <img src={ lightbulb } alt="Lightbulb icon" className="icon"/>                    
                 </h1>
                 <SearchForm /> 
                 <p> { this.props.isLoading ? "Loading..." : ""} </p>

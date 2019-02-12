@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {withRouter} from 'react-router-dom';
 
+import { addSpace } from '../utils/utils';
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
+import infoIcon from '../images/info.png';
 import Results from './results';
 import '../css/search-results.css';
-import { addSpace } from '../utils/utils';
 
 export class SearchResults extends React.Component{
     constructor(props){
@@ -110,7 +110,7 @@ export class SearchResults extends React.Component{
                 <div className="results-header">
                     <h1>{ title } Results</h1>
                     <p> 
-                        <FontAwesomeIcon icon="info-circle" className="icon"/>
+                        <img src={ infoIcon } alt="Information icon" className="icon"/>                        
                         <span className="space">{ this.message() }</span>
                     </p>
                 </div>

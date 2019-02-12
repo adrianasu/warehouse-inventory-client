@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { withRouter } from 'react-router-dom';
 
 import Hamburguer from './hamburguer';
@@ -10,6 +9,9 @@ import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 import { landing } from  '../actions/landing';
 import logo from '../images/logo.png';
+import levelIcon from '../images/level.png';
+import userIcon from '../images/user.png';
+
 import { underlineOption } from '../actions/underline-option';
 import '../css/header-bar.css';
 
@@ -59,10 +61,16 @@ export class HeaderBar extends React.Component {
                 {/* If user is logged in, display his name and access level */}
                 <div className='user-info'>
                 { !this.props.loggedIn ? null :
-                    <p><FontAwesomeIcon icon="user-circle" /> {user.employee.firstName} {user.employee.lastName } 
-                    <span className="tooltip"><FontAwesomeIcon icon="star" />{ accessLevelToString(user.accessLevel) }
-                    <span className="tooltiptext">User access level</span></span>
-                    </p>}
+                    <React.Fragment>
+                        <img src={ userIcon } alt="user icon" className="user-info"/>
+                        <span> {user.employee.firstName} {user.employee.lastName } </span>
+                        <img src={ levelIcon } alt="shield icon" className="user-info"/>
+                        <span className="tooltip">
+                            { accessLevelToString(user.accessLevel) }
+                            <span className="tooltiptext">User access level</span>
+                        </span>
+                    </React.Fragment>
+                    }
                 </div>
             </header>
         );

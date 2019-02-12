@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactToPrint from 'react-to-print';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import AccountForm from './account-form';
 import AccountResults from './account-results';
 import { fetchOptions } from '../actions/fetch-options';
+import { getExamples } from '../utils/utils';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
 import { resetData } from '../actions/fetch-data';
 import '../css/account-page.css';
-
+import lightbulb from '../images/lightbulb.png';
+import printer from '../images/printer.png';
 
 class AccountPage extends React.Component{
 
@@ -25,13 +26,9 @@ class AccountPage extends React.Component{
     }
 
     examples(){
-        let ids = [];
-        // Display only 5 ids.
         let employees = this.props.options.employee;
-        for( let x=0; x < 5; x++ ){
-            ids.push(employees[x].id);
-        }
-        return <span>Employee IDs e.g. { ids.join(", ")}</span>
+        let ids = getExamples(employees, 'id');
+        return <span>Employee IDs: { ids.join(", ")}</span>
     }
 
     render(){
@@ -43,7 +40,7 @@ class AccountPage extends React.Component{
                     <React.Fragment>
                         <h1 className="tooltip">Account
                             <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
-                            <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                            <img src={ lightbulb } alt="Lightbulb icon" className="icon"/>
                         </h1>
                         <AccountForm />
                     </React.Fragment>
@@ -53,8 +50,8 @@ class AccountPage extends React.Component{
                     <div className="account-results">
                         <ReactToPrint
                             trigger={() => 
-                                <button className="right tooltip">
-                                    <FontAwesomeIcon icon="print" />
+                                <button className="right tooltip transparent">
+                                    <img src={ printer } alt="Printer icon" className="icon"/>
                                     <span className="tooltiptext">Print</span>
                                 </button>}
                             content={() => this.componentRef }

@@ -1,21 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { doCheckInOrOut } from '../actions/check-in-out';
+import { fetchOptions } from '../actions/fetch-options';
 import Input from './input';
 import { required, nonEmpty } from '../utils/validators';
+import question from '../images/question.png';
+import {showModal } from '../actions/modal';
 import '../css/check-in-form.css';
 
+
 class CheckInForm extends React.Component{
+
+      displayError() {
+          let modalProps = this.props.hasErrored.message;
+          let modalType = 'ERROR_CHECK_MODAL';
+          this.props.showModal(modalType, modalProps);
+      }
+
+      displayCheckModal(){
+          let modalType = 'CHECK_MODAL';
+          let modalProps = {
+              data: this.props.data,
+              checkType: 'check-in'
+          };
+          return this.props.showModal(modalType, modalProps)
+      }
  
     onSubmit( values ){
-        return this.props.doCheckInOrOut( values, 'check-in' )        
+        return this.props.doCheckInOrOut( values, 'check-in' )
+            .then(() => {
+                if( this.props.data ) {
+                    this.displayCheckModal()
+                }else if( this.props.hasErrored ){
+                    this.displayError()
+                }
+            })
     }
 
     render(){
-           let info = <div className="tooltip">Employee ID<FontAwesomeIcon icon="question-circle" className="space orange"/>
+           let info = <div className="tooltip">Employee ID
+                    <img src={ question } alt="Question mark" className="icon"/>
                     <span className="tooltiptext">Employee ID of the person returning the item</span>
                 </div>;
 
@@ -50,12 +76,17 @@ class CheckInForm extends React.Component{
 }
   
 const mapStateToProps = state => ({
-    options: state.options.options
+    options: state.options.options,
+    data: state.check.data,
+    hasErrored: state.check.error,
+    isLoading: state.check.loading,
 })
 
 const mapDispatchToProps = ({
-    doCheckInOrOut: doCheckInOrOut,
-})
+    doCheckInOrOut,
+    fetchOptions,
+    showModal,
+});
 
 CheckInForm = connect(
     mapStateToProps,

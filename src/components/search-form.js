@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
 import { fetchData } from '../actions/fetch-data';
@@ -9,6 +8,7 @@ import Input from './input';
 import { required, nonEmpty, noSpecialChars } from '../utils/validators';
 import { saveQueryValues } from '../actions/query-values';
 import '../css/search-form.css';
+import questionIcon from '../images/question.png';
 
 export class SearchForm extends React.Component{
 
@@ -37,7 +37,7 @@ export class SearchForm extends React.Component{
                     onSubmit={ this.props.handleSubmit( value => this.onSubmit( value ))}>
                     <label htmlFor="searchTerm" className="tooltip">{ label }
                         <span className="tooltiptext">Keyword: a word or few letters contained in the name of a product, model, warehouse, category or manufacturer.</span>
-                        <FontAwesomeIcon icon="question-circle" className="space tooltip"/>
+                        <img src={questionIcon} alt="question icon" className="icon"/>
                     </label>
                     <Field 
                         component={ Input } 

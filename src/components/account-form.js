@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchData, resetData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../css/account-form.css';
 
 export class AccountForm extends React.Component{
@@ -72,7 +71,7 @@ export class AccountForm extends React.Component{
                                 this.props.pristine || this.props.submitting
                             }
                             onClick={ this.resetForm.bind(this) }>
-                            <FontAwesomeIcon icon="times" />
+                            X
                         </button>
                     <button 
                         className="main"

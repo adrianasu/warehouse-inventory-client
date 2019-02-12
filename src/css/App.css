@@ -58,3 +58,11 @@ ul{
     opacity: 1;
 }
 
+.icon {
+    width: 1em;
+    margin: auto .2em;
+}
+
+.transparent{
+    background: transparent;
+}

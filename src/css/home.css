@@ -34,8 +34,12 @@
 .home li{
     text-transform: initial;
     margin-bottom: .5em;
+    padding-top: .1em;
+    padding-bottom: .1em;
     text-align: left;
     border-radius: 3px;
+    display: flex;
+    align-items: center;
 }
 
 .home li:nth-of-type(odd){
@@ -44,8 +48,8 @@
 
 
 .home-icon{
-    color: black;
-    margin-right: .5em;
+    margin: auto .5em;
+    width: 1.2em;
 }
 
 
@@ -72,5 +76,6 @@
 @media (min-width: 800px) {
     .home {
         width: 50%;
+        font-size: 1.1em;
     }
 }

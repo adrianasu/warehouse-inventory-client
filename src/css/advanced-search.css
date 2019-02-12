@@ -9,6 +9,12 @@
     padding: .4em .2em;
 }
 
+.advanced-search-form input[type="text"],
+.advanced-search-form select {
+    width: 95%;
+
+}
+
 .advanced-search-form .radio-fields{
     display: flex;
     margin: 2%;

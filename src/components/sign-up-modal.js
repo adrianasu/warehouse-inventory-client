@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { hideModal }  from '../actions/modal';
 import { fetchOptions } from '../actions/fetch-options';
+import { getExamples } from '../utils/utils';
+import { hideModal }  from '../actions/modal';
+import lightbulb from '../images/lightbulb.png';
 import Modal from './modal';
 import SignupForm from './sign-up-form';
 import '../css/sign-up.css';
@@ -20,25 +21,13 @@ export class SignUpModal extends React.Component{
     }
     }
 
-    getExamples(ids) {
-        let examples = [];
-        // Get only three examples
-        for( let x=0; x< 3; x+=1 ){
-            // Pick a random element from array
-            let ranElem = Math.floor(Math.random() * ids.length);
-            examples.push(ids[ranElem].id);
-        }
-        return examples.join(", ");
-    }
+   
 
     examples(){
         // Get ids of employees with no user account
         let idsWithNoAccount = this.props.options.idsWithNoAccount;
-        return idsWithNoAccount.length === 0 ? 
-            <p>No employee IDs available</p>
-            : idsWithNoAccount.length <= 3 ?
-                 <p>Employee IDs: { idsWithNoAccount.map(item => item.id).join(", ") }</p>
-                 : <p>Employee IDs: { this.getExamples(idsWithNoAccount) }</p>;
+        let ids = getExamples( idsWithNoAccount, 'id' );
+        return <p>Employee IDs: { ids.join(", ") }</p>;
     }
     
     render(){
@@ -50,7 +39,7 @@ export class SignUpModal extends React.Component{
                     <span className="tooltiptext">
                         { this.props.options ? this.examples() : '...Loading' }
                     </span>
-                    <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                    <img src={ lightbulb } alt="Lightbulb icon" className="icon"/>
                 </h1>
                     <SignupForm />
                 </div>

@@ -1,30 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import CheckOutForm from './check-out-form';
-import CheckInOrOutResults from './check-in-out-results';
 import { fetchOptions } from '../actions/fetch-options';
+import { getExamples } from '../utils/utils';
+import lightbulb from '../images/lightbulb.png';
 import '../css/check-out-page.css';
 
 class CheckOutPage extends React.Component {
+   
     componentDidMount() {
         // Fetch options to display examples in demo.
-        if (!this.props.options) {
             return this.props.fetchOptions()   
-        }
     }
 
     examples(){
-        let ids = [];
-        let barcodes = [];
         let employees = this.props.options.employee;
         let checkedInItems = this.props.options.checkedIn;
-        // Display only 3 ids and 3 barcodes.
-        for( let x=0; x < 3; x++ ){
-            ids.push(employees[x].id);
-            barcodes.push(checkedInItems[x].barcode);
-        }
+        let barcodes = getExamples(checkedInItems, 'barcode');
+        let ids = getExamples(employees, 'id');
         return <span>Barcodes { barcodes.join(", ")}. Employee IDs { ids.join(", ")}.</span>
     }
 
@@ -33,10 +27,9 @@ class CheckOutPage extends React.Component {
             <div className="check-out">
                 <h1 className="tooltip">Check Out
                     <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
-                    <FontAwesomeIcon icon="lightbulb" className="space orange"/>
+                    <img src={ lightbulb } alt="Lightbulb cartoon" className="icon"/>
                 </h1>
-                <CheckOutForm />
-                <CheckInOrOutResults checkType="checkOut"/>
+                <CheckOutForm /> 
             </div>
         );
     }

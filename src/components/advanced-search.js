@@ -36,7 +36,7 @@ class AdvancedSearch extends React.Component{
 
     onSubmit( values ){
         values = this.getIdsAndValues(values);
-    console.log(values)
+
         let query = {
             method: 'GET',
             searchTerm: values,

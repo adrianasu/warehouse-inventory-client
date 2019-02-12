@@ -51,9 +51,10 @@
 
 .landing-page .icon{
     float: left;
-    font-size: 2em;
+    width: 3em;
     margin-right: .5em;
-    margin-top: .4em;
+    margin-top: 1em;
+    background: white;
 }
 
 .landing-page li{
@@ -277,7 +278,7 @@
         width: 50%;
     }
 
-    .land-container .lab{
+   .lab{
         clear: right;
         width: 60%;
         margin: 1.5em 4em;

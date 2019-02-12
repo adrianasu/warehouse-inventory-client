@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate } from '../utils/utils';
 import '../css/low-stock-table.css';
 
@@ -24,12 +23,7 @@ export function LowStockTable( props ){
                     <td>{ product.model }</td>
                 </tr>
                 <tr>
-                    <td>Shortfall
-                         <FontAwesomeIcon 
-                            className="space orange"
-                            icon={['far', 'tachometer-slowest']}
-                        />
-                    </td>
+                    <td>Shortfall</td>
                     <td>{ props.data.shortfall }</td>
                 </tr>
                 <tr>

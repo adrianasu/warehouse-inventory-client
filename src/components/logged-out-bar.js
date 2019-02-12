@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
 import { fetchData, resetData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
 import { landing } from '../actions/landing';
+import signInIcon from '../images/sign-in.png';
+import signUpIcon from '../images/sign-up.png';
+import infoIcon from '../images/info.png';
 
 export class LoggedOutBar extends React.Component{
 
@@ -82,9 +84,8 @@ export class LoggedOutBar extends React.Component{
                     <button 
                     onClick={ this.logIn.bind(this) }>
                     <span className="tooltiptext">Log In</span>
-                    <FontAwesomeIcon 
-                            icon='sign-in-alt'
-                            className="header-icon" />
+                    <img src={ signInIcon } alt="sign in icon" className="header-icon"/>
+                    
                     {
                         this.props.fromSideDrawer ? '  Log In' : ''
                     }
@@ -93,9 +94,8 @@ export class LoggedOutBar extends React.Component{
                     <button 
                     onClick={ this.signUp.bind(this) }>
                      <span className="tooltiptext">Sign Up</span>
-                    <FontAwesomeIcon 
-                            icon='user-plus'
-                            className="header-icon" />
+                    <img src={ signUpIcon } alt="sign up icon" className="header-icon"/>
+                    
                     {
                         this.props.fromSideDrawer ? '  Sign Up' : ''
                     }
@@ -104,9 +104,7 @@ export class LoggedOutBar extends React.Component{
                     <button 
                         onClick={ this.infoPage.bind(this) }>
                     <span className="tooltiptext">Info Page</span>
-                    <FontAwesomeIcon 
-                            icon='info-circle'
-                            className="header-icon" />   
+                    <img src={ infoIcon } alt="info icon" className="header-icon"/>
                 </button></li>
             </React.Fragment>
          )

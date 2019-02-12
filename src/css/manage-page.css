@@ -46,10 +46,8 @@
 
 .manage-icon{
     display: block;
-    width: 100%;
+    width: 45%;
     margin: .6em auto 0;
-    color: black;
-    font-size: 1.4em;
 }
 
 
@@ -65,7 +63,7 @@
     }
 
     .manage-page ul {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .manage-page button {

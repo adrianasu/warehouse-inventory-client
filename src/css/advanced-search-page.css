@@ -40,6 +40,13 @@
 
 }
 
+@media screen and (min-width: 500px) {
+    .advanced-search {
+        width: 55%;
+    }
+}
+
+
 @media screen and (min-width: 750px) {
     .advanced-search {
         width: 40%;

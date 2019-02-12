@@ -35,9 +35,8 @@
     width: 100%;
     background-color: transparent;
     text-align: right;
-    padding-right: 2.5em;
+    padding-right: 1.5em;
     padding-top: 1em;
-    font-size: 1.2em;
     transition: font-size .6s ease;
 }
 
@@ -46,8 +45,4 @@
     color: #834c69;
     outline: none;
     cursor: pointer;
-}
-
-.delete-button{
-    
 }

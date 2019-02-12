@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AdvancedSearch from './advanced-search';
 import { showModal } from '../actions/modal';
 import '../css/advanced-search-page.css';
+import question from '../images/question.png';
 
 export class AdvancedSearchPage extends React.Component{
 
@@ -25,7 +25,7 @@ export class AdvancedSearchPage extends React.Component{
             <div className="advanced-search">
                 <h1 className="tooltip">Advanced Search  
                     <span className="tooltiptext">Enter or select one or more values to narrow your item's search. </span>
-                    <FontAwesomeIcon icon="question-circle" className="space orange"/>
+                    <img src={ question } alt="Question mark" className="icon"/>
                 </h1>
                 <AdvancedSearch />
                 <p className='loader'>{ this.props.isLoading ? "...Loading" : ""}</p>

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactToPrint from 'react-to-print';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { checkInOrOutReset } from '../actions/check-in-out';
 import CheckInOutTable from './check-in-out-table';
-import { hideModal }  from '../actions/modal';
+import { hideModal, showModal }  from '../actions/modal';
 import Modal from './modal';
+import printer from '../images/printer.png';
+import '../css/check-modal.css';
 
 export class  CheckModal extends React.Component{
     
@@ -15,29 +16,33 @@ export class  CheckModal extends React.Component{
         this.props.hideModal();
     }
 
+
     render(){
- 
         return(
             <Modal onClose={this.onClose.bind(this)}>
                 <ReactToPrint
-                    trigger={() => <button><FontAwesomeIcon icon="print" /></button>}
+                    trigger={() =>  <button className="check-modal-button">
+                                    <img src={ printer } alt="Printer icon" className="icon"/>
+                                    </button>}
                     content={() => this.componentRef }
                     closeAfterPrint={true}
                     />
-                    <h1>{ this.props.data.product.name }</h1>
+                    <h1 className="check-modal-title">{ this.props.data.product }</h1>
                     <CheckInOutTable 
-                        ref={el => (this.componentRef = el )} 
-                        data={ this.props } />
+                        ref={el => ( this.componentRef = el )} 
+                        data={ this.props.data }
+                        checkType={ this.props.checkType} />
             </Modal>
         )
     }
 
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps = ({
     hideModal,
     checkInOrOutReset,
-};
+    showModal,
+});
 
 const mapStateToProps = state => ({
     data: state.modal.modalProps.data,

@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { accessLevelToString } from '../utils/utils';
 import { getUserPermissions } from '../utils/permissions-list';
 import { landing } from '../actions/landing';
 import '../css/home.css';
+import checkIcon from '../images/check.png';
+
 
 
 class Home extends React.Component{
@@ -15,9 +16,7 @@ class Home extends React.Component{
         return permissions.map( 
             (perm, key) => 
                 <li key={ key }>
-                    <FontAwesomeIcon 
-                        icon="check"
-                        className="home-icon"/>
+                    <img src={ checkIcon } alt="check icon" className="home-icon"/>
                     { perm }
                 </li>)
     }

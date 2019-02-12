@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import CheckModal from './check-modal';
 import { showModal } from '../actions/modal';
 
 export class CheckInOrOutResults extends React.Component{
@@ -23,17 +23,18 @@ export class CheckInOrOutResults extends React.Component{
         }
     }
 
-    displayCheck(){
-        let modalProps = { 
-            data: this.props.data,
-            checkType: this.props.checkType
-        };
-        let modalType = 'CHECK_MODAL';
-        this.props.showModal( modalType, modalProps );
-    }
+    // displayCheck(){
+    //     if( this.props.data ){
+    //     let modalProps = { 
+    //         data: this.props.data,
+    //         checkType: this.props.checkType
+    //     };
+    //     let modalType = 'CHECK_MODAL';
+    //     this.props.showModal( modalType, modalProps );
+    //     }
+    // }
 
-    // Get either the number of items or the message 
-    // sent by the server.
+  
     message(){
         let result = this.props.data;
         if( result && result.message ){
@@ -43,29 +44,25 @@ export class CheckInOrOutResults extends React.Component{
     }
 
     render(){
+
         return(
             <div>
                 <p className="loader">{ this.props.isLoading ? "...Loading" : ""}</p>
                 <p> { this.message() } </p> 
                 
-                { this.props.data ? this.displayCheck() : null }
-
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = state => ({
         data: state.check.data,
         hasErrored: state.check.error,
         isLoading: state.check.loading,
-    }
-}
+})
 
-const mapDispatchToProps = dispatch => ({
-    showModal: (modalType, modalProps) =>
-        dispatch(showModal(modalType, modalProps)),
+const mapDispatchToProps = ({
+    showModal
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckInOrOutResults);

@@ -27,6 +27,7 @@
     width: 100%;
     cursor: pointer;
     padding: 1em;
+    font-size: .9em;
     background-color: transparent;
     border: none;
 }
@@ -46,10 +47,8 @@
 
 .report-icon{
     display: block;
-    width: 100%;
+    width: 50%;
     margin: 1em auto 0;
-    color: black;
-    font-size: 1.4em;
 }
 
 @media screen and (orientation: landscape) {
@@ -75,7 +74,7 @@
 
 @media screen and (min-width: 750px) {
     .reports-page {
-        width: 40%;
+        width: 50%;
     }
 
     .reports-page h1 {

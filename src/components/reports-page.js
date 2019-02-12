@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import '../css/reports-page.css';
+import banIcon from '../images/ban.png';
+import warehouseIcon from '../images/warehouse.png';
+import lowBatteryIcon from '../images/low-battery.png';
+import heartIcon from '../images/heart.png';
+
 
 export class ReportsPage extends React.Component{
     constructor(){
@@ -40,21 +44,22 @@ export class ReportsPage extends React.Component{
 
     generateButtons(){
         const options = {
-            'checked out': {icon: 'ban', color: 'lightbrown'},
-            'on shelf': { icon:'inventory', color: 'lightbrown'},
-            'low stock': {icon: ['far', 'tachometer-slowest'], color: 'lightbrown'}, // PRO icon
-            'useful life': {icon: ['far', 'heartbeat'], color: 'lightbrown'}
+            'checked out': {icon: banIcon, color: 'lightbrown'},
+            'on shelf': { icon: warehouseIcon, color: 'lightbrown'},
+            'low stock': {icon: lowBatteryIcon, color: 'lightbrown'}, // PRO icon
+            'useful life': {icon: heartIcon, color: 'lightbrown'}
         };
-
+// heartIcon by Webalys https://www.kameleon.pics/
     
 
         return Object.keys(options).map( (option, key) => 
             
             <li key={key}
                 className={ `background-${options[option].color}` }>
-                <FontAwesomeIcon 
-                    icon={ options[option].icon }
-                    className="report-icon" />
+                <img src={ options[option].icon }
+                    className="report-icon"
+                    alt="icon" />
+           
                 <button 
                     name={option} 
                     onClick={this.onClick} 
@@ -84,8 +89,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = ({
-    fetchData: fetchData,
-    showModal: showModal,
+    fetchData,
+    showModal,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) ( ReportsPage );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { login } from '../actions/auth';
 import { landing } from '../actions/landing';
@@ -11,6 +10,7 @@ import tools from '../images/tools.jpg';
 import girl from '../images/girl-scanning.jpg';
 import lab from '../images/lab-equipment.jpg';
 import logo from '../images/logo.png';
+import lightbulb from '../images/lightbulb.png';
 
 export class LandingPage extends React.Component{
     // Set landing state to hide header-bar
@@ -97,7 +97,7 @@ export class LandingPage extends React.Component{
             </div>
             <div className="try land-container">
                 <h3>Try our app</h3>
-                <FontAwesomeIcon icon="lightbulb" className="icon orange"/>
+                <img src={ lightbulb } alt="Lightbulb cartoon" className="icon"/>
                 <p>
                     You'll find lightbulbs along our demo. Click on them to get
                     examples that can be entered to get information from
