@@ -19,21 +19,25 @@ export class ManagePage extends React.Component{
         this.onClick = this.onClick.bind(this);
     }
 
- displayError() {
-     let modalProps = this.props.error.message;
-     let modalType = 'ERROR_MODAL';
-     this.props.showModal(modalType, modalProps);
- }
+    displayError() {
+        let modalProps = this.props.error.message;
+        let modalType = 'ERROR_MODAL';
+        this.props.showModal(modalType, modalProps);
+    }
 
- componentDidUpdate(prevProps) {
-     if (this.props.hasErrored &&
-         !prevProps.hasErrored) {
-         this.displayError()
-     }
- }
+    componentDidUpdate(prevProps) {
+        if (this.props.hasErrored &&
+            !prevProps.hasErrored) {
+            this.displayError()
+        }
+    }
+ 
+    makeItSingular(noun){
+        return noun.slice(-3) === 'ies' ? noun.substring(0, noun.length-3)+'y' : noun.substring(0, noun.length-1);
+    }
 
-    onClick(e){
-        let selectedOption = e.target.name;
+    onClick(option){
+        let selectedOption = this.makeItSingular(option);
         let query = {
             method: 'GET',
             searchType: 'searchAll',
@@ -48,33 +52,28 @@ export class ManagePage extends React.Component{
         })
     }
 
-    makeItSingular(noun){
-        return noun.slice(-3) === 'ies' ? noun.substring(0, noun.length-3)+'y' : noun.substring(0, noun.length-1);
-    }
-
     generateButtons(){
         const options = {
-            'items': {icon: toolboxIcon, color: 'lightbrown'},
-            'products': { icon: wrenchIcon, color: 'lightbrown'},
-            'categories': {icon: boxIcon, color: 'lightbrown'}, // PRO icon
-            'manufacturers': {icon:  manufacturerIcon, color: 'lightbrown'},
-            'departments': { icon: gearIcon, color: 'lightbrown'},
-            'employees': {icon: employeeIcon, color: 'lightbrown'}, // PRO icon
-            'users': {icon: usersIcon, color: 'lightbrown'}
+            'items': {icon: toolboxIcon },
+            'products': { icon: wrenchIcon },
+            'categories': {icon: boxIcon }, 
+            'manufacturers': {icon:  manufacturerIcon },
+            'departments': { icon: gearIcon },
+            'employees': {icon: employeeIcon }, 
+            'users': {icon: usersIcon }
         };
     
         return Object.keys(options).map( (option, key) => 
             <li key={key}
-                className={ `background-${options[option].color}` }>
-                <img
-                    src={ options[option].icon }
-                    alt="icon"
-                    className="manage-icon" />
+                className="background-lightbrown">
                 <button 
-                    name={ this.makeItSingular(option) } 
-                    onClick={ this.onClick } 
+                    onClick={ () => this.onClick(option) } 
                     key={ option }>
-                        { option }
+                    <img
+                        src={ options[option].icon }
+                        alt="icon"
+                        className="manage-icon" />
+                    { option }
                 </button>
             </li> 
         )

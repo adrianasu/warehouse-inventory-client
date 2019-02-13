@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import ListTable from './list-table';
-import createIcon from '../images/create.png';
 
 import '../css/list-page.css';
 
@@ -129,26 +128,24 @@ export class ListPage extends React.Component{
         let noCreateButton = ['checked-out', 'on-shelf', 'useful-life', 'low-stock', 'user'];
         let currData = this.state.currentlyDisplayed
         let reportType = this.props.match.params.type;
+    
         return(
             <div>
                 <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
-            <div className="list-page">
-                <h1>{ reportType.replace("-", " ") } </h1>
-                { 
-                    noCreateButton.includes(reportType) ? null
-                    : <button 
-                        onClick={ this.handleClick.bind(this) }
-                        className="tooltip">
-                        <span className="tooltiptext">Create new one.</span>
-                        <img src={ createIcon } alt="create icon" className="create-icon"/>
-                        
-                    </button>
-                }
-                <p> { this.message(reportType) } </p> 
-                <ListTable 
-                    currData={ currData } 
-                    reportType={ reportType }/>
-            </div>
+                <div className="list-page">
+                    <h1>{ reportType.replace("-", " ") } </h1>
+                    { 
+                        noCreateButton.includes(reportType) ? null
+                        : <button 
+                            onClick={ this.handleClick.bind(this) }>
+                            New
+                        </button>
+                    }
+                    <p> { this.message(reportType) } </p> 
+                    <ListTable 
+                        currData={ currData } 
+                        reportType={ reportType }/>
+                </div>
             </div>
         )
     }

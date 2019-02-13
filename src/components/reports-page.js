@@ -28,8 +28,8 @@ export class ReportsPage extends React.Component{
          }
      }
 
-    onClick(e){
-        let selectedOption = e.target.name;
+    onClick(option){
+        let selectedOption = option;
         let searchType = selectedOption.replace(" ", "-");
         return this.props.fetchData({
             method: 'GET',
@@ -44,10 +44,10 @@ export class ReportsPage extends React.Component{
 
     generateButtons(){
         const options = {
-            'checked out': {icon: banIcon, color: 'lightbrown'},
-            'on shelf': { icon: warehouseIcon, color: 'lightbrown'},
-            'low stock': {icon: lowBatteryIcon, color: 'lightbrown'}, // PRO icon
-            'useful life': {icon: heartIcon, color: 'lightbrown'}
+            'checked out': {icon: banIcon },
+            'on shelf': { icon: warehouseIcon },
+            'low stock': {icon: lowBatteryIcon },
+            'useful life': {icon: heartIcon }
         };
 // heartIcon by Webalys https://www.kameleon.pics/
     
@@ -55,15 +55,14 @@ export class ReportsPage extends React.Component{
         return Object.keys(options).map( (option, key) => 
             
             <li key={key}
-                className={ `background-${options[option].color}` }>
-                <img src={ options[option].icon }
-                    className="report-icon"
-                    alt="icon" />
-           
+                className="background-lightbrown"> 
                 <button 
-                    name={option} 
-                    onClick={this.onClick} 
-                    key={option}>{option}
+                    onClick={ () => this.onClick(option) } 
+                    key={option}>
+                    <img src={ options[option].icon }
+                        className="report-icon"
+                        alt="icon" />
+                    {option}
                 </button>
             </li> 
         )

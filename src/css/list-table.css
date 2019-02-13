@@ -32,6 +32,15 @@
     color: lightgray;
 }
 
+.results-table .more-icon {
+    width: .4em;
+}
+
+.results-table .icon {
+    width: 1em;
+}
+
+
 @media screen and (orientation: landscape) {
     .results-table {
         clear: right;

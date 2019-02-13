@@ -44,8 +44,8 @@ export class ListTable extends React.Component{
             } else if( title === 'consummable' ){
                row.push( <td key ={title} > {
                                 item[title] ? 
-                            <img src={ checkIcon } alt="check icon" className="check-icon"/>
-                            : <img src={ closeIcon } alt="close icon" className="close-icon"/>
+                            <img src={ checkIcon } alt="check icon" className="icon"/>
+                            : <img src={ closeIcon } alt="close icon" className="icon"/>
                             } </td>);
             } else if (title === 'usefulLife') {
                 row.push( <td key={title} > {
@@ -55,8 +55,8 @@ export class ListTable extends React.Component{
                 // This column header is "Available"
                 row.push( <td key={title} > {
                             item[title] === true ? 
-                            <img src={ checkIcon } alt="check icon" className="check-icon"/>
-                            : <img src={ closeIcon } alt="close icon" className="close-icon"/>
+                            <img src={ checkIcon } alt="check icon" className="icon"/>
+                            : <img src={ closeIcon } alt="close icon" className="icon"/>
                         } </td>)
             
             }else if( title === 'accessLevel' ){
