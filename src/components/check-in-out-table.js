@@ -1,15 +1,16 @@
 import React from 'react';
 import { formatDate, addSpace } from '../utils/utils.js'
-
+import { connect } from 'react-redux';
 import '../css/check-in-out-table.css';
 
-export default class CheckInOutTable extends React.Component{
+export class CheckInOutTable extends React.Component{
+
     render(){
         // If we're doing check-out get data from the last
         // check-out transaction
         let checkData = this.props.data.checkedOut[0];
         // If we're doing check-in, then get data from 
-        // last check-in transaction.
+        /// last check-in transaction.
         if( this.props.checkType === "checkIn" ){
             checkData = this.props.data.checkedIn[0];
         }
@@ -63,3 +64,5 @@ export default class CheckInOutTable extends React.Component{
         )
     }
 }
+
+export default connect()(CheckInOutTable);

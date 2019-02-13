@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { CheckModal } from '../../components/check-modal';
 
 const data = {
-    product: { name: 'Awesome Product' }
+    product: 'Awesome Product' 
 };
 
 describe('<CheckModal />', () => {
@@ -14,7 +14,7 @@ describe('<CheckModal />', () => {
 
    it('Renders title', () => {
         const wrapper = shallow(<CheckModal data={data} /> );
-        expect(wrapper.contains(<h1>{ data.product.name }</h1>)).toEqual(true);
+        expect(wrapper.find('h1').text()).toEqual(data.product);
    });
 
    it('Dispatches hideModal and checkInOrOutReset on click', () => {
