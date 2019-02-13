@@ -68,6 +68,8 @@ export class LoggedOutBar extends React.Component{
     }
 
     render() {
+        let isTooltip = this.props.fromSideDrawer ? '' : 'tooltip';
+
          return(
             <React.Fragment>
                 <li><button 
@@ -80,30 +82,39 @@ export class LoggedOutBar extends React.Component{
                     onClick={ this.showAvailableItems.bind(this) }
                     >Available Items
                 </button></li>
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                     onClick={ this.logIn.bind(this) }>
-                    <span className="tooltiptext">Log In</span>
+                     {
+                         this.props.fromSideDrawer ? null
+                         : <span className="tooltiptext">Log In</span>
+                     }
                     <img src={ signInIcon } alt="sign in icon" className="header-icon"/>
                     
                     {
                         this.props.fromSideDrawer ? '  Log In' : ''
                     }
                 </button></li>
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                     onClick={ this.signUp.bind(this) }>
-                     <span className="tooltiptext">Sign Up</span>
+                    {
+                        this.props.fromSideDrawer ? null
+                     : <span className="tooltiptext">Sign Up</span>
+                    }
                     <img src={ signUpIcon } alt="sign up icon" className="header-icon"/>
                     
                     {
                         this.props.fromSideDrawer ? '  Sign Up' : ''
                     }
                 </button></li>
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                         onClick={ this.infoPage.bind(this) }>
-                    <span className="tooltiptext">Info Page</span>
+                    {
+                        this.props.fromSideDrawer ? null
+                        : <span className="tooltiptext">Info Page</span>
+                    }
                     <img src={ infoIcon } alt="info icon" className="header-icon"/>
                 </button></li>
             </React.Fragment>

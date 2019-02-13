@@ -38,14 +38,15 @@ export class HeaderOptions extends React.Component{
      }
 
     render(){
-     
+        let isTooltip = this.props.fromSideDrawer ? '' :'tooltip';
         return(
             <ul>
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                         className={this.props.activeOption === "home" ? "show-active" : null}
                         onClick={this.goHome.bind(this) }>
-                    <span className="tooltiptext">Home</span>
+                    { this.props.fromSideDrawer ? null 
+                        : <span className="tooltiptext"> Home </span> }
                     <img src={ homeIcon } alt="Home icon" className="header-icon"/>
                        
                         {
@@ -53,11 +54,12 @@ export class HeaderOptions extends React.Component{
                         }
                     </button>
                 </li> 
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                         className={this.props.activeOption === "search" ? "show-active" : null}
                         onClick={this.goToSearch.bind(this) }>
-                        <span className="tooltiptext">Search</span>
+                        { this.props.fromSideDrawer ? null 
+                            : <span className="tooltiptext">Search</span> }
                         <img src={ searchIcon } alt="search icon" className="header-icon"/>
                         
                             { this.props.fromSideDrawer ? '  Search' : ''}

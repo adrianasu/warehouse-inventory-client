@@ -33,21 +33,28 @@ export class LoggedInBar extends React.Component{
         
         render() {
             let barLinks;
+            let isTooltip = this.props.fromSideDrawer ? '' : 'tooltip';
+
             if( this.props.hasAccessLevel &&
                 this.props.hasAccessLevel >= PUBLIC_ACCESS_LEVEL ){
                     barLinks = <PublicAdminLinks fromSideDrawer={ this.props.fromSideDrawer }/> 
             } else{
                 barLinks = <OverviewLinks fromSideDrawer={ this.props.fromSideDrawer }/>
             }
+
+
             return(
             <React.Fragment>
                
                 {barLinks}
-                <li className="tooltip">
+                <li className={ isTooltip }>
                     <button 
                         value="log-out"
                         onClick={ () => this.logOut() }>
-                        <span className="tooltiptext">Log Out</span>
+                    {
+                        this.props.fromSideDrawer ? null                        
+                        : <span className="tooltiptext">Log Out</span>
+                    }
                         <img src={ signOutIcon } alt="sign out icon" className="header-icon"/>
                         { this.props.fromSideDrawer ? ' Log Out' : ''}
                     </button>

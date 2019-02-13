@@ -55,15 +55,18 @@ export class PublicAdminLinks extends React.Component{
             {name: 'manage', icon: manageIcon , handleClick: this.handleManage.bind(this)},
             {name: 'reports', icon: reportIcon , handleClick: this.handleReports.bind(this)},
         ];
-        
+        let isTooltip = this.props.fromSideDrawer ? '' : 'tooltip';
         
         let buttons = options.map(option =>
-            <li key={option.name} className="tooltip">
+            <li key={option.name} className={ isTooltip }>
                 <button 
                     value={option.name} 
                     className={this.props.activeOption === option.name ? "show-active" : null}
                     onClick={ option.handleClick }>
-                    <span className="tooltiptext">{ capitalize(option.name) }</span>
+                    {
+                        this.props.fromSideDrawer ? null                    
+                        : <span className="tooltiptext">{ capitalize(option.name) }</span>
+                    }
                     <img src={ option.icon } alt="icon" className="header-icon"/>                    
                     {
                         this.props.fromSideDrawer ? `  ${option.name}` : ''
