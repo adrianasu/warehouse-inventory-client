@@ -15,6 +15,7 @@ export class ListTable extends React.Component{
         let itemId = e.currentTarget.dataset.id; 
         let dataType = this.props.reportType;
         let modalType = 'ITEM_MODAL';
+        
         this.props.showModal(modalType, { itemId, dataType });
     }
 

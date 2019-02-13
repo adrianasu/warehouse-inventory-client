@@ -2,6 +2,7 @@ import {
     FETCH_OPTIONS_BEGIN,
     FETCH_OPTIONS_ERROR,
     FETCH_OPTIONS_SUCCESS,
+    DELETE_OPTIONS
 } from '../actions/fetch-options';
 
 const initialState = {
@@ -26,6 +27,10 @@ export default function optionsReducer( state = initialState, action ){
     } else if (action.type === FETCH_OPTIONS_BEGIN) {
         return Object.assign({}, state, {
             loading: true,
+        });
+    } else if (action.type === DELETE_OPTIONS) {
+        return Object.assign({}, state, {
+            initialState
         });
     }
     return state;

@@ -22,6 +22,11 @@ export const fetchOptionsError = error => ({
     error
 });
 
+export const DELETE_OPTIONS = 'DELETE_OPTIONS';
+export const deleteOptions = () => ({
+    type: DELETE_OPTIONS
+});
+
 export const fetchOptions = () => (dispatch) => {
     dispatch(fetchOptionsBegin());
     return fetch(`${ API_BASE_URL }/searchableFields`, {

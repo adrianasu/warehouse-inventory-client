@@ -4,17 +4,29 @@ import { connect } from 'react-redux';
 import { fetchData } from '../actions/fetch-data';
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
-import { getRelatedData } from '../utils/utils'
-import { deleteQueryValues } from '../actions/query-values';
+import { getRelatedData, capitalize } from '../utils/utils'
+import { deleteOptions } from '../actions/fetch-options';
 
 export class ConfirmDelete extends React.Component{
+
+     componentWillUnmount() {
+         // When an item has been deleted, 
+         // the user will be sent back to the 
+         // list, so we need to fetch our updated data.
+         if (this.props.wasDeleted ||
+             this.props.hasErrored ) {
+             // Use last search query values
+             let query = this.props.query;
+             return this.props.fetchData(query)
+         }
+     }
 
     showResultMessage( dataType) {
         // If item was updated, show confirmation message
         if (this.props.wasDeleted) {
-            this.props.deleteQueryValues();
+            this.props.deleteOptions();
             this.props.showModal('CONFIRM_MODAL', {
-                message: `${ dataType } was deleted.`
+                message: `${ capitalize(dataType) } was deleted.`
             })
         // If an error occurred, let the user know
         } else if (this.props.hasErrored) {
@@ -32,9 +44,7 @@ export class ConfirmDelete extends React.Component{
              dataType
         })
    .then(() => {
-        this.props.hideModal();
-        this.props.hideForm();
-        this.showResultMessage(itemId, dataType);
+        this.showResultMessage(dataType);
        })
                
     }
@@ -75,15 +85,16 @@ export class ConfirmDelete extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    dataType: state.showForm.formProps.dataType,
+    dataType: state.modal.modalProps.dataType,
     error: state.search.error,
     hasErrored: state.search.error !== null,
     itemId: state.showForm.formProps.itemId,
-    wasDeleted: state.search.data.OK,
+    query: state.query.values,
+    wasDeleted: state.search.data.deleted,
 })
 
 const mapDispatchToProps = ({
-    deleteQueryValues,
+    deleteOptions,
     fetchData,
     hideForm,
     hideModal,

@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 
-import { deleteQueryValues } from '../actions/query-values';
-import { fetchOptions } from '../actions/fetch-options';
+import { fetchOptions, deleteOptions } from '../actions/fetch-options';
 import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
@@ -12,12 +11,27 @@ import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
 import { getEditFields, isInput, isSelect, isCheck, whatType } from '../utils/form-content';
-import { getId, addSpace } from '../utils/utils';
+import { getId, addSpace, capitalize } from '../utils/utils';
 import '../css/edit-delete-button.css';
 import '../css/edit-form.css';
 import '../css/form.css';
 
 export class EditForm extends React.Component{
+
+     componentWillUnmount() {
+         // When an item has been updated
+         // the user will be sent back to the 
+         // list, so we need to fetch our updated data.
+         if (this.props.wasUpdated ||
+             this.props.hasErrored) {
+            // Use last search query values
+            let query = this.props.query;
+            return this.props.fetchData(query)
+            .then( () => 
+                 this.props.hideForm()
+            )
+         }
+     }
 
     getDepartmentId(values){
         // Set value for department as an id
@@ -47,11 +61,12 @@ export class EditForm extends React.Component{
     }
 
     showResultMessage( dataType){
+
         // If item was updated, show confirmation message
         if (this.props.wasUpdated) {
-            this.props.deleteQueryValues();
+            this.props.deleteOptions();
             this.props.showModal('CONFIRM_MODAL', {
-                message: `${ dataType } was edited.`
+                message: `${ capitalize(dataType) } was edited.`
             })
 
         // If an error occurred, let the user know
@@ -79,8 +94,8 @@ export class EditForm extends React.Component{
              values: updatedValues
         })
         .then( () => {
-            this.props.hideModal();
-            this.props.hideForm();
+            // this.props.hideModal();
+            // this.props.hideForm();
             this.showResultMessage(dataType);
         })
     }
@@ -164,12 +179,13 @@ const mapStateToProps = state => ({
     itemData: state.showForm.formProps.itemData,
     itemId: state.modal.modalProps.itemId,
     options: state.options.options,
+    query: state.query.values,
     wasUpdated: state.search.data.updated,
     hasErrored: state.search.error !== null,
 })
 
 const mapDispatchToProps = ({
-    deleteQueryValues,
+    deleteOptions,
     fetchData,
     fetchOptions,
     hideForm,

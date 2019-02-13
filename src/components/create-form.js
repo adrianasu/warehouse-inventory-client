@@ -15,6 +15,19 @@ import '../css/create-form.css';
 
 export class CreateForm extends React.Component{
 
+     componentWillUnmount() {
+         // When an item has been created, the user 
+         // will be sent back to the 
+         // list, so we need to fetch our updated data.
+         if (this.props.hasErrored ||
+             this.props.wasCreated) {
+             // Use last search query values
+             let query = this.props.query;
+             return this.props.fetchData(query)
+            
+         } 
+     }
+
     showResultMessage( dataType ){
         // If item was created, show confirmation message
         if (this.props.wasCreated) {
@@ -26,8 +39,7 @@ export class CreateForm extends React.Component{
             let modalProps = this.props.error.message;
             this.props.showModal('ERROR_MODAL', modalProps);
         }
-        // Go back to list.
-        this.props.history.push(`/list/${dataType}`);
+       
     }
 
     getIdsAndValues(val){
@@ -154,6 +166,7 @@ const mapStateToProps = state => ({
     error: state.search.error,
     isLoading: state.options.loading === true,
     options: state.options.options,
+    query: state.query.values,
     wasCreated: state.search.data.created,
     hasErrored: state.search.error !== null,
 })
