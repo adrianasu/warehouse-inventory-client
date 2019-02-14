@@ -1,24 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, Field, focus } from 'redux-form';
+
+import { fetchOptions } from '../actions/fetch-options';
+import { hideModal } from '../actions/modal';
 import Input from './input';
+import { login } from '../actions/auth';
 import { required, nonEmpty, email, length, isTrimmed, isEqual } from '../utils/validators';
 import { signupUser } from '../actions/users';
-import { login } from '../actions/auth';
-import { hideModal } from '../actions/modal';
-import { deleteQueryValues } from '../actions/query-values';
+import { underlineOption } from '../actions/underline-option';
 import '../css/sign-form.css';
 
 const passwordLength = length({ min: 7, max: 72 });
 
 export class SignUpForm extends React.Component {
+
     onSubmit( values ){
         const { email, password } = values;
-        return this.props
-            .dispatch( signupUser( values ))
+        return this.props.signupUser( values )
             .then(() => {
-                this.props.dispatch(deleteQueryValues());
-                return this.props.dispatch(login( email, password ))
-            });
+                return this.props.login( email, password )
+            })
+           .then(() => {
+               this.props.hideModal();
+               this.props.underlineOption("home");
+               return this.props.history.push("/home");
+           });
     }
 
     render() {
@@ -80,13 +87,22 @@ export class SignUpForm extends React.Component {
     }
 }
 
+const mapDispatchToProps = ({
+    fetchOptions,
+    hideModal,
+    login,
+    signupUser,
+    underlineOption,
+})
+
+SignUpForm = connect(
+    null,
+    mapDispatchToProps
+)(SignUpForm);
+
 export default reduxForm({
     form: 'signup',  // the info will be in state.form.signup
-    onSubmitSuccess: (result, dispatch) => {
-        dispatch( hideModal()); 
-    },
     onSubmitFail: (errors, dispatch) => {
-        //dispatch(reset('signup'));
-        dispatch(focus('signup', Object.keys(errors)[0]));
+        dispatch(focus('signup', 'employeeId'));
     }
 })(SignUpForm);

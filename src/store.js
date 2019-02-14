@@ -4,13 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
+import accountReducer from './reducers/account-data';
 import authReducer from './reducers/auth';
 import checkInOrOutReducer from './reducers/check-in-out';
 import landingReducer from './reducers/landing';
 import loadReducer from './reducers/load';
 import modalReducer from './reducers/modal';
 import optionsReducer from './reducers/fetch-options';
-import protectedDataReducer from './reducers/protected-data';
 import queryReducer from './reducers/query-values';
 import searchReducer from './reducers/fetch-data';
 import sideDrawerReducer from './reducers/side-drawer';
@@ -19,13 +19,13 @@ import underlineReducer from './reducers/underline-option';
 
 const store = createStore(
     combineReducers({
+        account: accountReducer,
         auth: authReducer,
         check: checkInOrOutReducer,
         form: formReducer,
         load: loadReducer,
         modal: modalReducer,
         options: optionsReducer,
-        protectedData: protectedDataReducer,
         query: queryReducer,
         search: searchReducer,
         sideDrawer: sideDrawerReducer,

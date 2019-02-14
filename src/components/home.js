@@ -7,9 +7,7 @@ import { landing } from '../actions/landing';
 import '../css/home.css';
 import checkIcon from '../images/check.png';
 
-
-
-class Home extends React.Component{
+export class Home extends React.Component{
 
     displayPermissions( accessLevel ){
         let permissions = getUserPermissions(accessLevel);
@@ -42,6 +40,7 @@ class Home extends React.Component{
             </React.Fragment>
         )
     }
+    
     componentDidMount(){
         this.props.landing(false);
     }

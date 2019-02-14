@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import AccountForm from './account-form';
 import AccountResults from './account-results';
+import { deleteAccountData } from '../actions/account-data';
 import { fetchOptions } from '../actions/fetch-options';
 import { getExamples } from '../utils/utils';
 import { PUBLIC_ACCESS_LEVEL } from '../utils/list-content';
-import { resetData } from '../actions/fetch-data';
 import '../css/account-page.css';
 import lightbulb from '../images/lightbulb.png';
 import printer from '../images/printer.png';
@@ -22,7 +22,7 @@ class AccountPage extends React.Component{
     }
 
     componentWillUnmount(){
-        this.props.resetData();
+        this.props.deleteAccountData();
     }
 
     examples(){
@@ -46,7 +46,7 @@ class AccountPage extends React.Component{
                     </React.Fragment>
                     : null
                 }
-                { this.props.data && this.props.data.employee ?
+                { this.props.account ?
                     <div className="account-results">
                         <ReactToPrint
                             trigger={() => 
@@ -70,14 +70,15 @@ class AccountPage extends React.Component{
 }
 
 const mapStateToProps = state => ({
+    account: state.account.data,
     data: state.search.data,
     options: state.options.options,
     accessLevel: state.auth.currentUser.accessLevel
 })
 
 const mapDispatchToProps = ({
+    deleteAccountData,
     fetchOptions,
-    resetData
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )(AccountPage);

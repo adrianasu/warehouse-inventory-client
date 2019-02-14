@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchData, resetData } from '../actions/fetch-data';
+import { saveAccountData } from '../actions/account-data';
 import { showModal } from '../actions/modal';
 import '../css/account-form.css';
 
@@ -34,6 +35,11 @@ export class AccountForm extends React.Component{
                     searchTerm: employeeId,
                     searchType: "myAccount",
         })
+        .then(() => {
+            if( this.props.data && this.props.data.employee ){
+                this.props.saveAccountData(this.props.data);
+            }
+        });
     }
 
     resetForm(){
@@ -97,6 +103,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = ({
     fetchData,
     resetData,
+    saveAccountData,
     showModal,
 });
 

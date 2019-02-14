@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { fetchData, resetData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
+import { fetchOptions } from '../actions/fetch-options';
 import { underlineOption } from '../actions/underline-option';
 import { landing } from '../actions/landing';
 import signInIcon from '../images/sign-in.png';
@@ -64,7 +65,11 @@ export class LoggedOutBar extends React.Component{
     
     signUp() {
         this.closeOrUnderline(null);
-        this.props.showModal('SIGN_UP_MODAL');
+        // Fetch option to display id examples
+        return this.props.fetchOptions()
+        .then(() =>
+            this.props.showModal('SIGN_UP_MODAL')
+        );
     }
 
     render() {
@@ -124,6 +129,7 @@ export class LoggedOutBar extends React.Component{
 
 const mapDispatchToProps = ({
     fetchData,
+    fetchOptions,
     landing,
     resetData,
     showModal,

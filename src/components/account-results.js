@@ -39,9 +39,9 @@ export class AccountResults extends React.Component{
 
    
     render(){
-        let employee = this.props.data.employee;
+        let employee = this.props.account.employee;
         let name = `${ employee.firstName } ${ employee.lastName }`;
-        let items = this.listItems(this.props.data.items);
+        let items = this.listItems(this.props.account.items);
         return(
             <div>
                 <h2>{ name }</h2>
@@ -54,7 +54,7 @@ export class AccountResults extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    data: state.search.data,
+    account: state.account.data,
 })
 
 export default connect( mapStateToProps )( AccountResults );

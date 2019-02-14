@@ -4,6 +4,7 @@ import { withRouter }  from 'react-router-dom';
 
 import { closeSideDrawer } from '../actions/side-drawer';
 import { fetchData } from '../actions/fetch-data';
+import { saveAccountData } from '../actions/account-data';
 import { showModal } from '../actions/modal';
 import { underlineOption } from '../actions/underline-option';
 
@@ -36,7 +37,6 @@ export class OverviewLinks extends React.Component{
 
     goToMyAccount(){
         this.closeOrUnderline("my-account");
-
         let employeeId = this.props.employee.employeeId;
         return this.props.fetchData({
             method: 'GET',
@@ -46,7 +46,8 @@ export class OverviewLinks extends React.Component{
             .then(() => {
                 // Display results.
                 if (this.props.data && this.props.data.employee) {
-                    this.props.history.push(`/my-account`)
+                    this.props.saveAccountData(this.props.data);
+                    this.props.history.push(`/my-account`);
                 }
             })
     }
@@ -87,6 +88,7 @@ export class OverviewLinks extends React.Component{
 const mapDispatchToProps = ({
     closeSideDrawer,
     fetchData,
+    saveAccountData,
     showModal,
     underlineOption
 })

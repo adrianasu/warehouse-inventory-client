@@ -8,7 +8,6 @@ import AdvancedSearchPage from './advanced-search-page';
 import CheckInPage from './check-in-page';
 import CheckOutPage from './check-out-page';
 import CreatePage from './create-page';
-import Dashboard from './dashboard';
 import LandingPage from './landing-page';
 import ListPage from './list-page';
 import ManagePage from './manage-page';
@@ -27,7 +26,6 @@ export class Routes extends React.Component{
             <div className="routes">
                 <ScrollToTop>
                 <Route path="/advanced-search" component={ AdvancedSearchPage } />
-                <Route exact path="/dashboard" component={ Dashboard } />
                 <Route exact path="/search" component={ SearchPage } />
                 <Route exact path="/start" component={ LandingPage } />
                 <Route path="/check-in" component={ CheckInPage } />
