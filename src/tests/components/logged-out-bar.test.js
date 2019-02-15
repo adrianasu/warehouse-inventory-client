@@ -8,18 +8,4 @@ describe('<LoggedOutBar />', () => {
         shallow(<LoggedOutBar />)
    });
 
-   it(`Should fire signUp when clicked`, () => {
-        const dispatch = jest.fn();
-        const callback = jest.fn();
-        const wrapper = shallow(
-            <LoggedOutBar 
-                closeOrUnderline={ callback }
-                showModal={ dispatch }
-                underlineOption={ dispatch }
-                closeSideDrawer={ dispatch } /> );
-        wrapper.instance().signUp();
-        expect(dispatch).toHaveBeenCalledTimes(2);
-   });
-
-
 });

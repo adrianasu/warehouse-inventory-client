@@ -23,18 +23,17 @@ describe('<AccountResults />', () => {
             }]
      }
     it('Renders without crashing', () => {
-        shallow(<AccountResults data={data} />);
+        shallow(<AccountResults account={data} />);
     });
 
     it('Renders employee name', () => {
         let name = data.employee.firstName + " " + data.employee.lastName;
-        const wrapper = shallow(<AccountResults data={data} />)
+        const wrapper = shallow(<AccountResults account={data} />)
         expect(wrapper.contains(<h2>{ name }</h2>)).toEqual(true);
     });
 
     it(`Renders checked-out items' list`, () => {
-        //
-        const wrapper = shallow(<AccountResults data={data} />)
+        const wrapper = shallow(<AccountResults account={data} />)
         const items = wrapper.find('ol>li');
         expect(items.length).toEqual(data.items.length);
     })

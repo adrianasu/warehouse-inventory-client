@@ -43,6 +43,8 @@ export class SearchResults extends React.Component{
         let data = this.props.data;
         if (data && data.message) {
             return data.message;
+        } else if (this.props.isLoading) {
+            return `...Loading`;
         } else if (filteredData && filteredData.length > 0) {
             return `${filteredData.length } results found.`;
         } else if (filteredData && filteredData.length === 0) {
@@ -123,6 +125,7 @@ export class SearchResults extends React.Component{
 const mapStateToProps = state => {
     return {
         data: state.search.data,
+        isLoading: state.search.loading === true,
         query: state.query.values,
         wasDeleted: state.search.data.deleted,
         wasUpdated: state.search.data.updated,

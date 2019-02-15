@@ -8,8 +8,8 @@ export function LowStockTable( props ){
     return(
         <div className="low-stock-table">
             <table>
-                <tbody>
                 <th colSpan={2}>{ product.name }</th>
+                <tbody>
                 <tr>
                     <td>Category</td>
                     <td>{ product.category.name }</td>

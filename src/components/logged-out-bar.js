@@ -22,7 +22,7 @@ export class LoggedOutBar extends React.Component{
          } else {
              this.props.underlineOption(option);
          }
-     }
+     } 
 
     infoPage() {
         this.closeOrUnderline("Start");

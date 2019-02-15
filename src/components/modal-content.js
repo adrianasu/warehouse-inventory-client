@@ -23,10 +23,20 @@ export class ModalContent extends React.Component{
                 this.props.user.accessLevel < PUBLIC_ACCESS_LEVEL) )|| field === "id" ){
                 return;
             } else if( field === "isCheckedOut" ) {
-                list.push(<li key={ field } className="big"> { item[field] ?  
+                list.push(<li key={ field }> { item[field] ?  
+                            `Checked-out by: ${
+                                item.checkedOut[0].employee.firstName
+                            } ${
+                                item.checkedOut[0].employee.lastName
+                            } ID: ${
+                                item.checkedOut[0].employee.employeeId
+                            }`
+                            : null
+                    } </li>); 
+                list.push(<li key="icon" className="big"> { item[field] ?  
                             <React.Fragment><img src={ redCross } alt="Reject icon" className="icon"/>{item.checkedOut[0].condition}</React.Fragment>
                             : <React.Fragment><img src={ greenCheck } alt="check icon" className="icon"/>Available</React.Fragment>
-                    } </li>)  
+                    } </li>);
             } else if( field === 'inStock' ){
                 list.push( <li key = {field} > {
                             `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
@@ -37,7 +47,8 @@ export class ModalContent extends React.Component{
                 } </li>)
             }  else if( field === 'checkedIn' || field === 'checkedOut' ){
                 // Show date of last time it was checkedIn or checkedOut
-                list.push(<li key={field}>Last time {addSpace(field)}: { item[field].length > 0 ? formatDate(item[field][0].date) : 'never'}</li>)
+                list.push(<li key={field +"date"}>Last time {addSpace(field)}: { item[field].length > 0 ? formatDate(item[field][0].date) : 'never'}</li>)
+                list.push(<li key={field +"person"}>{addSpace(field)} by: { item[field].length > 0 ? `${ item[field][0].employee.firstName } ${ item[field][0].employee.lastName }` : "-" }</li>)
             }  else if( field === 'registeredDate' ){
                 list.push(<li key={field}>{addSpace(field)}: { formatDate(item[field]) }</li>)
             } else if( field === 'accessLevel' ){
@@ -46,6 +57,8 @@ export class ModalContent extends React.Component{
                 list.push( <li key ={field} > {field}: { item[field] ? 'yes':'no' } </li>);
             }  else if( field === 'product' ){
                 list.push(<li key={field}>{ item[field] } </li>)
+            } else if( field === 'items' ){
+                list.push(<li key={field}>Quantity: { item[field].length } </li>)
             } else {
                 list.push(<li key={field}>{ addSpace(field) }: { item[field] } </li>)
             }

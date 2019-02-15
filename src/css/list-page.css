@@ -6,7 +6,7 @@
 }
 
 .list-page p {
-    float: left;
+    /* float: left; */
     font-size: 1.2em;
     margin-left: 1em;
 }
@@ -14,6 +14,13 @@
 .list-page h1 {
     margin-left: .5em;
     margin-bottom: 0;
+}
+
+.list-page .info{
+    width: 100%;
+    text-align: right;
+    margin-bottom: .5em;
+    padding-right: 1em;
 }
 
 .list-page button{
@@ -44,6 +51,11 @@
 @media screen and (min-width: 750px) {
     .list-page {
         width: 70%;
+    }
+
+    .list-page .info {
+        margin-bottom: .7em;
+        padding-right: 2.5em;
     }
 
 }

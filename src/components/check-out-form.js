@@ -22,7 +22,7 @@ export class CheckOutForm extends React.Component{
         let modalType = 'CHECK_MODAL';
         let modalProps = {
             data: this.props.data,
-            checkType: 'check-in'
+            checkType: 'check-out'
         };
         return this.props.showModal(modalType, modalProps)
     }

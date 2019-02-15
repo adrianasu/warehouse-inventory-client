@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import ListTable from './list-table';
-
+import checkIcon from '../images/check.png';
+import closeIcon from '../images/close.png';
 import '../css/list-page.css';
 
 export class ListPage extends React.Component{
@@ -53,12 +54,12 @@ export class ListPage extends React.Component{
         }
         // Loop through the keys of an item
         for (let x = 0; x < keys.length; x += 1) {
-            // Return the item , if the term was
+            // If the term was
             // found inside the item.
             if( term.test(testItem[keys[x]]) ){
                 return item;
-            // Check in the shortfall object,
-            // if it's a low-stock report.
+            // If it's a low-stock report,
+            // check in the shortfall object.
             }else if( reportType === 'low-stock'
                 && term.test(item.shortfall) ){
                 return item;
@@ -109,7 +110,9 @@ export class ListPage extends React.Component{
         let data = this.props.data;
         if( data && data.message ){
             return data.message;
-        } else if( filteredData && filteredData.length > 0){
+       } else if (this.props.isLoading) {
+           return `...Loading`;
+       } else if (filteredData && filteredData.length > 0) {
             return `${filteredData.length } results found.`;
         } else if (filteredData && filteredData.length === 0) {
             return `No results found.`;
@@ -142,6 +145,14 @@ export class ListPage extends React.Component{
                         </button>
                     }
                     <p> { this.message(reportType) } </p> 
+                    {
+                        (reportType === "item" && currData.length>0) ? 
+                            <div className="info">
+                                <img src={ closeIcon } alt="close icon" className="icon"/><span>Checked-out,</span>
+                                <img src={ checkIcon } alt="check icon" className="icon"/><span>Available</span>
+                            </div>
+                            : null
+                    }
                     <ListTable 
                         currData={ currData } 
                         reportType={ reportType }/>
@@ -156,6 +167,7 @@ const mapStateToProps = state => {
         data: state.search.data,
         formProps: state.showForm.formProps,
         hasErrored: state.search.error !== null,
+        isLoading: state.search.loading === true,
         query: state.query.values,
         wasCreated: state.search.data.created,
         wasDeleted: state.search.data.deleted,

@@ -6,28 +6,28 @@ export const ADMIN_ACCESS_LEVEL = 30;
 
 const list ={
     'on-shelf': {
-        keys: ['product', 'location'],
-        details: ['product', 'location', 'barcode', 'model','manufacturer', 'category', 'serialNumber', 'checkedIn'], 
+        keys: ['item', 'location'],
+        details: ['item', 'location', 'barcode', 'model','manufacturer', 'category', 'serialNumber', 'checkedIn'], 
     },
     'checked-out': {
-        keys: ['product', 'location'],
-        details: ['product', 'location', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'checkedOut'], 
+        keys: ['item', 'checked-out by'],
+        details: ['item', 'checked-out by', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'checkedOut'], 
     },
     'low-stock': {
         keys: ['product', 'shortfall'],
         details: ['product', 'inStock', 'minimumRequired', 'shortfall'], // what item is instock
     },
     'useful-life': {
-        keys: ['product', 'usefulLife'],
-        details: ['product', 'usefulLife', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'location'],
+        keys: ['item', 'usefulLife'],
+        details: ['item', 'usefulLife', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'location'],
     },
     item: {
-        keys: ['product', 'isCheckedOut'],
-        details: ['product', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'warehouse', 'ailse', 'shelf', 'bin', 'isCheckedOut'],
+        keys: ['item'],
+        details: ['product', 'barcode', 'model', 'manufacturer', 'category', 'serialNumber', 'location', 'warehouse', 'aisle', 'shelf', 'bin', 'isCheckedOut'],
     },
     product: {
-        keys: ['name', 'consummable'],
-        details: ['name', 'model', 'manufacturer', 'category', 'consummable', 'minimumRequiredQuantity', 'minimumRequiredUnits'],
+        keys: ['product', 'quantity'],
+        details: ['name', 'model', 'manufacturer', 'category', 'consummable', 'quantity', 'minimumRequiredQuantity', 'minimumRequiredUnits'],
     },
     category: {
         keys: ['name'],

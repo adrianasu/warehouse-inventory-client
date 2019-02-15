@@ -28,6 +28,29 @@ export class ListTable extends React.Component{
         });
     }
 
+    whoCheckedItOut(item, isItem) {
+        // If item is checked out send the name and Id of the
+        // employee who has it.
+        return item && item.isCheckedOut && isItem ?
+            `Ckecked out by: ${item.checkedOut[0].employee.firstName} ${item.checkedOut[0].employee.lastName}, ID: ${item.checkedOut[0].employee.employeeId}` 
+            : item && item.isCheckedOut ? 
+                `${item.checkedOut[0].employee.firstName} ${item.checkedOut[0].employee.lastName}, ID: ${item.checkedOut[0].employee.employeeId}`
+                : ""
+    }
+
+    whereIsIt( item ){
+        // If item is not checked out send its location
+        return item && item.isCheckedOut ?
+             ""
+            :`Warehouse: ${item.warehouse || "NA"}, aisle: ${item.aisle || "NA"}, shelf: ${item.shelf || "NA"}, bin: ${item.bin|| "NA"}`
+    }
+
+    isAvailableIcon(item){
+        return item && item.isCheckedOut ?
+            <img src={ closeIcon } alt="close icon" className="icon"/>
+            : <img src={ checkIcon } alt="check icon" className="icon"/>;
+    }
+
     generateRow( item, titles ){
         let row = [];
         titles.forEach( title => {
@@ -35,33 +58,43 @@ export class ListTable extends React.Component{
             if( title === 'product' && 
                 titles.includes('shortfall')) {
                 row.push(<td  key = {title}>{ `${item.product.name}, mod. ${item.product.model}, manuf. ${item.product.manufacturer.name}` }</td>);
-            } else if( title === 'product' && 
-                titles.includes('consummable')) {
-                row.push(<td  key = {title}>{ `${item.name}, mod. ${item.model}, manuf. ${item.manufacturer.name}` }</td>);
-            } else if (title === 'product' ) {
-                row.push(<td  key = {title}>{ `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer}` }</td>);
-            } else if( title === 'location' ){
-                row.push(<td  key = {title}>{ item.warehouse }</td>);
-            } else if( title === 'consummable' ){
+            // Product list
+            } else if( title === 'product' ||
+                ( title === 'item' &&
+                    titles.includes('checked-out by') )){
+                row.push(<td  key = {title}>{ `${item.name}, mod. ${item.model}, manuf. ${item.manufacturer}` }</td>);
+            // Item sends product serialized
+            } else if (title === 'item' &&
+                ( titles.includes('location') ||
+                titles.includes('usefulLife') )){
+                row.push(<td  key = {title}>
+                    { `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer }, ` }
+                </td>);
+            } else if (title === 'item' ) {
+                row.push(<td  key = {title}>
+                    { this.isAvailableIcon(item) }
+                    { `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer }, ` }
+                    { this.whereIsIt(item) }
+                    { this.whoCheckedItOut(item, 'item') }
+                </td>);
+            }else if( title === 'consummable' ){
                row.push( <td key ={title} > {
                                 item[title] ? 
                             <img src={ checkIcon } alt="check icon" className="icon"/>
                             : <img src={ closeIcon } alt="close icon" className="icon"/>
                             } </td>);
+            } else if( title === 'checked-out by' ){
+               row.push( <td key ={title} > { this.whoCheckedItOut(item) } </td>);
+            } else if( title === 'location' ){
+               row.push( <td key ={title} > { this.whereIsIt(item) } </td>);
             } else if (title === 'usefulLife') {
                 row.push( <td key={title} > {
                             `${item[title]} ${item[title] !=="NA" ? 'days' : ""}`
                         } </td>)
-            } else if (title === 'isCheckedOut') {
-                // This column header is "Available"
-                row.push( <td key={title} > {
-                            item[title] === true ? 
-                            <img src={ checkIcon } alt="check icon" className="icon"/>
-                            : <img src={ closeIcon } alt="close icon" className="icon"/>
-                        } </td>)
-            
             }else if( title === 'accessLevel' ){
                 row.push(<td key={title}>{ accessLevelToString(item.accessLevel) }</td>);
+            } else if( title === 'quantity' ){
+                row.push(<td key={title}>{ item.items.length }</td>);
             } else {
                 row.push( <td key={title} > { item[title] } </td>)
             }
