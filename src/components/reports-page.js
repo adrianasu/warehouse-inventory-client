@@ -4,9 +4,10 @@ import { fetchData } from '../actions/fetch-data';
 import { showModal } from '../actions/modal';
 import '../css/reports-page.css';
 import banIcon from '../images/ban.png';
-import warehouseIcon from '../images/warehouse.png';
-import lowBatteryIcon from '../images/low-battery.png';
 import heartIcon from '../images/heart.png';
+import Loader from './loader';
+import lowBatteryIcon from '../images/low-battery.png';
+import warehouseIcon from '../images/warehouse.png';
 
 
 export class ReportsPage extends React.Component{
@@ -73,9 +74,11 @@ export class ReportsPage extends React.Component{
         return(
             <div className="reports-page">
                 <h1>Items' Reports</h1>
-                <ul>
-                    { buttons }
-                </ul>
+                { this.props.isLoading ? <Loader /> :
+                    <ul>
+                        { buttons }
+                    </ul>
+                }
             </div>
         )
     }
@@ -83,8 +86,9 @@ export class ReportsPage extends React.Component{
 
 const mapStateToProps = state => ({
     data: state.search.data,
+    error: state.search.error,    
     hasErrored: state.search.error !== null,
-    error: state.search.error    
+    isLoading: state.search.loading,
 })
 
 const mapDispatchToProps = ({

@@ -130,7 +130,6 @@ export class List extends React.Component{
 const mapStateToProps = state => ({
         data: state.search.data,
         hasErrored: state.search.error,
-        isLoading: state.search.loading
 })
 
 export default withRouter(connect( mapStateToProps )( List ));

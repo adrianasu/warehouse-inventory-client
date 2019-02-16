@@ -7,6 +7,7 @@ import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
 import { load } from '../actions/load';
+import Loader from './loader';
 import Input from './input';
 import RadioInput from './radio-input';
 import Select from './select';
@@ -154,7 +155,7 @@ export class EditForm extends React.Component{
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
-                    { this.props.isLoading ? <p>...Loading</p>
+                    { this.props.isLoading ? <Loader />
                         : this.displayFields() }
 
                     <button 

@@ -28,7 +28,6 @@ export class AdvancedSearchPage extends React.Component{
                     <img src={ question } alt="Question mark" className="icon"/>
                 </h1>
                 <AdvancedSearch />
-                <p className='loader'>{ this.props.isLoading ? "...Loading" : ""}</p>
             </div>
         )
     }
@@ -36,7 +35,6 @@ export class AdvancedSearchPage extends React.Component{
 
 const mapStateToProps = state => ({
         hasErrored: state.search.error,
-        isLoading: state.search.loading,
 })
 
 const mapDispatchToProps = ({

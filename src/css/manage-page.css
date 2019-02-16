@@ -50,6 +50,10 @@
     margin: .6em auto 0;
 }
 
+.manage-page .loader{
+    margin-top: 5em;
+}
+
 
 @media screen and (orientation: landscape) {
     .manage-page {
@@ -68,6 +72,10 @@
 
     .manage-page button {
         padding: .7em;
+    }
+
+    .manage-page .loader {
+        margin-top: 3em;
     }
 
 }

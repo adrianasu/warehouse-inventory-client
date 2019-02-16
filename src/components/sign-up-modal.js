@@ -5,6 +5,7 @@ import { fetchOptions } from '../actions/fetch-options';
 import { getExamples } from '../utils/utils';
 import { hideModal }  from '../actions/modal';
 import lightbulb from '../images/lightbulb.png';
+import Loader from './loader';
 import Modal from './modal';
 import SignupForm from './sign-up-form';
 import '../css/sign-up.css';
@@ -37,7 +38,7 @@ export class SignUpModal extends React.Component{
                 <div className="sign-up">
                     <h1 className="tooltip">Sign Up
                     <span className="tooltiptext">
-                        { this.props.options ? this.examples() : '...Loading' }
+                        { this.props.options ? this.examples() : <Loader /> }
                     </span>
                     <img src={ lightbulb } alt="Lightbulb icon" className="icon"/>
                 </h1>

@@ -8,6 +8,7 @@ import { fetchData } from '../actions/fetch-data'
 import { hideForm } from '../actions/show-form';
 import { hideModal, showModal } from '../actions/modal';
 import { load } from '../actions/load';
+import Loader from './loader';
 import { getCreateFields } from '../utils/form-content';
 import { getId, capitalize } from '../utils/utils';
 
@@ -139,7 +140,7 @@ export class CreateForm extends React.Component{
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
                     
-                    { this.props.isLoading ? <p>...Loading</p>
+                    { this.props.isLoading ? <Loader />
                         : this.props.fields }
                   
                     <button 

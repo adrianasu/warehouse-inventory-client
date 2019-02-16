@@ -28,6 +28,11 @@
      font-size: .9em;
 }
 
+.check-in-form .loader{
+    width: 2.5em;
+    height: 2.5em;
+}
+
 @media screen and (orientation: landscape) {
     .check-in-form {
         padding: 0 0 .5em;

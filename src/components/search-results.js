@@ -43,8 +43,6 @@ export class SearchResults extends React.Component{
         let data = this.props.data;
         if (data && data.message) {
             return data.message;
-        } else if (this.props.isLoading) {
-            return `...Loading`;
         } else if (filteredData && filteredData.length > 0) {
             return `${filteredData.length } results found.`;
         } else if (filteredData && filteredData.length === 0) {
@@ -109,13 +107,13 @@ export class SearchResults extends React.Component{
         return(
             <div className="search-results">
                     <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
-                <div className="results-header">
-                    <h1>{ title } Results</h1>
-                    <p> 
-                        <img src={ infoIcon } alt="Information icon" className="icon"/>                        
-                        <span className="space">{ this.message() }</span>
-                    </p>
-                </div>
+                        <div className="results-header">
+                            <h1>{ title } Results</h1>
+                            <p> 
+                                <img src={ infoIcon } alt="Information icon" className="icon"/>                        
+                                <span className="space">{ this.message() }</span>
+                            </p>
+                        </div>
                 <Results currData={currData}/>
             </div>
         )

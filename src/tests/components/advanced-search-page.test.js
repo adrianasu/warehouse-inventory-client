@@ -14,11 +14,4 @@ describe('<AdvancedSearchPage />', () => {
         expect(form.length).toEqual(1);
     });
 
-    it('Displays "Loading" message', () => {
-        const loading = true;
-        const wrapper = shallow( < AdvancedSearchPage isLoading={loading} /> );
-        const loader = wrapper.find('.loader');
-        expect(loader.text()).toEqual("...Loading")
-    });
-
 });

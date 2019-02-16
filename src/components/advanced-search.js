@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 import { fetchData } from '../actions/fetch-data';
 import { fetchOptions } from '../actions/fetch-options';
+import Loader from './loader';
 import { saveQueryValues } from '../actions/query-values';
 import { getId, capitalize } from '../utils/utils';
 import Input from './input';
@@ -62,7 +63,8 @@ class AdvancedSearch extends React.Component{
 
         return(
             <div className="form advanced-search-form">
-                <form
+                { this.props.isLoadingOptions ? <Loader />
+                :<form
                     className='search-item'
                     onSubmit={ this.props.handleSubmit(values => 
                         this.onSubmit(values))}>
@@ -95,11 +97,14 @@ class AdvancedSearch extends React.Component{
                         }
                       />
                 </div>
-
+                    {
+                        this.props.isLoading ? <Loader /> :
                     <button type ="submit" >
                         Search Items
                     </button>
-                </form>          
+                    }
+                </form> 
+                }         
             </div>
 
         );
@@ -107,8 +112,10 @@ class AdvancedSearch extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    options: state.options.options,
     data: state.search.data,
+    isLoading: state.search.loading === true,
+    isLoadingOptions: state.options.loading === true,
+    options: state.options.options,
 })
 
 const mapDispatchToProps = ({

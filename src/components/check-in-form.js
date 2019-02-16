@@ -5,8 +5,9 @@ import { Field, reduxForm, focus, reset } from 'redux-form';
 import { doCheckInOrOut } from '../actions/check-in-out';
 import { fetchOptions } from '../actions/fetch-options';
 import Input from './input';
-import { required, nonEmpty } from '../utils/validators';
+import Loader from './loader';
 import question from '../images/question.png';
+import { required, nonEmpty } from '../utils/validators';
 import {showModal } from '../actions/modal';
 import '../css/check-in-form.css';
 
@@ -63,12 +64,14 @@ class CheckInForm extends React.Component{
                         name="employeeId" 
                         label={ info }
                         validate={[required, nonEmpty]}/>
-                  
-                    <button 
+                    { 
+                        this.props.isLoading ? <Loader/>
+                    :<button 
                         disabled={this.props.pristine || this.props.submitting}
                         type ="submit" >
                         Check In
                     </button>
+                    }
                 </form>  
                 </div>        
           );
@@ -78,8 +81,8 @@ class CheckInForm extends React.Component{
 const mapStateToProps = state => ({
     options: state.options.options,
     data: state.check.data,
-    hasErrored: state.check.error,
-    isLoading: state.check.loading,
+    isLoading: state.check.loading === true,
+    hasErrored: state.check.error
 })
 
 const mapDispatchToProps = ({

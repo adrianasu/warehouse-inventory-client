@@ -15,6 +15,11 @@
 
 }
 
+.advanced-search-form .loader{
+    width: 2em;
+    height: 2em;
+}
+
 .advanced-search-form .radio-fields{
     display: flex;
     margin: 2%;

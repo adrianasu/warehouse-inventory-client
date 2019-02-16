@@ -4,10 +4,11 @@ import { Field, reduxForm, focus, reset } from 'redux-form';
 
 import { doCheckInOrOut } from '../actions/check-in-out';
 import { fetchOptions } from '../actions/fetch-options';
-import { required, nonEmpty } from '../utils/validators';
 import Input from './input';
-import RadioInput from './radio-input';
+import Loader from './loader';
 import question from '../images/question.png';
+import RadioInput from './radio-input';
+import { required, nonEmpty } from '../utils/validators';
 import {showModal } from '../actions/modal';
 import '../css/check-out-form.css';
 
@@ -81,12 +82,14 @@ export class CheckOutForm extends React.Component{
                             }
                         }
                       />
-                  
-                    <button 
+                   { 
+                        this.props.isLoading ? <Loader/>
+                    : <button 
                         disabled={this.props.pristine || this.props.submitting}                    
                         type ="submit" >
                         Check Out
                     </button>
+                   }
                 </form> 
                 </div>         
         
@@ -99,7 +102,7 @@ const mapStateToProps = state => ({
     options: state.options.options,
     data: state.check.data,
     hasErrored: state.check.error,
-    isLoading: state.check.loading,
+    isLoading: state.check.loading === true,
 })
 
 const mapDispatchToProps = ({

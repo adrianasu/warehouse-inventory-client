@@ -5,6 +5,7 @@ import SearchForm from './search-form';
 import { showModal } from '../actions/modal';
 import { fetchOptions } from '../actions/fetch-options';
 import { capitalize, firstWord } from '../utils/utils';
+import Loader from './loader';
 import lightbulb from '../images/lightbulb.png';
 import '../css/search-page.css';
 
@@ -64,8 +65,8 @@ export class SearchPage extends React.Component {
                     <span className="tooltiptext">{ this.props.options ? this.examples() : null }</span>
                     <img src={ lightbulb } alt="Lightbulb icon" className="icon"/>                    
                 </h1>
-                <SearchForm /> 
-                <p> { this.props.isLoading ? "Loading..." : ""} </p>
+                 
+               <SearchForm /> 
             </div>
         )
     }

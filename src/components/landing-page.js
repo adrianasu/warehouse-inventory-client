@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Loader from './loader';
 import { login } from '../actions/auth';
 import { landing } from '../actions/landing';
 import { underlineOption } from '../actions/underline-option';
@@ -45,73 +46,75 @@ export class LandingPage extends React.Component{
     return (
     <div className="landing-page">
         <div className="logo-bar">
-                <img src={logo} alt="Hammer and screwdriver and warehouse word" className="logo" />
+                <img src={logo} alt="Hammer, screwdriver and warehouse word" className="logo" />
         </div>
-        <div  className="landing-grid">
-            <div className="intro land-container">
-                <h3>Track & Manage</h3>
-                <div className="grid-container">
-                    <p>
-                        If you have items, tools or equipment of any kind
-                        and need to track and manage them, our app will
-                        help you do that in an easy way.
-                    </p>
-                    <img src={ scanner } alt="Scanner and boxes cartoon" className="scanner"/>
+        { this.props.isLoading ? <Loader />
+            :<div  className="landing-grid">
+                <div className="intro land-container">
+                    <h3>Track & Manage</h3>
+                    <div className="grid-container">
+                        <p>
+                            If you have items, tools or equipment of any kind
+                            and need to track and manage them, our app will
+                            help you do that in an easy way.
+                        </p>
+                        <img src={ scanner } alt="Scanner and boxes cartoon" className="scanner"/>
+                    </div>
                 </div>
-            </div>
-            <div className="locate land-container">
-                <h3>Locate</h3>
-                <img src={ tools } alt="Four hands holding tools cartoon" className="tools"/>
-                <p>
-                    Our app will provide you information about the location
-                    of your assets inside your warehouse or about the person 
-                    who currently has it. 
-                </p>
-            </div>
-            <div className="reorder land-container">
-                <h3>Reorder</h3>
-                <img src={ lab } alt="Laboratory eqquipment cartoon" className="lab"/>
-                <p>In the case of consummables, you can set minimum required 
-                    quantities for each item so you will be able to know when is
-                    time to reorder.
-                </p>  
-            </div>
-            <div className="benefits land-container">            
-                <h3>Benefits</h3>
-                <div className="grid-container">                
-                    <ul>
-                        <li>
-                            Decrease tool and equipment loss.
-                        </li>
-                        <li>
-                            Increase productivity by ensuring people have what they need.
-                        </li>
-                        <li>
-                            Increase efficiency by having all the information at your fingertips.
-                        </li>
-                    </ul>
-                    <div className="frame">
-                        <img src={ girl } alt="Lady scanning barcode on a box cartoon" className="girl"/>
+                <div className="locate land-container">
+                    <h3>Locate</h3>
+                    <img src={ tools } alt="Four hands holding tools cartoon" className="tools"/>
+                    <p>
+                        Our app will provide you information about the location
+                        of your assets inside your warehouse or about the person 
+                        who currently has it. 
+                    </p>
+                </div>
+                <div className="reorder land-container">
+                    <h3>Reorder</h3>
+                    <img src={ lab } alt="Laboratory eqquipment cartoon" className="lab"/>
+                    <p>In the case of consummables, you can set minimum required 
+                        quantities for each item so you will be able to know when is
+                        time to reorder.
+                    </p>  
+                </div>
+                <div className="benefits land-container">            
+                    <h3>Benefits</h3>
+                    <div className="grid-container">                
+                        <ul>
+                            <li>
+                                Decrease tool and equipment loss.
+                            </li>
+                            <li>
+                                Increase productivity by ensuring people have what they need.
+                            </li>
+                            <li>
+                                Increase efficiency by having all the information at your fingertips.
+                            </li>
+                        </ul>
+                        <div className="frame">
+                            <img src={ girl } alt="Lady scanning barcode on a box cartoon" className="girl"/>
+                        </div>
+                    </div>
+                </div>
+                <div className="try land-container">
+                    <h3>Try our app</h3>
+                    <img src={ lightbulb } alt="Lightbulb cartoon" className="icon"/>
+                    <p>
+                        You'll find lightbulbs along our demo. Click on them to get
+                        examples that can be entered to get information from
+                        our demo database.
+                    </p>
+                    <h4>Select a user level</h4>
+                    <div className="levels-container">
+                        <button onClick={this.handleClick.bind(this)} value="admin@m.com">Admin</button>            
+                        <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>
+                        <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
+                        <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
                     </div>
                 </div>
             </div>
-            <div className="try land-container">
-                <h3>Try our app</h3>
-                <img src={ lightbulb } alt="Lightbulb cartoon" className="icon"/>
-                <p>
-                    You'll find lightbulbs along our demo. Click on them to get
-                    examples that can be entered to get information from
-                    our demo database.
-                </p>
-                <h4>Select a user level</h4>
-                <div className="levels-container">
-                    <button onClick={this.handleClick.bind(this)} value="admin@m.com">Admin</button>            
-                    <button onClick={this.handleClick.bind(this)} value="public@m.com">Public</button>
-                    <button onClick={this.handleClick.bind(this)} value="overview@m.com">Overview</button>
-                    <button onClick={this.handleClick.bind(this)} value="null">Basic</button>
-                </div>
-            </div>
-        </div>
+        }
         </div>
     )
     }
@@ -123,4 +126,8 @@ const mapDispatchToProps = ({
     underlineOption
 })
 
-export default connect(null, mapDispatchToProps)(LandingPage);
+const mapStateToProps = state => ({
+    isLoading: state.auth.loading === true
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

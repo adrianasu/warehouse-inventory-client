@@ -64,6 +64,10 @@
     list-style-type: circle;
 }
 
+.landing-page .loader{
+    margin-top: 10em;
+}
+
 .landing-page p{
     text-align: center;
     margin: .6em auto;
@@ -157,6 +161,11 @@
     .landing-page .logo {
         width: 33%;
     }
+
+    .landing-page .loader {
+        margin-top: 3em;
+    }
+
     .logo-bar {
         padding-bottom: .4em;
         padding-top: .4em;

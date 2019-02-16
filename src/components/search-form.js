@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import { withRouter } from 'react-router-dom';
+import Loader from './loader';
 
 import { fetchData } from '../actions/fetch-data';
 import Input from './input';
@@ -31,6 +32,7 @@ export class SearchForm extends React.Component{
 
         const label = 'Enter a barcode, serial number or a keyword.';
         return(
+          
             <div className='form search-form'>
                 <form
                     className='search-item'
@@ -46,13 +48,18 @@ export class SearchForm extends React.Component{
                         type="text"
                         validate={[required, nonEmpty, noSpecialChars]} 
                         />
+            
+                     {
+                        this.props.isLoading ? <Loader /> :
                     <button 
                         disabled={this.props.pristine || this.props.submitting}
                         type ="submit" >
                         Search Items
                     </button>
+                    }
+        
                 </form>          
-            </div>
+                </div>
 
         );
     }
@@ -66,6 +73,7 @@ const mapDispatchToProps = ({
 const mapStateToProps = state => ({
     data: state.search.data,
     options: state.options.options,
+    isLoading: state.search.loading === true
 })
 
 SearchForm = withRouter(connect(mapStateToProps, mapDispatchToProps) (SearchForm));

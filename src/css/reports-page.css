@@ -51,6 +51,10 @@
     margin: 1em auto 0;
 }
 
+.reports-page .loader{
+    margin-top: 5em;
+}
+
 @media screen and (orientation: landscape) {
     .reports-page {
         margin: 0em auto;
@@ -68,6 +72,10 @@
 
     .reports-page button {
         padding: .5em;
+    }
+
+    .reports-page .loader {
+        margin-top: 3em;
     }
 
 }

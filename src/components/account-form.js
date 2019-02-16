@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 import { fetchData, resetData } from '../actions/fetch-data';
+import Loader from './loader';
 import { saveAccountData } from '../actions/account-data';
 import { showModal } from '../actions/modal';
 import '../css/account-form.css';
@@ -79,14 +81,16 @@ export class AccountForm extends React.Component{
                             onClick={ this.resetForm.bind(this) }>
                             X
                         </button>
-                    <button 
-                        className="main"
-                        type="submit"
-                        disabled = {
-                            this.props.pristine || this.props.submitting
-                        }>
-                        Search
-                    </button>
+                      { this.props.isLoading ? <Loader /> :
+                        <button 
+                            className="main"
+                            type="submit"
+                            disabled = {
+                                this.props.pristine || this.props.submitting
+                            }>
+                            Search
+                        </button>
+                      }
                     </div>
                     
                 </form>
@@ -98,6 +102,7 @@ const mapStateToProps = state => ({
     data: state.search.data,
     error: state.search.error,
     hasErrored: state.search.error !== null,
+    isLoading: state.search.loading === true,
 });
 
 const mapDispatchToProps = ({

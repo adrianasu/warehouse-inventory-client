@@ -8,6 +8,7 @@ import '../css/manage-page.css';
 import gearIcon from '../images/department.png';
 import boxIcon from '../images/box.png';
 import employeeIcon from '../images/employee.png';
+import Loader from './loader';
 import manufacturerIcon from '../images/manufacturer.png';
 import toolboxIcon from '../images/toolbox.png';
 import usersIcon from '../images/users.png';
@@ -84,9 +85,12 @@ export class ManagePage extends React.Component{
         return(
             <div className="manage-page">
                 <h1>My Warehouse</h1>
-                <ul>
-                    { buttons }
-                </ul>
+                {
+                    this.props.isLoading ? <Loader/> :
+                    <ul>
+                        { buttons }
+                    </ul>
+                }
             </div>
         )
     }
@@ -100,8 +104,9 @@ const mapDispatchToProps = ({
 
 const mapStateToProps = state => ({
     data: state.search.data,
-    hasErrored: state.search.error !== null,
     error: state.search.error,
+    hasErrored: state.search.error !== null,
+    isLoading: state.search.loading === true,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) ( ManagePage );

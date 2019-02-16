@@ -109,15 +109,13 @@ export class ListPage extends React.Component{
         let filteredData = this.state.currentlyDisplayed;
         let data = this.props.data;
         if( data && data.message ){
-            return data.message;
-       } else if (this.props.isLoading) {
-           return `...Loading`;
+            return <p>{ data.message }</p>;
        } else if (filteredData && filteredData.length > 0) {
-            return `${filteredData.length } results found.`;
+            return <p>{filteredData.length } results found.</p>;
         } else if (filteredData && filteredData.length === 0) {
-            return `No results found.`;
+            return <p>No results found.</p>;
         }
-        return "";
+        return null;
     }
 
     handleClick(){
@@ -144,7 +142,7 @@ export class ListPage extends React.Component{
                             New
                         </button>
                     }
-                    <p> { this.message(reportType) } </p> 
+                    { this.message(reportType) }
                     {
                         (reportType === "item" && currData.length>0) ? 
                             <div className="info">
