@@ -8,8 +8,10 @@ export function LowStockTable( props ){
     return(
         <div className="low-stock-table">
             <table>
-                <th colSpan={2}>{ product.name }</th>
                 <tbody>
+                <tr>
+                    <th colSpan={2}>{ product.name }</th>
+                </tr>
                 <tr>
                     <td>Category</td>
                     <td>{ product.category.name }</td>
@@ -42,8 +44,7 @@ export function LowStockTable( props ){
                     <td>Date</td>
                     <td>{ formatDate() }</td>
                 </tr>
-                
-                </tbody>
+        </tbody>
             </table>
         </div>
     )
