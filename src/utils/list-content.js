@@ -3,7 +3,7 @@ export const OVERVIEW_ACCESS_LEVEL = 10;
 export const PUBLIC_ACCESS_LEVEL = 20;
 export const ADMIN_ACCESS_LEVEL = 30;
 
-
+//
 const list ={
     'on-shelf': {
         keys: ['item', 'location'],

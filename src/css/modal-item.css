@@ -6,7 +6,7 @@
     color: #4e413b;
 }
 
-.modal-item ul{
+.modal-item table{
     text-align: left;
 }
 
@@ -16,7 +16,11 @@
     border-bottom: none;
 }
 
-.modal-item li:first-child {
+.modal-item tr{
+    text-transform: capitalize;
+}
+
+.modal-item th {
     background-color: #e8fcf6;
     font-weight: bold;
     font-size: 1.1em;
@@ -27,7 +31,11 @@
     border-bottom: none;
 }
 
-.modal-item ul>li:nth-child(odd) {
+.modal-item tr>td:nth-child(even) {
+    text-align: center;
+}
+
+.modal-item tbody>tr:nth-child(odd) {
     background-color: #e8fcf6;
 }
 

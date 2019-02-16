@@ -10,7 +10,7 @@ import greenCheck from '../images/green-check.png';
 
 export class ModalContent extends React.Component{
 
-    generateList(item){
+    generateTable(item){
         let list = [];
         const location = ['bin', 'shelf', 'aisle'];
         // Runs through all the keys coming from the server response.
@@ -20,76 +20,116 @@ export class ModalContent extends React.Component{
             // otherwise show only the warehouse where is located.
            if( (location.includes(field)
                 && (this.props.user &&
-                this.props.user.accessLevel < PUBLIC_ACCESS_LEVEL) )|| field === "id" ){
+                this.props.user.accessLevel < PUBLIC_ACCESS_LEVEL) )
+                || field === "id" ){
                 return;
             // If item was checked in display date and name of the
             // person responsible for the return of the item.
             }else if( field === "checkedIn" ) {
-                list.push(<li key={ field }> { !item.isCheckedOut ?  
-                            `Checked-in by: ${
+                if(!item.isCheckedOut){
+                    list.push(
+                        <tr key={ field }> 
+                            <td>Checked-in by:</td>
+                            <td>{
                                 item.checkedIn[0].employee.firstName
-                            } ${
+                            } {
                                 item.checkedIn[0].employee.lastName
-                            } ID: ${
+                            } ID: {
                                 item.checkedIn[0].employee.employeeId
-                            }`
-                            : null
-                    } </li>); 
-                list.push(<li key="check-in-date"> { !item.isCheckedOut ?  
-                            `Checked-in date: ${
-                                item.checkedIn[0].date
-                            }`
-                            : null
-                    } </li>);
+                            }
+                            </td>
+                        </tr>);
+                    
+                list.push(
+                    <tr key="check-in-date">  
+                        <td>Checked-in date:</td>
+                        <td>{ item.checkedIn[0].date }</td>
+                    </tr>
+                );
+            }
             // If item is checked out display date and name of the
             // person responsible for the item.
             } else if( field === "checkedOut" ) {
-                list.push(<li key={ field }> { item.isCheckedOut ?  
-                            `Checked-out by: ${
+                if(item.isCheckedOut){
+                    list.push(
+                        <tr key={ field }> 
+                            <td>Checked-out by:</td>
+                            <td>{
                                 item.checkedOut[0].employee.firstName
-                            } ${
+                            } {
                                 item.checkedOut[0].employee.lastName
-                            } (ID: ${
+                            } ID: {
                                 item.checkedOut[0].employee.employeeId
-                            })`
-                            : null
-                    } </li>); 
-                list.push(<li key="check-date"> { item.isCheckedOut ?  
-                            `Checked-out date: ${
-                                item.checkedOut[0].date
-                            }`
-                            : null
-                    } </li>); 
+                            }
+                            </td>
+                        </tr>);
+                    
+                list.push(
+                    <tr key="check-out-date">  
+                        <td>Checked-out date:</td>
+                        <td>{ item.checkedOut[0].date }</td>
+                    </tr>
+                );
+            }
             } else if( field === 'isCheckedOut'){
-                list.push(<li key="icon" className="big"> { item[field] ?  
-                            <React.Fragment><img src={ redCross } alt="Reject icon" className="icon"/>{item.checkedOut[0].condition}</React.Fragment>
-                            : <React.Fragment><img src={ greenCheck } alt="check icon" className="icon"/>Available</React.Fragment>
-                    } </li>);
+                list.push(<tr key="icon" className="big">{ item[field] ?  
+                            <React.Fragment>
+                                <td></td>
+                                <td><img src={ redCross } alt="Reject icon" className="icon"/>{item.checkedOut[0].condition}</td>
+                            </React.Fragment>
+                            : <React.Fragment>
+                                <td></td>
+                                <td><img src={ greenCheck } alt="check icon" className="icon"/>Available</td>
+                            </React.Fragment>
+                    }</tr>);
             } else if( field === 'inStock' ){
-                list.push( <li key = {field} > {
-                            `${addSpace(field)}: ${item[field].length} ${item.product.minimumRequired.units}`
-                        } </li>)                            
+                list.push( <tr key={field} >
+                            <td>{addSpace(field)}:</td>
+                            <td>{item[field].length} {item.product.minimumRequired.units}</td>
+                        } </tr>)                            
             } else if (field === 'usefulLife') {
-                list.push( <li key={field} > {
-                    `${addSpace(field)}: ${item[field]} ${item[field] !=="NA" ? 'days' : ""}`
-                } </li>)
+                list.push( <tr key={field} > 
+                    <td>{addSpace(field)}:</td>
+                    <td>{item[field]} {item[field] !=="NA" ? 'days' : ""}</td>
+                 </tr>)
             } else if( field === 'registeredDate' ){
-                list.push(<li key={field}>{addSpace(field)}: { formatDate(item[field]) }</li>)
+                list.push(<tr key={field}>
+                        <td>{addSpace(field)}:</td> 
+                        <td>{ formatDate(item[field]) }</td>
+                    </tr>)
             } else if( field === 'accessLevel' ){
-                list.push(<li key={field}>{addSpace(field)}: { accessLevelToString(item[field]) }</li>)
+                list.push(<tr key={field}>
+                        <td>{addSpace(field)}:</td> 
+                        <td>{ accessLevelToString(item[field]) }</td>
+                    </tr>)
             } else if( field === 'consummable' ){
-                list.push( <li key ={field} > {field}: { item[field] ? 'yes':'no' } </li>);
+                list.push( <tr key ={field} > 
+                        <td>{field}:</td> 
+                        <td>{ item[field] ? 'yes':'no' } </td>
+                    </tr>);
             }  else if( field === 'product' ){
-                list.push(<li key={field}>{ item[field] } </li>)
+                list.push(<tr key={field}>
+                        <th colSpan="2">{ item[field] } </th>
+                    </tr>)
             } else if( field === 'items' ){
-                list.push(<li key={field}>Quantity: { item[field].length } </li>)
+                list.push(<tr key={field}>
+                    <td>Quantity:</td> 
+                    <td>{ item[field].length } </td>
+                </tr>)
             } else {
-                list.push(<li key={field}>{ addSpace(field) }: { item[field] } </li>)
+                list.push(<tr key={field}>
+                        <td>{ addSpace(field) }:</td> 
+                        <td>{ item[field] } </td>
+                    </tr>)
             }
         })
    
         return(
-            <ul key={item.id}>{ list }</ul>
+            <table key={item.id}>
+                <tbody>
+                    { list }
+                </tbody>
+            </table>
         )
     }
 
@@ -106,7 +146,7 @@ export class ModalContent extends React.Component{
    
         return(
             <div>
-                { this.generateList( item ) }
+                { this.generateTable( item ) }
                  {
                     ((this.props.user &&
                     this.props.user.accessLevel >= PUBLIC_ACCESS_LEVEL)

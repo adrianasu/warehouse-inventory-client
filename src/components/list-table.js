@@ -59,14 +59,13 @@ export class ListTable extends React.Component{
                 titles.includes('shortfall')) {
                 row.push(<td  key = {title}>{ `${item.product.name}, mod. ${item.product.model}, manuf. ${item.product.manufacturer.name}` }</td>);
             // Product list
-            } else if( title === 'product' ||
-                ( title === 'item' &&
-                    titles.includes('checked-out by') )){
+            } else if( title === 'product' ){
                 row.push(<td  key = {title}>{ `${item.name}, mod. ${item.model}, manuf. ${item.manufacturer}` }</td>);
             // Item sends product serialized
             } else if (title === 'item' &&
                 ( titles.includes('location') ||
-                titles.includes('usefulLife') )){
+                titles.includes('usefulLife') ||
+                titles.includes('checked-out by') )){
                 row.push(<td  key = {title}>
                     { `${item.product}, mod. ${item.model}, manuf. ${item.manufacturer }, ` }
                 </td>);
