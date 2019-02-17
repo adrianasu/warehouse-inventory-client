@@ -1,6 +1,6 @@
 # The Warehouse Caddy
-This application will help you manage and keep track of your products, tools
-or equipment in your workplace, school or warehouse. It will provide you
+This application will help you manage and keep track of your products, 
+tools or equipment in your workplace, school or warehouse. It will provide you
 the location of your items inside your warehouse and the responsible person's 
 information when the item's been checked out.
 An item's checkout and checkin transactions are as simple as entering the item's
@@ -13,7 +13,7 @@ see there are different user's levels that will authorize a person to get
 different information and execute different actions too.
 
 ## Link to app
-Visit [TheWarehouseCaddy](https://warehouse-caddy.herokuapp.com/) now.
+Visit [TheWarehouseCaddy](https://warehouse-caddy.herokuapp.com/start) now.
 
 ## Screenshots
 ### Splash Page:
