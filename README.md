@@ -1,69 +1,96 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Warehouse Caddy
+This application will help you manage and keep track of your products, tools
+or equipment in your workplace, school or warehouse. It will provide you
+the location of your items inside your warehouse and the responsible person's 
+information when the item's been checked out.
+An item's checkout and checkin transactions are as simple as entering the item's
+barcode and the employee id of the person responsible for the item.
+Our app includes search tools to easily find your items within your database,
+lists of all items, available items, checked out items, a useful life report
+and a low stock report in the case of consummables.
+Try our demo and find out how easy it will be to manage your items. You'll
+see there are different user's levels that will authorize a person to get
+different information and execute different actions too.
 
-## Available Scripts
+## Link to app
+Visit [TheWarehouseCaddy](https://warehouse-caddy.herokuapp.com/) now.
 
-In the project directory, you can run:
+## Screenshots
+### Splash Page:
+Contains our demo information. You'll be directed here everytime you 
+click on "Info" or "Log Out" in the menu.  
+Select a user level at the bottom of the page to be auto logged-in under 
+that level.
 
-### `npm start`
+<img src="/screenshots/landing-page.jpg" width="350">
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="/screenshots/select-user.jpg" width="350">
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Basic User Level:
+At this level, no account is needed. This user will be able to read lists
+with all the items and with available items. He is allowed to use the 
+search and advanced search tools.
 
-### `npm test`
+<img src="/screenshots/basic.jpg" width="350">
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="/screenshots/search.jpg" width="350">
 
-### `npm run build`
+<img src="/screenshots/advanced-search.jpg" width="350">
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="/screenshots/list.jpg" width="350">
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Overview User Level:
+When a person creates an account, this is the user level she gets.  
+This user can view her account which contains the list of items
+that is currently responsible for.  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="/screenshots/overview.jpg" width="350">
 
-### `npm run eject`
+<img src="/screenshots/my-account.jpg" width="350">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Public User Level:
+This user level can be granted only by another user holding a public  
+or admin level.   
+This user is allowed to read all the information (items, products,   
+categories, manufacturers, employees and users) and all the necessary reports
+to manage the warehouse. He is authorized to create and to update all that
+information. He is also allowed to execute checkin and checkout transactions
+of items and view other people's accounts.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="/screenshots/public.jpg" width="350">
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="/screenshots/checkin.jpg" width="350">
 
-## Learn More
+<img src="/screenshots/account.jpg" width="350">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="/screenshots/manage.jpg" width="350">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="/screenshots/reports.jpg" width="350">
 
-### Code Splitting
+### Admin User Level:
+Only another admin user can grant someone this level. This user has all  
+permissions to read, create, update and delete all the information  
+included except for updating other users' information.  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<img src="/screenshots/admin.jpg" width="350">
 
-### Analyzing the Bundle Size
+<img src="/screenshots/delete.jpg" width="350">
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Environment Setup
+React, Node.js, Express, MongoDB, Mongoose and CSS.
 
-### Making a Progressive Web App
+## Features
+* Provide the location of an item inside a warehouse.
+* Provide information of the person responsible for an item when it was checked out.
+* Create user account.  
+* Log in using employee ID, email and password.  
+* The system is configured to store and manipulate information about the app users, 
+  the people that will be allowed to do checkout or checkin of the items, and other 
+  information as needed including the complete description of the items.  
+* Display different information and allow different actions (create, update, delete) 
+  depending on the user's level.  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Author
+Adriana Suarez
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# warehouse-inventory-client
