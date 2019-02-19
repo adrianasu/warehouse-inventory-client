@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {clearAuth} from '../actions/auth';
+import {clearAuthToken} from '../local-storage';
 import Loader from './loader';
 import { login } from '../actions/auth';
 import { landing } from '../actions/landing';
@@ -32,13 +34,22 @@ export class LandingPage extends React.Component{
                  return this.goToHome();
              })
     }
+
+    doNotLogIn(){
+        // clear any user authorization from the
+        // store and the local cache
+        this.props.clearAuth();
+        clearAuthToken();
+        this.goToHome();
+    }
+
     // User will be automatically signed in 
     // when clicking on an access level option,
     // except when "basic" level is selected
     handleClick(e){
         let email = e.target.value;
         let password = `${email}123`;
-        email === "null" ? this.goToHome()
+        email === "null" ? this.doNotLogIn()
                         : this.doLogIn( email, password);       
     }
 
@@ -121,6 +132,7 @@ export class LandingPage extends React.Component{
 }
 
 const mapDispatchToProps = ({
+    clearAuth,
     landing,
     login,
     underlineOption
