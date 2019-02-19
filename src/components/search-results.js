@@ -6,6 +6,7 @@ import { addSpace } from '../utils/utils';
 import { fetchData } from '../actions/fetch-data';
 import FilterForm from './filter-form';
 import infoIcon from '../images/info.png';
+import Loader from './loader';
 import Results from './results';
 import '../css/search-results.css';
 
@@ -42,13 +43,15 @@ export class SearchResults extends React.Component{
         let filteredData = this.state.currentlyDisplayed;
         let data = this.props.data;
         if (data && data.message) {
-            return data.message;
+            return <span className="space">{ data.message }</span>;
+        } else if (this.props.isLoading ) {
+            return <Loader/>;
         } else if (filteredData && filteredData.length > 0) {
-            return `${filteredData.length } results found.`;
+            return <span className="space">{filteredData.length } results found.</span>;
         } else if (filteredData && filteredData.length === 0) {
-            return `No results found.`;
+            return <span className="space">No results found.</span>;
         }
-        return "";
+        return null;
     }
 
     searchInItem(item, term ){
@@ -109,10 +112,10 @@ export class SearchResults extends React.Component{
                     <FilterForm value={this.state.searchTerm} onChange={this.handleChange.bind(this)}/>
                         <div className="results-header">
                             <h1>{ title } Results</h1>
-                            <p> 
+                            <div> 
                                 <img src={ infoIcon } alt="Information icon" className="icon"/>                        
-                                <span className="space">{ this.message() }</span>
-                            </p>
+                                { this.message() }
+                            </div>
                         </div>
                 <Results currData={currData}/>
             </div>
