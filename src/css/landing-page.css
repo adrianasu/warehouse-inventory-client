@@ -293,6 +293,10 @@
         margin: 1.5em 4em;
     }
 
+    reorder>p {
+        clear: right;
+    }
+
     .levels-container {
         width: 100%;
         margin: auto;
