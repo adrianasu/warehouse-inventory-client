@@ -83,7 +83,7 @@ export class LandingPage extends React.Component{
                 </div>
                 <div className="reorder land-container">
                     <h3>Reorder</h3>
-                    <img src={ lab } alt="Laboratory eqquipment cartoon" className="lab"/>
+                    <img src={ lab } alt="Laboratory equipment cartoon" className="lab"/>
                     <p>In the case of consummables, you can set minimum required 
                         quantities for each item so you will be able to know when is
                         time to reorder.
@@ -103,9 +103,7 @@ export class LandingPage extends React.Component{
                                 Increase efficiency by having all the information at your fingertips.
                             </li>
                         </ul>
-                        <div className="frame">
-                            <img src={ girl } alt="Lady scanning barcode on a box cartoon" className="girl"/>
-                        </div>
+                        <img src={ girl } alt="Lady scanning barcode on a box cartoon" className="girl"/>
                     </div>
                 </div>
                 <div className="try land-container">

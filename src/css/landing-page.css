@@ -83,41 +83,35 @@
 .tools {
     width: 50%;
     float: left;
-    margin-top: .5em;
+    margin-top: 1.5em;
     margin-right: .5em;
+    margin-bottom: 1.5em;
 }
 
 .benefits .girl {
-    width: 100%;
     display: block;
-    border-radius: 65px;
-    box-shadow: none;
+    margin: auto;
+    width: 45%;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 1px #5d5d5a;
 }
 
 .lab {
     width: 43%;
     float: right;
-    margin-top: .5em;
+    margin-top: 1.5em;
     margin-left: .5em;
-    margin-bottom: .5em;
+    margin-bottom: 1.5em;
 }
 
 .reorder, .locate {
     overflow: auto;
+    margin-bottom: 1.5em;
 }
 
 .clearfix {
     clear: right;
     clear: left;
-}
-
-.benefits .frame {
-    width: 60%;
-    height: auto;
-    margin: auto;
-    border-radius: 5px;
-    background-color: #488b8f;
-    box-shadow: 0px 2px 2px 1px #5d5d5a;
 }
 
 .grid-container {
@@ -181,6 +175,9 @@
         margin-left: 1em;
         grid-column: 2/4;
     }
+    .benefits .girl {
+        width: 100%;
+    }
     .locate>p {
         margin-top: 3em;
     }
@@ -189,9 +186,6 @@
     }
     .benefits ul {
         grid-column: 1/3;
-    }
-    .benefits .frame {
-        width: 100%;
     }
     .levels-container {
         width: 60%;
@@ -256,14 +250,14 @@
     .locate p {
         clear: left;
     }
-
-    .benefits .frame {
-        width: 50%;
-    }
     .lab {
         clear: right;
-        width: 60%;
-        margin: 1.5em 4em;
+        width: 80%;
+        margin: 1.5em;
+    }
+
+    .benefits .girl {
+        width: 70%;
     }
     .reorder>p {
         clear: right;
