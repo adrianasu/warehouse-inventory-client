@@ -55,7 +55,7 @@ export class LoggedInBar extends React.Component{
                         this.props.fromSideDrawer ? null                        
                         : <span className="tooltiptext">Log Out</span>
                     }
-                        <img src={ signOutIcon } alt="sign out icon" className="header-icon"/>
+                        <img src={ signOutIcon } alt="sign out icon" aria-label={"Sign out"} className="header-icon"/>
                         { this.props.fromSideDrawer ? ' Log Out' : ''}
                     </button>
                 </li> 

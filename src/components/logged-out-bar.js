@@ -94,7 +94,7 @@ export class LoggedOutBar extends React.Component{
                          this.props.fromSideDrawer ? null
                          : <span className="tooltiptext">Log In</span>
                      }
-                    <img src={ signInIcon } alt="sign in icon" className="header-icon"/>
+                    <img src={ signInIcon } alt="sign in icon" aria-label={"Log In"} className="header-icon"/>
                     
                     {
                         this.props.fromSideDrawer ? '  Log In' : ''
@@ -107,7 +107,7 @@ export class LoggedOutBar extends React.Component{
                         this.props.fromSideDrawer ? null
                      : <span className="tooltiptext">Sign Up</span>
                     }
-                    <img src={ signUpIcon } alt="sign up icon" className="header-icon"/>
+                    <img src={ signUpIcon } alt="sign up icon" aria-label={"Sign up"} className="header-icon"/>
                     
                     {
                         this.props.fromSideDrawer ? '  Sign Up' : ''
@@ -120,7 +120,7 @@ export class LoggedOutBar extends React.Component{
                         this.props.fromSideDrawer ? null
                         : <span className="tooltiptext">Info Page</span>
                     }
-                    <img src={ infoIcon } alt="info icon" className="header-icon"/>
+                    <img src={ infoIcon } alt="info icon" aria-label={"About"} className="header-icon"/>
                 </button></li>
             </React.Fragment>
          )

@@ -47,7 +47,7 @@ export class HeaderOptions extends React.Component{
                         onClick={this.goHome.bind(this) }>
                     { this.props.fromSideDrawer ? null 
                         : <span className="tooltiptext"> Home </span> }
-                    <img src={ homeIcon } alt="Home icon" className="header-icon"/>
+                    <img src={ homeIcon } alt="Home icon" aria-label={"Home"} className="header-icon"/>
                        
                         {
                             this.props.fromSideDrawer ? '  Home' : ''
@@ -60,7 +60,7 @@ export class HeaderOptions extends React.Component{
                         onClick={this.goToSearch.bind(this) }>
                         { this.props.fromSideDrawer ? null 
                             : <span className="tooltiptext">Search</span> }
-                        <img src={ searchIcon } alt="search icon" className="header-icon"/>
+                        <img src={ searchIcon } alt="search icon" aria-label={"Search"} className="header-icon"/>
                         
                             { this.props.fromSideDrawer ? '  Search' : ''}
                     </button>
