@@ -3,12 +3,12 @@ This application will help you manage and keep track of your products,
 tools or equipment in your workplace, school or warehouse. It will provide you
 the location of your items inside your warehouse and the responsible person's 
 information when the item's been checked out.
-An item's checkout and checkin transactions are as simple as entering the item's
+An item's check-out and check-in transactions are as simple as entering the item's
 barcode and the employee id of the person responsible for the item.
-Our app includes search tools to easily find your items within your database,
+This app includes search tools to easily find your items within your database,
 lists of all items, available items, checked out items, a useful life report
 and a low stock report in the case of consummables.
-Try our demo and find out how easy it will be to manage your items. You'll
+Try the demo and find out how easy it will be to manage your items. You'll
 see there are different user's levels that will authorize a person to get
 different information and execute different actions too.
 
@@ -17,7 +17,7 @@ Visit [TheWarehouseCaddy](https://warehouse-caddy.herokuapp.com/start) now.
 
 ## Screenshots
 ### Splash Page:
-Contains our demo information. You'll be directed here everytime you 
+Contains demo information. You'll be directed here everytime you 
 click on "Info" or "Log Out" in the menu.  
 Select a user level at the bottom of the page to be auto logged-in under 
 that level.
