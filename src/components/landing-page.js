@@ -66,7 +66,7 @@ export class LandingPage extends React.Component{
                     <div className="grid-container">
                         <p>
                             If you have items, tools or equipment of any kind
-                            and need to track and manage them, our app will
+                            and need to track and manage them, this app will
                             help you do that in an easy way.
                         </p>
                         <img src={ scanner } alt="Scanner and boxes cartoon" className="scanner"/>
@@ -76,7 +76,7 @@ export class LandingPage extends React.Component{
                     <h3>Locate</h3>
                     <img src={ tools } alt="Four hands holding tools cartoon" className="tools"/>
                     <p>
-                        Our app will provide you information about the location
+                        This app will provide you information about the location
                         of your assets inside your warehouse or about the person 
                         who currently has it. 
                     </p>
@@ -110,7 +110,7 @@ export class LandingPage extends React.Component{
                     <h3>Try our app</h3>
                     <img src={ lightbulb } alt="Lightbulb cartoon" className="icon"/>
                     <p>
-                        You'll find lightbulbs along our demo. Click on them to get
+                        You'll find lightbulbs along the demo. Click on them to get
                         examples that can be entered to get information from
                         our demo database.
                     </p>
